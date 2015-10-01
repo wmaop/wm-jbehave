@@ -21,6 +21,7 @@ import org.jbehave.core.junit.AnnotatedEmbedderRunner;
 import org.jbehave.core.parsers.RegexPrefixCapturingPatternParser;
 import org.jbehave.core.reporters.StoryReporterBuilder;
 import org.jbehave.core.steps.ParameterConverters.DateConverter;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -36,9 +37,9 @@ import uk.co.sysgen.webmethods.testing.jbehave.WmFeatureRunner.MyStoryLoader;
 public class WmFeatureRunner extends InjectableEmbedder {
 
 	@Test
+	@Ignore
 	public void run() {
-		List<String> storyPaths = new StoryFinder().findPaths(new File(
-				"src/test/resources").getAbsolutePath(), "**/*.story", "");
+		List<String> storyPaths = new StoryFinder().findPaths(new File("src/test/resources").getAbsolutePath(), "**/*.story", "");
 		injectedEmbedder().runStoriesAsPaths(storyPaths);
 	}
 
@@ -61,8 +62,7 @@ public class WmFeatureRunner extends InjectableEmbedder {
 		}
 	}
 
-	public static class MyRegexPrefixCapturingPatternParser extends
-			RegexPrefixCapturingPatternParser {
+	public static class MyRegexPrefixCapturingPatternParser extends RegexPrefixCapturingPatternParser {
 		public MyRegexPrefixCapturingPatternParser() {
 			super("%");
 		}
