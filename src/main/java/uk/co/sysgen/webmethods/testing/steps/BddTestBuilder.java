@@ -12,13 +12,22 @@ public class BddTestBuilder {
 		this.context = executionContext;
 	}
 	
-	public BddTestBuilder withInvokeService(String serviceName, String idataClasspathFile) {
-		steps.add(new InvokeServiceStep(serviceName, idataClasspathFile));
-		return this;
+	public InvokeServiceStep withInvokeService(String serviceName, String idataClasspathFile) {
+		InvokeServiceStep step = new InvokeServiceStep(serviceName, idataClasspathFile);
+		steps.add(step);
+		return step;
 	}
 
-	public MockServiceStep getMockServiceStep() {
-		return new MockServiceStep(context);
+	public MockServiceStep wirhMockService(String serviceName, String idataClasspathFile) {
+		MockServiceStep step = new MockServiceStep(serviceName, idataClasspathFile);
+		steps.add(step);
+		return step;
+	}
+
+	public MockServiceStep wirhMockService(String serviceName, String idataFile, String jexlPipelineExpression) {
+		MockServiceStep step = new MockServiceStep(serviceName, idataFile, jexlPipelineExpression);
+		steps.add(step);
+		return step;
 	}
 
 }

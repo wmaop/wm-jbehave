@@ -3,36 +3,33 @@ package uk.co.sysgen.webmethods.testing.steps;
 import java.io.IOException;
 
 import com.wm.app.b2b.client.ServiceException;
-import com.wm.data.BasicData;
 import com.wm.data.IData;
 import com.wm.data.IDataCursor;
+import com.wm.data.IDataFactory;
 import com.wm.data.IDataUtil;
 import com.wm.util.coder.IDataXMLCoder;
 
 public class MockServiceStep extends BaseServiceStep {
 
+	private final IData idata;
+	private final String execService;
 
-	public MockServiceStep(ExecutionContext executionContext) {
-		super(executionContext);
-	}
+	public MockServiceStep(String serviceName, String idataFile) throws IOException, ServiceException {
 
-	public void mockService(String serviceName, String idataFile)
-			throws IOException, ServiceException {
-
-		IData idata = new IDataXMLCoder().decodeFromBytes(idataFile.getBytes());
+		idata = new IDataXMLCoder().decodeFromBytes(idataFile.getBytes());
 		IDataCursor cursor = idata.getCursor();
 		IDataUtil.put(cursor, "serviceName", serviceName);
 		IDataUtil.put(cursor, "idataReturn", loadIDataFromClasspath(idataFile));
-		
+
 		cursor.destroy();
 		
-		invokeService("catlin.mock.mocks:addFixedResponseMock", idata);
+		execService = "catlin.mock.mocks:addFixedResponseMock";
 	}
 
-	public void mockService(String serviceName, String idataFile,
+	public MockServiceStep(String serviceName, String idataFile,
 			String jexlExpression) throws IOException, ServiceException {
 
-		IData idata = new BasicData();
+		idata = IDataFactory.create();
 		IDataCursor cursor = idata.getCursor();
 		IDataUtil.put(cursor, "serviceName", serviceName);
 		IDataUtil.put(cursor, "jexlExpression", jexlExpression);
@@ -40,7 +37,11 @@ public class MockServiceStep extends BaseServiceStep {
 		
 		cursor.destroy();
 		
-		invokeService("catlin.mock.mocks:addJexlResponseMock", idata);
+		execService = "catlin.mock.mocks:addJexlResponseMock";
 	}
 
+	@Override
+	void execute(ExecutionContext executionContext) throws Exception {
+		invokeService(executionContext, execService, idata);
+	}
 }

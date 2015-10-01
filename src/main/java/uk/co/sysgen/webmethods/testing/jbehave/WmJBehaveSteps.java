@@ -43,20 +43,20 @@ public class WmJBehaveSteps {
 		public void mock_service_always_returning(String serviceName, String idataFile) throws IOException, ServiceException {
 			System.out.println("Creating mock for " + serviceName
 					+ " with canned data " + idataFile);
-			testBuilder.getMockServiceStep().mockService(serviceName, idataFile);
+			testBuilder.wirhMockService(serviceName, idataFile);
 		}
 
 		
-		@Given("mock $serviceName returning $idataFile when $jexlExpression")
-		public void mock_service_returning_when(String serviceName, String idataFile, String jexlExpression)
+		@Given("mock $serviceName returning $idataFile when $jexlPipelineExpression")
+		public void mock_service_returning_when(String serviceName, String idataFile, String jexlPipelineExpression)
 				throws Throwable {
-			System.out.println(serviceName + " called with "+idataFile+" when " + jexlExpression);
-			testBuilder.getMockServiceStep().mockService(serviceName, idataFile, jexlExpression);
+			System.out.println(serviceName + " called with "+idataFile+" when " + jexlPipelineExpression);
+			testBuilder.wirhMockService(serviceName, idataFile, jexlPipelineExpression);
 		}
 		
 		@Given("$assertionId assertion $invokePosition service $service when $expression")
 		public void assertion_service_when(String assertionId, String invokePosition, String serviceName, String expression) {
-			
+                           			
 		}
 		@Then("assertion $assertionId was invoked $invokeCount times")
 		public void assertion_was_invoked_times(String assertionId, String invokeCount) throws Throwable {
