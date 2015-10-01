@@ -34,7 +34,7 @@ public abstract class BaseServiceStep {
 		try(InputStream is = this.getClass().getClassLoader().getResourceAsStream(fileName)) {
 			return new IDataXMLCoder().decode(is);
 		} catch (Exception e) {
-			throw new RuntimeException("Unable to load " + fileName + " from the classpath");
+			throw new RuntimeException("Unable to load file '" + fileName + "' from the classpath");
 		}
 
 	}

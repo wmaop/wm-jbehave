@@ -27,37 +27,35 @@
 			<version>9.0.1-1</version>
 			<scope>provided</scope>
 		</dependency>
+<dependency>
+	<groupId>javax.mail</groupId>
+	<artifactId>javax.mail-api</artifactId>
+	<version>1.4.4</version>
+			<scope>provided</scope>
+</dependency>
+<dependency>
+	<groupId>org.bouncycastle</groupId>
+	<artifactId>bcprov-jdk14</artifactId>
+	<version>8.0.33-1242</version>
+			<scope>system</scope>
+			<systemPath>D:\SoftwareAG\common\lib\ext\enttoolkit.jar</systemPath>
+</dependency>
+
 		<dependency>
 			<groupId>org.jbehave</groupId>
 			<artifactId>jbehave-core</artifactId>
 			<version>4.0.2</version>
-			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.reflections</groupId>
-			<artifactId>reflections-maven</artifactId>
-			<version>0.9.9-RC2</version>
-			<scope>test</scope>
-		</dependency>
-
 		<dependency>
 			<groupId>org.jbehave</groupId>
 			<artifactId>jbehave-maven-plugin</artifactId>
 			<version>4.0.2</version>
-			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>info.cukes</groupId>
-			<artifactId>cucumber-java</artifactId>
-			<version>1.2.3</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>info.cukes</groupId>
-			<artifactId>cucumber-junit</artifactId>
-			<version>1.2.3</version>
-			<scope>test</scope>
-		</dependency>
+<dependency>
+	<groupId>de.codecentric</groupId>
+	<artifactId>jbehave-junit-runner</artifactId>
+	<version>1.2.0</version>
+</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>

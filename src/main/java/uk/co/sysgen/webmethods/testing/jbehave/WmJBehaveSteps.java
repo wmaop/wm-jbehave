@@ -6,20 +6,25 @@ import org.jbehave.core.annotations.BeforeScenario;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
+import org.jbehave.core.steps.Steps;
 
 import com.wm.app.b2b.client.ServiceException;
 
 import uk.co.sysgen.webmethods.testing.steps.BddTestBuilder;
 import uk.co.sysgen.webmethods.testing.steps.ExecutionContext;
 
-public class WmJBehaveSteps {
+public class WmJBehaveSteps  {
 
 		private static final String EMPTY_IDATA = "<IDataXMLCoder version=\"1.0\"></IDataXMLCoder>";
 		private BddTestBuilder testBuilder;
 		
 		@BeforeScenario
 		public void init() throws IOException, ServiceException {
-			testBuilder = new BddTestBuilder(new ExecutionContext("src/test/resources/jfeature/feature.properties"));
+			try {
+				testBuilder = new BddTestBuilder(new ExecutionContext("src/test/resources/jfeature/feature.properties"));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		@When("invoke $serviceName with $idataFile")
