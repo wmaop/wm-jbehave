@@ -18,13 +18,13 @@ public class BddTestBuilder {
 		return step;
 	}
 
-	public MockServiceStep wirhMockService(String serviceName, String idataClasspathFile) {
+	public MockServiceStep wirhMockService(String serviceName, String idataClasspathFile) throws Exception {
 		MockServiceStep step = new MockServiceStep(serviceName, idataClasspathFile);
 		steps.add(step);
 		return step;
 	}
 
-	public MockServiceStep wirhMockService(String serviceName, String idataFile, String jexlPipelineExpression) {
+	public MockServiceStep wirhMockService(String serviceName, String idataFile, String jexlPipelineExpression) throws Exception {
 		MockServiceStep step = new MockServiceStep(serviceName, idataFile, jexlPipelineExpression);
 		steps.add(step);
 		return step;

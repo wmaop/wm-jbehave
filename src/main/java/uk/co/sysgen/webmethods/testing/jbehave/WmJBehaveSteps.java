@@ -1,20 +1,16 @@
 package uk.co.sysgen.webmethods.testing.jbehave;
 
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.Properties;
 
 import org.jbehave.core.annotations.BeforeScenario;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
-import uk.co.sysgen.webmethods.testing.steps.ExecutionContext;
-import uk.co.sysgen.webmethods.testing.steps.BddTestBuilder;
-
-import com.wm.app.b2b.client.Context;
 import com.wm.app.b2b.client.ServiceException;
+
+import uk.co.sysgen.webmethods.testing.steps.BddTestBuilder;
+import uk.co.sysgen.webmethods.testing.steps.ExecutionContext;
 
 public class WmJBehaveSteps {
 
@@ -40,7 +36,7 @@ public class WmJBehaveSteps {
 		}
 
 		@Given("mock $serviceName always returning $idataFile")
-		public void mock_service_always_returning(String serviceName, String idataFile) throws IOException, ServiceException {
+		public void mock_service_always_returning(String serviceName, String idataFile) throws Exception {
 			System.out.println("Creating mock for " + serviceName
 					+ " with canned data " + idataFile);
 			testBuilder.wirhMockService(serviceName, idataFile);
