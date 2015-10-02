@@ -1,33 +1,26 @@
 package uk.co.sysgen.webmethods.testing.steps;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class BddTestBuilder {
 
-	private List<BaseServiceStep> steps = new ArrayList<>();
-	private ExecutionContext context;
+	private ExecutionContext executionContext;
 
 	public BddTestBuilder(ExecutionContext executionContext) {
-		this.context = executionContext;
+		this.executionContext = executionContext;
 	}
 	
-	public InvokeServiceStep withInvokeService(String serviceName, String idataClasspathFile) {
+	public void withInvokeService(String serviceName, String idataClasspathFile) throws Exception {
 		InvokeServiceStep step = new InvokeServiceStep(serviceName, idataClasspathFile);
-		steps.add(step);
-		return step;
+		step.execute(executionContext);
 	}
 
-	public MockServiceStep wirhMockService(String serviceName, String idataClasspathFile) throws Exception {
+	public void withMockService(String serviceName, String idataClasspathFile) throws Exception {
 		MockServiceStep step = new MockServiceStep(serviceName, idataClasspathFile);
-		steps.add(step);
-		return step;
+		step.execute(executionContext);
 	}
 
-	public MockServiceStep wirhMockService(String serviceName, String idataFile, String jexlPipelineExpression) throws Exception {
+	public void withMockService(String serviceName, String idataFile, String jexlPipelineExpression) throws Exception {
 		MockServiceStep step = new MockServiceStep(serviceName, idataFile, jexlPipelineExpression);
-		steps.add(step);
-		return step;
+		step.execute(executionContext);
 	}
 
 }

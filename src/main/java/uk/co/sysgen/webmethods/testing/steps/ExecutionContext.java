@@ -7,11 +7,13 @@ import java.util.Properties;
 
 import com.wm.app.b2b.client.Context;
 import com.wm.app.b2b.client.ServiceException;
+import com.wm.data.IData;
 
 public class ExecutionContext {
 
 	Properties p = new Properties();
 	Context context;
+	IData pipeline;
 	
 	public ExecutionContext(String contextFile) throws IOException, ServiceException {
 		p.load(new FileReader(new File(
@@ -42,6 +44,14 @@ public class ExecutionContext {
 			ctx.connect(host, port, username, password);
 		}
 		return ctx;
+	}
+
+	public IData getPipeline() {
+		return pipeline;
+	}
+
+	public void setPipeline(IData pipeline) {
+		this.pipeline = pipeline;
 	}
 
 }

@@ -12,13 +12,12 @@ public class InvokeServiceStep extends BaseServiceStep {
 	private String idataClasspathFile;
 
 	public InvokeServiceStep(String serviceName, String idataClasspathFile) {
-		this.serviceName= serviceName;
+		this.serviceName = serviceName;
 		this.idataClasspathFile = idataClasspathFile;
 	}
 
 	@Override
 	void execute(ExecutionContext executionContext) throws Exception {
-		invokeService(executionContext, serviceName, loadIDataFromClasspath(idataClasspathFile));
-		
+		executionContext.setPipeline(invokeService(executionContext, serviceName, loadIDataFromClasspath(idataClasspathFile)));
 	}
 }
