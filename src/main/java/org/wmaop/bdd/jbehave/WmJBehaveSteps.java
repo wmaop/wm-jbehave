@@ -1,4 +1,4 @@
-package uk.co.sysgen.webmethods.testing.jbehave;
+package org.wmaop.bdd.jbehave;
 
 import java.io.IOException;
 
@@ -7,11 +7,10 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
+import org.wmaop.bdd.steps.BddTestBuilder;
+import org.wmaop.bdd.steps.ExecutionContext;
 
 import com.wm.app.b2b.client.ServiceException;
-
-import uk.co.sysgen.webmethods.testing.steps.BddTestBuilder;
-import uk.co.sysgen.webmethods.testing.steps.ExecutionContext;
 
 public class WmJBehaveSteps  {
 

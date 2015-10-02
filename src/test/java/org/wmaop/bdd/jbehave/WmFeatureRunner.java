@@ -1,4 +1,4 @@
-package uk.co.sysgen.webmethods.testing.jbehave;
+package org.wmaop.bdd.jbehave;
 
 import static org.jbehave.core.reporters.Format.CONSOLE;
 import static org.jbehave.core.reporters.Format.HTML;
@@ -24,11 +24,11 @@ import org.jbehave.core.steps.ParameterConverters.DateConverter;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import uk.co.sysgen.webmethods.testing.jbehave.WmFeatureRunner.MyDateConverter;
-import uk.co.sysgen.webmethods.testing.jbehave.WmFeatureRunner.MyReportBuilder;
-import uk.co.sysgen.webmethods.testing.jbehave.WmFeatureRunner.MyStoryControls;
-import uk.co.sysgen.webmethods.testing.jbehave.WmFeatureRunner.MyStoryLoader;
+import org.wmaop.bdd.jbehave.WmJBehaveSteps;
+import org.wmaop.bdd.jbehave.WmFeatureRunner.MyDateConverter;
+import org.wmaop.bdd.jbehave.WmFeatureRunner.MyReportBuilder;
+import org.wmaop.bdd.jbehave.WmFeatureRunner.MyStoryControls;
+import org.wmaop.bdd.jbehave.WmFeatureRunner.MyStoryLoader;
 
 @RunWith(AnnotatedEmbedderRunner.class)
 @Configure(storyControls = MyStoryControls.class, storyLoader = MyStoryLoader.class, storyReporterBuilder = MyReportBuilder.class, parameterConverters = { MyDateConverter.class })

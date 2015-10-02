@@ -1,4 +1,4 @@
-package uk.co.sysgen.webmethods.testing.steps;
+package org.wmaop.bdd.steps;
 
 public class ResultContext {
 

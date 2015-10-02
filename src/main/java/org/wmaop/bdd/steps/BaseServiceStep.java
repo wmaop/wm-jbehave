@@ -1,4 +1,4 @@
-package uk.co.sysgen.webmethods.testing.steps;
+package org.wmaop.bdd.steps;
 
 import java.io.InputStream;
 
@@ -34,7 +34,7 @@ public abstract class BaseServiceStep {
 		try(InputStream is = this.getClass().getClassLoader().getResourceAsStream(fileName)) {
 			return new IDataXMLCoder().decode(is);
 		} catch (Exception e) {
-			throw new RuntimeException("Unable to load file '" + fileName + "' from the classpath");
+			throw new RuntimeException("Unable to load file '" + fileName + "' from the classpath.  Cause is: " + e.getMessage());
 		}
 
 	}

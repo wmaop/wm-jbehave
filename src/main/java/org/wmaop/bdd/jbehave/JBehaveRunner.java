@@ -1,4 +1,4 @@
-package uk.co.sysgen.webmethods.testing.jbehave;
+package org.wmaop.bdd.jbehave;
 
 import java.io.File;
 import java.util.ArrayList;
