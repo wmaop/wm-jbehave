@@ -11,6 +11,7 @@ import com.wm.util.coder.IDataXMLCoder;
 
 public class MockServiceStep extends BaseServiceStep {
 
+	private static final String FIXED_RESPONSE_MOCK = "org.wmaop.define.fixedResponse:addFixedResponseMock";
 	private final IData idata;
 	private final String execService;
 
@@ -20,10 +21,8 @@ public class MockServiceStep extends BaseServiceStep {
 		IDataCursor cursor = idata.getCursor();
 		IDataUtil.put(cursor, "serviceName", serviceName);
 		IDataUtil.put(cursor, "idataReturn", loadIDataFromClasspath(idataFile));
-
 		cursor.destroy();
-		
-		execService = "catlin.mock.mocks:addFixedResponseMock";
+		execService = FIXED_RESPONSE_MOCK;
 	}
 
 	public MockServiceStep(String serviceName, String idataFile,

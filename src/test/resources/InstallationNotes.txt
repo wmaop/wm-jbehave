@@ -1,0 +1,15 @@
+Install JBehave plugin
+----------------------
+Using the Eclipse Installer:
+	* Help > Install New Software...
+	* Add the new site location http://jbehave.org/reference/eclipse/updates/
+	* Select JBehave Eclipse feature and follow standard Eclipse installation procedure
+	
+Configure scanning
+----------------------
+	* Window > Preferences > JBehave > Class Scanner
+	* Enter a file pattern of:  org.wmaop.*
+	* Ensure 'package' is selected
+	* Click 'Include' button
+	* OK
+	* Restart Eclipse (Shouldnt need to do this but I found the scanner didnt pick up the classes first time)

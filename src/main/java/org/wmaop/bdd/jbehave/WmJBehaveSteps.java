@@ -20,7 +20,7 @@ public class WmJBehaveSteps  {
 		@BeforeScenario
 		public void init() throws IOException, ServiceException {
 			try {
-				testBuilder = new BddTestBuilder(new ExecutionContext("src/test/resources/jfeature/feature.properties"));
+				testBuilder = new BddTestBuilder(new ExecutionContext("src/test/resources/feature.properties"));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

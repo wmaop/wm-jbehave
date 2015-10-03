@@ -1,16 +1,17 @@
-Sample story
+Mock Story
 
 Narrative:
 In order to communicate effectively to the business some functionality
 As a development team
 I want to use Behaviour-Driven Development
 					 
-Scenario:  A scenario is a collection of executable steps of different type
-Given step represents a precondition to an event
-When step represents the occurrence of the event
-Then step represents the outcome of the event
-					 
-Scenario:  Another scenario exploring different combination of events
-Given a precondition  
-When a negative event occurs  
-Then a the outcome should be captured
+Scenario:  Invoke a fixed mock with empty pipeline. Verify pipline doesnt have variable from replace service and contains mock value
+Given mock org.wmaop.test.services:svcA always returning data/applepear.xml
+When invoke org.wmaop.test.services:rootSvc with data/empty.xml
+Then pipeline has varA == null && apple == "alpha"
+
+Scenario:  Invoke a fixed mock with pipeline content. Verify pipline doesnt have variable from replace service and contains mock and pipeline values
+Given mock org.wmaop.test.services:svcA always returning data/applepear.xml
+When invoke org.wmaop.test.services:rootSvc with data/empty.xml
+Then pipeline has varA == null && apple == "alpha" 
+And pipeline has lorem == "ipsum"
