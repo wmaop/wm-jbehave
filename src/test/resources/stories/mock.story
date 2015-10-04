@@ -1,9 +1,9 @@
 Mock Story
 
 Narrative:
-In order to communicate effectively to the business some functionality
-As a development team
-I want to use Behaviour-Driven Development
+In order to simulate service behaviour
+As a test framework
+I want to mock services
 					 
 Scenario:  Invoke a fixed mock with empty pipeline. Verify pipline doesnt have variable from replace service and contains mock value
 Given mock org.wmaop.test.services:svcA always returning data/applepear.xml

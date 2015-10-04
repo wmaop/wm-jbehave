@@ -11,28 +11,30 @@ import com.wm.util.coder.IDataXMLCoder;
 
 public class MockServiceStep extends BaseServiceStep {
 
-	private static final String FIXED_RESPONSE_MOCK = "org.wmaop.define.fixedResponse:addFixedResponseMock";
+	private static final String FIXED_RESPONSE_MOCK = "org.wmaop.define.fixedResponse:registerFixedResponseMock";
 	private final IData idata;
 	private final String execService;
 
-	public MockServiceStep(String serviceName, String idataFile) throws IOException, ServiceException {
+	public MockServiceStep(String adviceId, String interceptPoint, String serviceName, String idataFile) throws Exception {
 
-		idata = new IDataXMLCoder().decodeFromBytes(idataFile.getBytes());
+		idata = IDataFactory.create();
 		IDataCursor cursor = idata.getCursor();
+		IDataUtil.put(cursor, "adviceId", adviceId);
 		IDataUtil.put(cursor, "serviceName", serviceName);
-		IDataUtil.put(cursor, "idataReturn", loadIDataFromClasspath(idataFile));
+		IDataUtil.put(cursor, "response", stringFromClasspathResource(idataFile));
 		cursor.destroy();
 		execService = FIXED_RESPONSE_MOCK;
 	}
 
-	public MockServiceStep(String serviceName, String idataFile,
-			String jexlExpression) throws IOException, ServiceException {
+	public MockServiceStep(String adviceId, String interceptPoint, String serviceName, String idataFile,
+			String jexlExpression) throws Exception {
 
 		idata = IDataFactory.create();
 		IDataCursor cursor = idata.getCursor();
+		IDataUtil.put(cursor, "adviceId", adviceId);
 		IDataUtil.put(cursor, "serviceName", serviceName);
-		IDataUtil.put(cursor, "jexlExpression", jexlExpression);
-		IDataUtil.put(cursor, "idataReturn", loadIDataFromClasspath(idataFile));
+		IDataUtil.put(cursor, "condition", jexlExpression);
+		IDataUtil.put(cursor, "response", stringFromClasspathResource(idataFile));
 		
 		cursor.destroy();
 		

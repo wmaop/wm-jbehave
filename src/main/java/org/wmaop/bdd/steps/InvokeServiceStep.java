@@ -18,6 +18,6 @@ public class InvokeServiceStep extends BaseServiceStep {
 
 	@Override
 	void execute(ExecutionContext executionContext) throws Exception {
-		executionContext.setPipeline(invokeService(executionContext, serviceName, loadIDataFromClasspath(idataClasspathFile)));
+		executionContext.setPipeline(invokeService(executionContext, serviceName, idataFromClasspathResource(idataClasspathFile)));
 	}
 }

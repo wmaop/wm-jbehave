@@ -18,6 +18,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<wm-aop-util.version>1.0.0-SNAPSHOT</wm-aop-util.version>
 		<javaxmail.version>1.4.4</javaxmail.version>
 		<entrust-toolkit.version>8.0.33-1242</entrust-toolkit.version>
 		<jbehave.version>4.0.2</jbehave.version>
@@ -25,6 +26,13 @@
 	</properties>
 
 	<dependencies>
+	
+		<dependency>
+			<groupId>org.wmaop</groupId>
+			<artifactId>wm-aop-util</artifactId>
+			<version>${wm-aop-util.version}</version>
+		</dependency>
+	
 		<dependency>
 			<groupId>com.softwareag.webmethods</groupId>
 			<artifactId>wm-isserver</artifactId>
@@ -47,6 +55,12 @@
 			<groupId>com.entrust</groupId>
 			<artifactId>toolkit</artifactId>
 			<version>${entrust-toolkit.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
 			<scope>provided</scope>
 		</dependency>
 

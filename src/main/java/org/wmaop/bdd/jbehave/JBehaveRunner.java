@@ -17,11 +17,11 @@ import de.codecentric.jbehave.junit.monitoring.JUnitReportingRunner;
 @RunWith(JUnitReportingRunner.class)
 public class JBehaveRunner extends JUnitStories {
 
-	private final WmJBehaveSteps stepsImstance;
+	private final WmJBehaveSteps stepsInstance;
 
 	public JBehaveRunner() {
 		JUnitReportingRunner.recommendedControls(configuredEmbedder());
-		stepsImstance = new WmJBehaveSteps();
+		stepsInstance = new WmJBehaveSteps();
 		}
 	
     @Override 
@@ -35,12 +35,12 @@ public class JBehaveRunner extends JUnitStories {
 
 			@Override
 			public Object createInstanceOfType(Class<?> type) {
-				return stepsImstance;
+				return stepsInstance;
 			}
 
 			@Override
 			protected List<Class<?>> stepsTypes() {
-				return new ArrayList<Class<?>>( Arrays.asList(WmJBehaveSteps.class));
+				return new ArrayList<Class<?>>(Arrays.asList(WmJBehaveSteps.class));
 			}
 		};
 	}
