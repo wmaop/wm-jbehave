@@ -1,19 +1,12 @@
 package org.wmaop.bdd.jbehave;
 
-import java.io.IOException;
-
 import org.jbehave.core.annotations.AfterScenario;
 import org.jbehave.core.annotations.BeforeScenario;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
-import org.jbehave.core.context.Context;
-import org.wmaop.bdd.steps.BddTestBuilder;
-import org.wmaop.bdd.steps.ExecutionContext;
 import org.wmaop.bdd.steps.ThreadContext;
-
-import com.wm.app.b2b.client.ServiceException;
 
 public class WmJBehaveSteps  {
 
@@ -83,7 +76,7 @@ public class WmJBehaveSteps  {
 
 		@When("invoke $serviceName without idata")
 		public void invoke_service(final String serviceName) {
-			ThreadContext.get().withInvokeService(serviceName, EMPTY_IDATA);
+			ThreadContext.get().withInvokeService(serviceName, null);
 		}
 		
 		/*

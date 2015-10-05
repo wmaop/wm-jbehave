@@ -46,7 +46,11 @@ public abstract class BaseServiceStep {
 
 	protected InputStream streamFromClasspathResource(String fileName) {
 		try {
-			return this.getClass().getClassLoader().getResourceAsStream(fileName);
+			InputStream is = this.getClass().getClassLoader().getResourceAsStream(fileName);
+			if (is == null) {
+				throw new RuntimeException("Unable to load file '" + fileName + "' from the classpath.");
+			}
+			return is;
 		} catch (Exception e) {
 			throw new RuntimeException("Unable to load file '" + fileName + "' from the classpath.  Cause is: " + e.getMessage());
 		}

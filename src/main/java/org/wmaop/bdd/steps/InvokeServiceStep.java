@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.wm.app.b2b.client.ServiceException;
 import com.wm.data.IData;
+import com.wm.data.IDataFactory;
 import com.wm.util.coder.IDataXMLCoder;
 
 public class InvokeServiceStep extends BaseServiceStep {
@@ -18,7 +19,8 @@ public class InvokeServiceStep extends BaseServiceStep {
 
 	@Override
 	void execute(ExecutionContext executionContext) throws Exception {
-		IData pipeline = invokeService(executionContext, serviceName, idataFromClasspathResource(idataClasspathFile));
+		IData idata = idataClasspathFile == null ? IDataFactory.create() : idataFromClasspathResource(idataClasspathFile);
+		IData pipeline = invokeService(executionContext, serviceName, idata);
 		executionContext.setPipeline(pipeline);
 	}
 }
