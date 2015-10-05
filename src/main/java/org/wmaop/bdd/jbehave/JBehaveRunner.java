@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.configuration.MostUsefulConfiguration;
+import org.jbehave.core.failures.FailingUponPendingStep;
 import org.jbehave.core.io.StoryFinder;
 import org.jbehave.core.junit.JUnitStories;
 import org.jbehave.core.steps.AbstractStepsFactory;
@@ -17,25 +18,22 @@ import de.codecentric.jbehave.junit.monitoring.JUnitReportingRunner;
 @RunWith(JUnitReportingRunner.class)
 public class JBehaveRunner extends JUnitStories {
 
-	private final WmJBehaveSteps stepsInstance;
-
 	public JBehaveRunner() {
 		JUnitReportingRunner.recommendedControls(configuredEmbedder());
-		stepsInstance = new WmJBehaveSteps();
 		}
 	
     @Override 
     public Configuration configuration() { 
-        return new MostUsefulConfiguration();
+        return new MostUsefulConfiguration().usePendingStepStrategy(new FailingUponPendingStep());
     }
-
+    
 	@Override
 	public InjectableStepsFactory stepsFactory() {
 		return new AbstractStepsFactory(configuration()) {
 
 			@Override
 			public Object createInstanceOfType(Class<?> type) {
-				return stepsInstance;
+				return new WmJBehaveSteps(); //stepsInstance;
 			}
 
 			@Override

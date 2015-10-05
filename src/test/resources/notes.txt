@@ -1,3 +1,15 @@
+Setup
+---------------------------
+Change config files:
+* "G:\SoftwareAG\IntegrationServer\instances\default\config\invokemanager.cnf"
+
+Errors seen
+---------------------------
+* If errors appear which look like they're from the remote invoke to the server, check that that AOPChainProcessor is registered in the invokemanager.cnf
+* If step fails and shows "Step is pending!" check the console tab for errors
+* If invokemanager.cnf loses the edit changes, check the server.log for [ISS.0015.0002E] or "invokemanager.cnf" to see if class not found.  If so, check paths
+
+
 stubbing - Mock returns value
 
 argument matching - pipeline match

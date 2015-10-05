@@ -14,6 +14,16 @@ import com.wm.util.coder.InvalidDatatypeException;
 
 public abstract class BaseServiceStep {
 
+	static final String ADVICE_ID = "adviceId";
+	static final String RESPONSE = "response";
+	static final String INTERCEPT_POINT = "interceptPoint";
+	static final String SERVICE_NAME = "serviceName";
+	static final String CONDITION = "condition";
+	
+	static final String FIXED_RESPONSE_MOCK = "org.wmaop.define.fixedResponse:registerFixedResponseMock";
+	static final String SETUP_ASSERTION = "org.wmaop.define.assertion:registerAssertion";
+	static final String ASSERTION_INVOKE_COUNT = "org.wmaop.define.assertion:getInvokeCount";
+	
 	protected class ServiceSplit {
 		String packageName;
 		String serviceName;
@@ -41,22 +51,14 @@ public abstract class BaseServiceStep {
 			throw new RuntimeException("Unable to load file '" + fileName + "' from the classpath.  Cause is: " + e.getMessage());
 		}
 	}
-
-	protected String stringFromClasspathResource(String fileName) throws Exception{
-		try {
-			return FileUtils.readFileToString(new File(fileName));
-		} catch (Exception e) {
-			throw new RuntimeException("Unable to load file '" + fileName + "' from the classpath.  Cause is: " + e.getMessage());
-		}
-	}
 	
 	protected IData idataFromClasspathResource(String fileName) throws Exception {
 		return new IDataXMLCoder().decode(streamFromClasspathResource(fileName));
 	}
 
-	protected String loadFromClasspathAsString(String fileName) {
-		try(InputStream is = this.getClass().getClassLoader().getResourceAsStream(fileName)) {
-			return IOUtils.toString(is);
+	protected String stringFromClasspathResource(String fileName) {
+		try {
+			return IOUtils.toString(streamFromClasspathResource(fileName));
 		} catch (Exception e) {
 			throw new RuntimeException("Unable to load " + fileName + " from the classpath");
 		}

@@ -15,10 +15,14 @@ public class ExecutionContext {
 	Context context;
 	IData pipeline;
 	
-	public ExecutionContext(String contextFile) throws IOException, ServiceException {
-		p.load(new FileReader(new File(
-				contextFile)));
-		context = createConnectionContext();
+	public ExecutionContext(String contextFile) {
+		try {
+			p.load(new FileReader(new File(
+					contextFile)));
+			context = createConnectionContext();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 	
 	public Context getConnectionContext() {

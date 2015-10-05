@@ -2,6 +2,7 @@ package org.wmaop.bdd.jbehave;
 
 import java.io.IOException;
 
+import org.jbehave.core.annotations.AfterScenario;
 import org.jbehave.core.annotations.BeforeScenario;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Named;
@@ -10,59 +11,88 @@ import org.jbehave.core.annotations.When;
 import org.jbehave.core.context.Context;
 import org.wmaop.bdd.steps.BddTestBuilder;
 import org.wmaop.bdd.steps.ExecutionContext;
+import org.wmaop.bdd.steps.ThreadContext;
 
 import com.wm.app.b2b.client.ServiceException;
 
 public class WmJBehaveSteps  {
 
 		private static final String EMPTY_IDATA = "<IDataXMLCoder version=\"1.0\"></IDataXMLCoder>";
-		private BddTestBuilder testBuilder;
 		
 		@BeforeScenario
-		public void init() throws IOException, ServiceException {
+		public void setup() throws Exception {
 			try {
-				testBuilder = new BddTestBuilder(new ExecutionContext("src/test/resources/feature.properties"));
+				ThreadContext.get().teardown();
 			} catch (Exception e) {
 				e.printStackTrace();
+				throw e;
 			}
 		}
 		
-		@When("invoke $serviceName with $idataFile")
-		public void invoke_service(final String serviceName, String idataFile) throws Exception {
-			testBuilder.withInvokeService(serviceName, idataFile);
-		}
-		
-
-		@Given("invoke $serviceName")
-		public void invoke_service(final String serviceName) throws Exception {
-			testBuilder.withInvokeService(serviceName, EMPTY_IDATA);
+		@AfterScenario
+		public void teardown() throws Exception {
+			try {
+				ThreadContext.get().teardown();
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw e;
+			}
 		}
 
 		@Given("mock $serviceName always returning $idataFile")
-		public void mock_service_always_returning(Context context, String serviceName, String idataFile) throws Exception {
-			System.out.println("Context story is " +context.getCurrentStory());
-			testBuilder.withMockService("adviceId", "interceptPoint", serviceName, idataFile);
+		public void mock_service_always_returning(String serviceName, String idataFile) {
+			ThreadContext.get().withMockService("adviceId", InterceptPoint.invoke, serviceName, idataFile);
 		}
 
 		
 		@Given("mock $serviceName returning $idataFile when $jexlPipelineExpression")
 		public void mock_service_returning_when(String serviceName, String idataFile, String jexlPipelineExpression)
 				throws Throwable {
-			testBuilder.withMockService("adviceId", "interceptPoint",serviceName, idataFile, jexlPipelineExpression);
+			ThreadContext.get().withMockService("adviceId", InterceptPoint.invoke,serviceName, idataFile, jexlPipelineExpression);
 		}
 		
 		@Given("$assertionId assertion $interceptPoint service $service when $expression")
 		public void assertion_service_when(String assertionId, InterceptPoint interceptPoint, String serviceName, String expression) {
-                           			
+			ThreadContext.get().withAssertion(assertionId, interceptPoint, serviceName, expression);
 		}
-		@Given("$assertionId assertion $invokePosition service $service always")
-		public void assertion_service(String assertionId, String invokePosition, String serviceName, String expression) {
-                           			
+		
+		@Given("$assertionId assertion $interceptPoint service $service always")
+		public void assertion_service(String assertionId, String interceptPoint, String serviceName) {
+			ThreadContext.get().withAssertion(assertionId, interceptPoint, serviceName);
 		}
 
+		@Given("exception $exception thrown calling service $service always")
+		public void exception_thrown_when_calling_service(String exception, String service) {
+			
+		}
+
+		@Given("exception $exception thrown calling service $service when $expression")
+		public void exception_thrown_when_calling_service(String exception, String service, String expression) {
+			
+		}
+		
+		/*
+		 * When
+		 */
+		
+		@When("invoke $serviceName with $idataFile")
+		public void invoke_service(final String serviceName, String idataFile) {
+			ThreadContext.get().withInvokeService(serviceName, idataFile);
+		}
+		
+
+		@When("invoke $serviceName without idata")
+		public void invoke_service(final String serviceName) {
+			ThreadContext.get().withInvokeService(serviceName, EMPTY_IDATA);
+		}
+		
+		/*
+		 * Then
+		 */
+		
 		@Then("assertion $assertionId was invoked $invokeCount times")
 		public void assertion_was_invoked_times(String assertionId, int invokeCount) throws Throwable {
-			
+			ThreadContext.get().withAssertionInvokeCount(assertionId, invokeCount);
 		}
 		
 		@Then("service $serviceName was invoked $invokeCount times")
@@ -73,11 +103,21 @@ public class WmJBehaveSteps  {
 
 		@Then("pipeline has $jexlExpression")
 		public void pipeline_has_foo_data(String jexlExpression) throws Throwable {
-			testBuilder.withPipelineExpression(jexlExpression);
+			ThreadContext.get().withPipelineExpression(jexlExpression);
 		}
 		
 		@Then("exception $exception was thrown")
 		public void exception_was_thrown(String exceptionName) {
 			System.out.println("Exception was thrown");
 		}
+
+		/*
+		 * Utility 
+		 */
+
+		@Then("show pipeline in console")
+		public void showPipeline() {
+			ThreadContext.get().showPipeline();
+		}
+
 }
