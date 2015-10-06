@@ -55,7 +55,8 @@
 			<groupId>com.entrust</groupId>
 			<artifactId>toolkit</artifactId>
 			<version>${entrust-toolkit.version}</version>
-			<scope>provided</scope>
+			<scope>system</scope>
+			<systemPath>D:\SoftwareAG\common\lib\ext\enttoolkit.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>

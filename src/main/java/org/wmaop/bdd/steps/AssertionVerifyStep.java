@@ -28,7 +28,7 @@ public class AssertionVerifyStep extends BaseServiceStep {
 	void execute(ExecutionContext executionContext) throws Exception {
 		invokeService(executionContext, execService, idata);
 		IDataCursor cursor = executionContext.getPipeline().getCursor();
-		int actual = IDataUtil.getInt(cursor, "invokeCount", 0);
+		int actual = IDataUtil.getInt(cursor, "invokeCount", 9);
 		Assert.assertEquals("Expected " + assertionId + " to be called " + invokeCount + " times but was called " + actual + " times", invokeCount, actual);
 	}
 

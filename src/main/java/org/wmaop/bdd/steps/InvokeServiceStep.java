@@ -20,7 +20,6 @@ public class InvokeServiceStep extends BaseServiceStep {
 	@Override
 	void execute(ExecutionContext executionContext) throws Exception {
 		IData idata = idataClasspathFile == null ? IDataFactory.create() : idataFromClasspathResource(idataClasspathFile);
-		IData pipeline = invokeService(executionContext, serviceName, idata);
-		executionContext.setPipeline(pipeline);
+		invokeService(executionContext, serviceName, idata);
 	}
 }

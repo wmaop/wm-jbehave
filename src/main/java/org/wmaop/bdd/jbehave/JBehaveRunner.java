@@ -44,7 +44,7 @@ public class JBehaveRunner extends JUnitStories {
 	}
 	
     @Override
-    protected List<String> storyPaths() {
+    public List<String> storyPaths() {
 		return new StoryFinder().findPaths(new File("src/test/resources").getAbsolutePath(), "**/*.story", "");
     }
     
