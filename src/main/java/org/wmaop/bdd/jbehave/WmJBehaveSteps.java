@@ -10,8 +10,6 @@ import org.wmaop.bdd.steps.ThreadContext;
 
 public class WmJBehaveSteps  {
 
-		private static final String EMPTY_IDATA = "<IDataXMLCoder version=\"1.0\"></IDataXMLCoder>";
-		
 		@BeforeScenario
 		public void setup() throws Exception {
 			try {

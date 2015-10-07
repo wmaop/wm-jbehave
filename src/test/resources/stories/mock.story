@@ -15,3 +15,4 @@ Given mock org.wmaop.test.services:svcA always returning data/applepear.xml
 When invoke org.wmaop.test.services:rootSvc with data/lorem.xml
 Then pipeline has varA == null && apple == "alpha" 
 And pipeline has lorem == "ipsum"
+ 

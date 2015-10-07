@@ -11,26 +11,29 @@ I want to count service invocations
 !--Scenario:  Check for times count
 !--Given a precondition  
 
-!--Scenario:  Check for service never called
-!--Given a precondition  
-
 !--Scenario:  Check for atMost
 !--Given a precondition  
 
 !--Scenario:  Check for atLeast 
 !--Given a precondition  
 
-!--Scenario:  Check for service never called
-!--Given a precondition  
+Scenario:  Check for service never called
+Given PreSvcBAssertion assertion before service org.wmaop.test.services:svcNotExist always
+When invoke org.wmaop.test.services:rootSvc with data/applepear.xml
+Then assertion PreSvcBAssertion was invoked 0 times
 
-!--Scenario:  Check for check invocation on non-mocked service
-!--Given a precondition  
+Scenario:  Check for invocation on mocked service
+Given SvcAAssertion assertion invoke service org.wmaop.test.services:svcA always
+Given mock org.wmaop.test.services:svcA always returning data/applepear.xml
+When invoke org.wmaop.test.services:rootSvc with data/empty.xml
+Then pipeline has varA == null && apple == "alpha"
+And assertion SvcAAssertion was invoked 1 times
 
 Scenario: assertion with pipeline variable precondition not matching
 Given PreSvcBAssertion assertion before service org.wmaop.test.services:svcB when varA == "B"
 When invoke org.wmaop.test.services:rootSvc with data/applepear.xml
 Then assertion PreSvcBAssertion was invoked 0 times
-And pipeline has varB == "B"
+And pipeline has apple == "alpha"
 
 Scenario: assertion with pipeline variable precondition
 Given PreSvcBAssertion assertion before service org.wmaop.test.services:svcB when varA == "A"
