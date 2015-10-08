@@ -29,6 +29,11 @@ public class WmJBehaveSteps  {
 				throw e;
 			}
 		}
+		
+		@Given("pipeline values $jexlVariableExpression")
+		public void pipeline_values(String jexlVariableExpression) {
+			ThreadContext.get().withVariableExpression(jexlVariableExpression);
+		}
 
 		@Given("mock $serviceName always returning $idataFile")
 		public void mock_service_always_returning(String serviceName, String idataFile) {

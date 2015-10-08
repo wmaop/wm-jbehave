@@ -5,6 +5,12 @@ In order to observe service state
 As a test framework
 I want to interact with the pipeline
 
+Scenario: Verify setting of pipeline values
+Given pipeline values inString1 = "hello "; inString2 = "world"
+When invoke pub.string:concat without idata
+Then show pipeline in console
+Then pipeline has value == "hello world" 
+
 Scenario: Verify pipeline contents with string contains
 When invoke org.wmaop.test.services:rootSvc with data/lorem.xml
 Then pipeline has lorem.contains("ps")

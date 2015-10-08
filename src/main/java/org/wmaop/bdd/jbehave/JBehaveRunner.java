@@ -10,6 +10,9 @@ import org.jbehave.core.configuration.MostUsefulConfiguration;
 import org.jbehave.core.failures.FailingUponPendingStep;
 import org.jbehave.core.io.StoryFinder;
 import org.jbehave.core.junit.JUnitStories;
+import org.jbehave.core.reporters.FilePrintStreamFactory.ResolveToPackagedName;
+import org.jbehave.core.reporters.Format;
+import org.jbehave.core.reporters.StoryReporterBuilder;
 import org.jbehave.core.steps.AbstractStepsFactory;
 import org.jbehave.core.steps.InjectableStepsFactory;
 import org.junit.runner.RunWith;
@@ -24,7 +27,11 @@ public class JBehaveRunner extends JUnitStories {
 	
     @Override 
     public Configuration configuration() { 
-        return new MostUsefulConfiguration().usePendingStepStrategy(new FailingUponPendingStep());
+        return new MostUsefulConfiguration().usePendingStepStrategy(new FailingUponPendingStep()).useStoryReporterBuilder(
+                new StoryReporterBuilder()
+                .withDefaultFormats().withPathResolver(new ResolveToPackagedName())
+                .withFormats(Format.HTML)
+                .withFailureTrace(true).withFailureTraceCompression(true));
     }
     
 	@Override
