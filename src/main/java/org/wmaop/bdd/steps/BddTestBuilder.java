@@ -50,6 +50,7 @@ public class BddTestBuilder {
 
 	public void teardown() throws Exception {
 		new TeardownStep().execute(executionContext);
+		executionContext.setPipeline(null);
 	}
 
 	public void showPipeline() {
@@ -90,6 +91,16 @@ public class BddTestBuilder {
 	public void withAssertionInvokeCount(String assertionId, int invokeCount) {
 		try {
 			AssertionVerifyStep step = new AssertionVerifyStep(assertionId, invokeCount);
+			step.execute(executionContext);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void withVariableExpression(String jexlVariableExpression) {
+		try {
+			PipelineVariableStep step = new PipelineVariableStep(jexlVariableExpression);
 			step.execute(executionContext);
 		} catch (Exception e) {
 			e.printStackTrace();
