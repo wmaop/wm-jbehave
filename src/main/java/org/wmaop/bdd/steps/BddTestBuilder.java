@@ -3,6 +3,7 @@ package org.wmaop.bdd.steps;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.wmaop.bdd.jbehave.InterceptPoint;
 
+import com.wm.app.b2b.server.ServiceException;
 import com.wm.util.coder.IDataXMLCoder;
 
 public class BddTestBuilder {
@@ -18,8 +19,7 @@ public class BddTestBuilder {
 			InvokeServiceStep step = new InvokeServiceStep(serviceName, idataClasspathFile);
 			step.execute(executionContext);
 		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
+			executionContext.setThrownException(e);
 		}
 	}
 
@@ -51,6 +51,7 @@ public class BddTestBuilder {
 	public void teardown() throws Exception {
 		new TeardownStep().execute(executionContext);
 		executionContext.setPipeline(null);
+		executionContext.setThrownException(null);
 	}
 
 	public void showPipeline() {
@@ -106,6 +107,33 @@ public class BddTestBuilder {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
+	}
+
+	public void withException(String adviceId, InterceptPoint interceptPoint, String serviceName, String jexlPipelineExpression, String exception) {
+		try {
+			ExceptionStep step = new ExceptionStep(adviceId, interceptPoint, serviceName, null, exception);
+			step.execute(executionContext);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void withExceptionVerify(String exceptionName) {
+		try {
+			ExceptionVerifyStep step = new ExceptionVerifyStep(exceptionName);
+			step.execute(executionContext);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void verify() throws Exception {
+		if (executionContext.getThrownException() != null) {
+			throw (Exception) executionContext.getThrownException(); // Bad. Will blow with error
+		}
+		
 	}
 
 }

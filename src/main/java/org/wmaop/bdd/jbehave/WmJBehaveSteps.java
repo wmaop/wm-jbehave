@@ -23,6 +23,7 @@ public class WmJBehaveSteps  {
 		@AfterScenario
 		public void teardown() throws Exception {
 			try {
+				ThreadContext.get().verify();
 				ThreadContext.get().teardown();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -44,27 +45,27 @@ public class WmJBehaveSteps  {
 		@Given("mock $serviceName returning $idataFile when $jexlPipelineExpression")
 		public void mock_service_returning_when(String serviceName, String idataFile, String jexlPipelineExpression)
 				throws Throwable {
-			ThreadContext.get().withMockService("adviceId", InterceptPoint.invoke,serviceName, idataFile, jexlPipelineExpression);
+			ThreadContext.get().withMockService("adviceId", InterceptPoint.invoke, serviceName, idataFile, jexlPipelineExpression);
 		}
 		
-		@Given("$assertionId assertion $interceptPoint service $service when $expression")
+		@Given("$assertionId assertion $interceptPoint service $serviceName when $jexlPipelineExpression")
 		public void assertion_service_when(String assertionId, InterceptPoint interceptPoint, String serviceName, String expression) {
 			ThreadContext.get().withAssertion(assertionId, interceptPoint, serviceName, expression);
 		}
 		
-		@Given("$assertionId assertion $interceptPoint service $service always")
+		@Given("$assertionId assertion $interceptPoint service $serviceName always")
 		public void assertion_service(String assertionId, String interceptPoint, String serviceName) {
 			ThreadContext.get().withAssertion(assertionId, interceptPoint, serviceName);
 		}
 
-		@Given("exception $exception thrown calling service $service always")
-		public void exception_thrown_when_calling_service(String exception, String service) {
-			
+		@Given("exception $exception thrown calling service $serviceName always")
+		public void exception_thrown_when_calling_service(String exception, String serviceName) {
+			ThreadContext.get().withException("adviceId", InterceptPoint.invoke, serviceName, null, exception);
 		}
 
-		@Given("exception $exception thrown calling service $service when $expression")
-		public void exception_thrown_when_calling_service(String exception, String service, String expression) {
-			
+		@Given("exception $exception thrown calling service $serviceName when $jexlPipelineExpression")
+		public void exception_thrown_when_calling_service(String exception, String serviceName, String expression) {
+			ThreadContext.get().withException("adviceId", InterceptPoint.invoke, serviceName, exception, expression);
 		}
 		
 		/*
@@ -97,14 +98,14 @@ public class WmJBehaveSteps  {
 			// Register assertion
 		}
 
-		@Then("pipeline has $jexlExpression")
+		@Then("pipeline has $jexlPipelineExpression")
 		public void pipeline_has_foo_data(String jexlExpression) throws Throwable {
 			ThreadContext.get().withPipelineExpression(jexlExpression);
 		}
 		
 		@Then("exception $exception was thrown")
 		public void exception_was_thrown(String exceptionName) {
-			System.out.println("Exception was thrown");
+			ThreadContext.get().withExceptionVerify(exceptionName);
 		}
 
 		/*

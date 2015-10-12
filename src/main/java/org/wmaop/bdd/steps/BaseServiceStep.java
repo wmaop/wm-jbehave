@@ -19,10 +19,12 @@ public abstract class BaseServiceStep {
 	static final String INTERCEPT_POINT = "interceptPoint";
 	static final String SERVICE_NAME = "serviceName";
 	static final String CONDITION = "condition";
+	static final String EXCEPTION = "exception";
 	
 	static final String FIXED_RESPONSE_MOCK = "org.wmaop.define.fixedResponse:registerFixedResponseMock";
 	static final String SETUP_ASSERTION = "org.wmaop.define.assertion:registerAssertion";
 	static final String ASSERTION_INVOKE_COUNT = "org.wmaop.define.assertion:getInvokeCount";
+	static final String REGISTER_EXCEPTION = "org.wmaop.define.exception:registerExceptionMock";
 	
 	protected class ServiceSplit {
 		String packageName;

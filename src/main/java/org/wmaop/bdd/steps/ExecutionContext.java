@@ -14,6 +14,7 @@ public class ExecutionContext {
 	Properties p = new Properties();
 	Context context;
 	IData pipeline;
+	private Throwable thrownException;
 	
 	public ExecutionContext(String contextFile) {
 		try {
@@ -58,4 +59,11 @@ public class ExecutionContext {
 		this.pipeline = pipeline;
 	}
 
+	public void setThrownException(Throwable e) {
+		thrownException = e;
+	}
+
+	public Throwable getThrownException() {
+		return thrownException;
+	}
 }
