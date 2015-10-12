@@ -26,13 +26,29 @@
 	</properties>
 
 	<dependencies>
-	
+
 		<dependency>
 			<groupId>org.wmaop</groupId>
 			<artifactId>wm-aop-util</artifactId>
 			<version>${wm-aop-util.version}</version>
 		</dependency>
-	
+
+		<dependency>
+			<groupId>org.jbehave</groupId>
+			<artifactId>jbehave-core</artifactId>
+			<version>${jbehave.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jbehave</groupId>
+			<artifactId>jbehave-maven-plugin</artifactId>
+			<version>${jbehave.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>jbehave-junit-runner</artifactId>
+			<version>${jbehave-runner.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>com.softwareag.webmethods</groupId>
 			<artifactId>wm-isserver</artifactId>
@@ -62,22 +78,6 @@
 			<artifactId>log4j</artifactId>
 			<version>${log4j.version}</version>
 			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jbehave</groupId>
-			<artifactId>jbehave-core</artifactId>
-			<version>${jbehave.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jbehave</groupId>
-			<artifactId>jbehave-maven-plugin</artifactId>
-			<version>${jbehave.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>de.codecentric</groupId>
-			<artifactId>jbehave-junit-runner</artifactId>
-			<version>${jbehave-runner.version}</version>
 		</dependency>
 
 		<dependency>
