@@ -4,8 +4,12 @@ Narrative:
 In order to observe service state
 As a test framework
 I want to interact with the pipeline
-					 
-!--Scenario: capture pipeline to prove interaction  
+
+Scenario: Verify setting of pipeline values
+Given pipeline values inString1 = "hello "; inString2 = "world"
+When invoke pub.string:concat without idata
+Then show pipeline in console
+Then pipeline has value == "hello world" 
 
 Scenario: Verify pipeline contents with string contains
 When invoke org.wmaop.test.services:rootSvc with data/lorem.xml
@@ -22,3 +26,8 @@ Then pipeline has lorem =~ "ips.*"
 Scenario: Verify pipeline contents contained in selection
 When invoke org.wmaop.test.services:rootSvc with data/lorem.xml
 Then pipeline has lorem =~ ["sit", "delores", "ipsum"]
+
+Scenario: Display pipeline content to assist with debuggin stories
+When invoke org.wmaop.test.services:rootSvc with data/lorem.xml
+Then show pipeline in console
+

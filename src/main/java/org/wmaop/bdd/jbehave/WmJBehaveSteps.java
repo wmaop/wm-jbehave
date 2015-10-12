@@ -10,8 +10,6 @@ import org.wmaop.bdd.steps.ThreadContext;
 
 public class WmJBehaveSteps  {
 
-		private static final String EMPTY_IDATA = "<IDataXMLCoder version=\"1.0\"></IDataXMLCoder>";
-		
 		@BeforeScenario
 		public void setup() throws Exception {
 			try {
@@ -30,6 +28,11 @@ public class WmJBehaveSteps  {
 				e.printStackTrace();
 				throw e;
 			}
+		}
+		
+		@Given("pipeline values $jexlVariableExpression")
+		public void pipeline_values(String jexlVariableExpression) {
+			ThreadContext.get().withVariableExpression(jexlVariableExpression);
 		}
 
 		@Given("mock $serviceName always returning $idataFile")

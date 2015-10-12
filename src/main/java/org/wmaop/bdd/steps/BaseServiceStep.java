@@ -36,7 +36,6 @@ public abstract class BaseServiceStep {
 	protected IData invokeService(ExecutionContext executionContext, String serviceName, IData idata) throws ServiceException {
 		ServiceSplit svc = splitQualifiedServiceName(serviceName);
 		return executionContext.getConnectionContext().invoke(svc.packageName, svc.serviceName, idata);
-
 	}
 	
 	protected ServiceSplit splitQualifiedServiceName(String svc) {
