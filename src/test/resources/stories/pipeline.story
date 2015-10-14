@@ -31,3 +31,7 @@ Scenario: Display pipeline content to assist with debuggin stories
 When invoke org.wmaop.test.services:rootSvc with data/lorem.xml
 Then show pipeline in console
 
+Scenario: Verify function calls work
+When invoke org.wmaop.test.services:rootSvc with data/arrayvalues.xml
+Then pipeline has arrays:contains(values, "abc")
+
