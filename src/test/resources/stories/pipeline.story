@@ -33,5 +33,5 @@ Then show pipeline in console
 
 Scenario: Verify function calls work
 When invoke org.wmaop.test.services:rootSvc with data/arrayvalues.xml
-Then pipeline has arrays:contains(values, "abc")
+Then pipeline has arrays:contains(files, "test.xslt")
 
