@@ -12,7 +12,7 @@ public class PipelineVariableStepTest {
 	@Test
 	public void shouldSetValue() throws Exception {
 		//ExecutionContext exc = mock(ExecutionContext.class);
-		ExecutionContext exc = new ExecutionContext("src/test/resources/feature.properties");
+		ExecutionContext exc = new ExecutionContext("src/test/resources/testserver.properties");
 		new PipelineVariableStep("foo = 'hello'").execute(exc);
 		assertNotNull(exc.getPipeline());
 		assertEquals("hello", IDataUtil.getString(exc.getPipeline().getCursor(), "foo"));
