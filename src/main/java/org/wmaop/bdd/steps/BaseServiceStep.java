@@ -42,7 +42,13 @@ public abstract class BaseServiceStep {
 	
 	protected ServiceSplit splitQualifiedServiceName(String svc) {
 		int colonPos = svc.lastIndexOf(':');
-		return new ServiceSplit(svc.substring(0, colonPos), svc.substring(colonPos+1));
+		ServiceSplit split;
+		if (colonPos == -1) {
+			split = new ServiceSplit(null, svc);
+		} else {
+			split = new ServiceSplit(svc.substring(0, colonPos), svc.substring(colonPos+1));
+		}
+		return split;
 	}
 
 	protected InputStream streamFromClasspathResource(String fileName) {
