@@ -1,13 +1,17 @@
 package org.wmaop.bdd.steps;
 
+import static junit.framework.Assert.*;
 import org.apache.commons.io.output.ByteArrayOutputStream;
+import org.apache.log4j.Logger;
 import org.wmaop.bdd.jbehave.InterceptPoint;
 
-import com.wm.app.b2b.server.ServiceException;
+import com.wm.app.b2b.client.ServiceException;
+import com.wm.data.IDataFactory;
 import com.wm.util.coder.IDataXMLCoder;
 
 public class BddTestBuilder {
 
+	final static Logger logger = Logger.getLogger(BddTestBuilder.class);
 	private ExecutionContext executionContext;
 
 	public BddTestBuilder(ExecutionContext executionContext) {
@@ -18,8 +22,18 @@ public class BddTestBuilder {
 		try {
 			InvokeServiceStep step = new InvokeServiceStep(serviceName, idataClasspathFile);
 			step.execute(executionContext);
+		} catch (ServiceException use) {
+			if (use.getErrorType().contains("UnknownServiceException")) {
+				fail("Unknown service [" + serviceName + ']');
+			} else {
+				executionContext.setThrownException(use);
+				executionContext.setPipeline(IDataFactory.create()); // Pipeline not set from invoke so prevent NPE
+				logger.info("Caught Exception while invoking [" + serviceName + "]  " + use.getMessage() + " - " + use.getErrorType());
+			}
 		} catch (Exception e) {
 			executionContext.setThrownException(e);
+			executionContext.setPipeline(IDataFactory.create()); // Pipeline not set from invoke so prevent NPE
+			logger.info("Caught Exception while invoking [" + serviceName + "] " + e.getMessage());
 		}
 	}
 
