@@ -99,7 +99,7 @@ public class WmJBehaveSteps  {
 		}
 
 		@Then("pipeline has $jexlPipelineExpression")
-		public void pipeline_has_foo_data(String jexlExpression) throws Throwable {
+		public void pipeline_has_expression(String jexlExpression) throws Throwable {
 			ThreadContext.get().withPipelineExpression(jexlExpression);
 		}
 		
