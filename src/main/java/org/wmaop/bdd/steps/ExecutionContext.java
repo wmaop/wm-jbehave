@@ -2,7 +2,6 @@ package org.wmaop.bdd.steps;
 
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.Properties;
 
 import com.wm.app.b2b.client.Context;
