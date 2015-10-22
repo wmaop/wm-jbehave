@@ -1,6 +1,6 @@
 package org.wmaop.bdd.steps;
 
-import static junit.framework.Assert.*;
+import static org.junit.Assert.*;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.log4j.Logger;
 import org.wmaop.bdd.jbehave.InterceptPoint;

@@ -4,7 +4,7 @@ import org.apache.commons.jexl2.Expression;
 import org.wmaop.util.jexl.IDataJexlContext;
 import org.wmaop.util.jexl.JexlExpressionFactory;
 
-import junit.framework.Assert;
+import static org.junit.Assert.*;
 
 public class PipelineJexlStep extends BaseServiceStep {
 
@@ -18,7 +18,7 @@ public class PipelineJexlStep extends BaseServiceStep {
 	void execute(ExecutionContext executionContext) throws Exception {
 		boolean result = (Boolean) expression.evaluate(new IDataJexlContext(executionContext.getPipeline()));
 		if (!result) {
-			Assert.fail("The expression [" + expression.getExpression() + "] returned false");
+			fail("The expression [" + expression.getExpression() + "] returned false");
 		}
 	}
 

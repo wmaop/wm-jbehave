@@ -1,6 +1,6 @@
 package org.wmaop.bdd.steps;
 
-import static junit.framework.Assert.*;
+import static org.junit.Assert.*;
 
 public class ExceptionVerifyStep extends BaseServiceStep {
 
