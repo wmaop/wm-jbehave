@@ -15,4 +15,8 @@ Given mock org.wmaop.test.services:svcA always returning data/applepear.xml
 When invoke org.wmaop.test.services:rootSvc with data/lorem.xml
 Then pipeline has varA == null && apple == "alpha" 
 And pipeline has lorem == "ipsum"
- 
+
+Scenario: Conditional mock
+Given mock org.wmaop.test.services:svcA returning data/applepear.xml when lorem == "ipsum"
+When invoke org.wmaop.test.services:rootSvc with data/lorem.xml
+Then pipeline has apple == "alpha"
