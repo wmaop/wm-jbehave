@@ -65,7 +65,7 @@ public class WmJBehaveSteps  {
 
 		@Given("exception $exception thrown calling service $serviceName when $jexlPipelineExpression")
 		public void exception_thrown_when_calling_service(String exception, String serviceName, String expression) {
-			ThreadContext.get().withException("adviceId", InterceptPoint.invoke, serviceName, exception, expression);
+			ThreadContext.get().withException("adviceId", InterceptPoint.invoke, serviceName, expression, exception);
 		}
 		
 		/*
