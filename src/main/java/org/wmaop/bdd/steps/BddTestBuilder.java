@@ -17,7 +17,7 @@ public class BddTestBuilder {
 	public BddTestBuilder(ExecutionContext executionContext) {
 		this.executionContext = executionContext;
 	}
-	
+
 	public void withInvokeService(String serviceName, String idataClasspathFile) {
 		try {
 			InvokeServiceStep step = new InvokeServiceStep(serviceName, idataClasspathFile);
@@ -37,29 +37,29 @@ public class BddTestBuilder {
 		}
 	}
 
-	public void withMockService(String adviceId, InterceptPoint invoke,String serviceName, String idataClasspathFile) {
+	protected void executeStep(BaseServiceStep step) {
 		try {
-			MockServiceStep step = new MockServiceStep(adviceId, invoke, serviceName, idataClasspathFile);
 			step.execute(executionContext);
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			e.printStackTrace();
+			showPipeline();
 			throw new RuntimeException(e);
 		}
 	}
 
-	public void withMockService(String adviceId, InterceptPoint invoke,String serviceName, String idataFile, String jexlPipelineExpression) {
-		try {
-			MockServiceStep step = new MockServiceStep(adviceId, invoke, serviceName, idataFile, jexlPipelineExpression);
-			step.execute(executionContext);
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
+	public void withMockService(String adviceId, InterceptPoint invoke, String serviceName, String idataClasspathFile) {
+		MockServiceStep step = new MockServiceStep(adviceId, invoke, serviceName, idataClasspathFile);
+		executeStep(step);
 	}
 
-	public void withPipelineExpression(String jexlExpression) throws Exception {
+	public void withMockService(String adviceId, InterceptPoint invoke, String serviceName, String idataFile, String jexlPipelineExpression) {
+		MockServiceStep step = new MockServiceStep(adviceId, invoke, serviceName, idataFile, jexlPipelineExpression);
+		executeStep(step);
+	}
+
+	public void withPipelineExpression(String jexlExpression) {
 		PipelineJexlStep step = new PipelineJexlStep(jexlExpression);
-		step.execute(executionContext);
+		executeStep(step);
 	}
 
 	public void teardown() throws Exception {
@@ -81,73 +81,42 @@ public class BddTestBuilder {
 		}
 	}
 
-	public void withAssertion(String assertionId, InterceptPoint interceptPoint, String serviceName,
-			String jexlPipelineExpression) {
-		try {
-			AssertionSetupStep step = new AssertionSetupStep(assertionId, interceptPoint, serviceName, jexlPipelineExpression);
-			step.execute(executionContext);
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
-		
+	public void withAssertion(String assertionId, InterceptPoint interceptPoint, String serviceName, String jexlPipelineExpression) {
+		AssertionSetupStep step = new AssertionSetupStep(assertionId, interceptPoint, serviceName, jexlPipelineExpression);
+		executeStep(step);
 	}
 
 	public void withAssertion(String assertionId, String interceptPoint, String serviceName) {
-		try {
-			AssertionSetupStep step = new AssertionSetupStep(assertionId, interceptPoint, serviceName);
-			step.execute(executionContext);
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
+		AssertionSetupStep step = new AssertionSetupStep(assertionId, interceptPoint, serviceName);
+		executeStep(step);
 	}
 
 	public void withAssertionInvokeCount(String assertionId, int invokeCount) {
-		try {
-			AssertionVerifyStep step = new AssertionVerifyStep(assertionId, invokeCount);
-			step.execute(executionContext);
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
+		AssertionVerifyStep step = new AssertionVerifyStep(assertionId, invokeCount);
+		executeStep(step);
 	}
 
 	public void withVariableExpression(String jexlVariableExpression) {
-		try {
-			PipelineVariableStep step = new PipelineVariableStep(jexlVariableExpression);
-			step.execute(executionContext);
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
+		PipelineVariableStep step = new PipelineVariableStep(jexlVariableExpression);
+		executeStep(step);
 	}
 
 	public void withException(String adviceId, InterceptPoint interceptPoint, String serviceName, String jexlPipelineExpression, String exception) {
-		try {
-			ExceptionStep step = new ExceptionStep(adviceId, interceptPoint, serviceName, null, exception);
-			step.execute(executionContext);
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
+		ExceptionStep step = new ExceptionStep(adviceId, interceptPoint, serviceName, null, exception);
+		executeStep(step);
 	}
 
 	public void withExceptionVerify(String exceptionName) {
-		try {
-			ExceptionVerifyStep step = new ExceptionVerifyStep(exceptionName);
-			step.execute(executionContext);
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
+		ExceptionVerifyStep step = new ExceptionVerifyStep(exceptionName);
+		executeStep(step);
 	}
 
 	public void verify() throws Exception {
 		if (executionContext.getThrownException() != null) {
+			showPipeline();
 			throw (Exception) executionContext.getThrownException(); // Bad. Will blow with error
 		}
-		
+
 	}
 
 }

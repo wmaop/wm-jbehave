@@ -12,7 +12,7 @@ public class MockServiceStep extends BaseServiceStep {
 	private final IData idata;
 	private final String execService;
 
-	public MockServiceStep(String adviceId, InterceptPoint interceptPoint, String serviceName, String idataFile) throws Exception {
+	public MockServiceStep(String adviceId, InterceptPoint interceptPoint, String serviceName, String idataFile) {
 
 		idata = IDataFactory.create();
 		IDataCursor cursor = idata.getCursor();
@@ -25,7 +25,7 @@ public class MockServiceStep extends BaseServiceStep {
 	}
 
 	public MockServiceStep(String adviceId, InterceptPoint interceptPoint, String serviceName, String idataFile,
-			String jexlExpression) throws Exception {
+			String jexlExpression) {
 
 		idata = IDataFactory.create();
 		IDataCursor cursor = idata.getCursor();

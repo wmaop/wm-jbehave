@@ -12,7 +12,7 @@ public class ExceptionStep extends BaseServiceStep {
 	private final IData idata;
 	private final String execService;
 
-	public ExceptionStep(String adviceId, InterceptPoint interceptPoint, String serviceName, String jexlExpression, String exception) throws Exception {
+	public ExceptionStep(String adviceId, InterceptPoint interceptPoint, String serviceName, String jexlExpression, String exception) {
 
 		idata = IDataFactory.create();
 		IDataCursor cursor = idata.getCursor();
