@@ -1,7 +1,5 @@
 package org.wmaop.bdd.steps;
 
-import java.io.File;
-import java.io.FileReader;
 import java.util.Properties;
 
 import com.wm.app.b2b.client.Context;
@@ -10,26 +8,22 @@ import com.wm.data.IData;
 
 public class ExecutionContext {
 
-	Properties p = new Properties();
 	Context context;
 	IData pipeline;
 	private Throwable thrownException;
 	
-	public ExecutionContext(String contextFile) {
-		try {
-			p.load(new FileReader(new File(
-					contextFile)));
-			context = createConnectionContext();
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+	public ExecutionContext() {
 	}
 	
-	public Context getConnectionContext() {
+	public Context getConnectionContext() throws ServiceException {
+		if (context == null) {
+			context = createConnectionContext();
+		}
 		return context;
 	}
 	
 	private Context createConnectionContext() throws ServiceException {
+		Properties p = System.getProperties();
 		String host = p.getProperty("wm.server.host", "localhost");
 		int port = Integer.valueOf(p.getProperty("wm.server.port", "5555"));
 		String username = p.getProperty("wm.server.username", "Administrator");
@@ -45,7 +39,11 @@ public class ExecutionContext {
 		if (secure) {
 			throw new UnsupportedOperationException();
 		} else {
-			ctx.connect(host, port, username, password);
+			try {
+				ctx.connect(host, port, username, password);
+			} catch (Exception e) {
+				throw new ServiceException("Unable to connect to " + host+':'+port+ " with "+username+'/'+password + " - " + e.getMessage());
+			}
 		}
 		return ctx;
 	}

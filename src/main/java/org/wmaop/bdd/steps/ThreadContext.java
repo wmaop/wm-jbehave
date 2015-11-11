@@ -5,7 +5,7 @@ public class ThreadContext {
     static final class ContextLocal extends ThreadLocal<BddTestBuilder> {
         @Override
         protected BddTestBuilder initialValue() {
-            return new BddTestBuilder(new ExecutionContext("src/test/resources/testserver.properties"));
+            return new BddTestBuilder(new ExecutionContext());
         }
     }
 

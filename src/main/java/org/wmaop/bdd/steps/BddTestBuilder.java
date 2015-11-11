@@ -12,6 +12,7 @@ import com.wm.util.coder.IDataXMLCoder;
 public class BddTestBuilder {
 
 	final static Logger logger = Logger.getLogger(BddTestBuilder.class);
+	private static final String EOL = System.getProperty("line.separator");
 	private ExecutionContext executionContext;
 
 	public BddTestBuilder(ExecutionContext executionContext) {
@@ -26,23 +27,28 @@ public class BddTestBuilder {
 			if (use.getErrorType().contains("UnknownServiceException")) {
 				fail("Unknown service [" + serviceName + ']');
 			} else {
-				executionContext.setThrownException(use);
-				executionContext.setPipeline(IDataFactory.create()); // Pipeline not set from invoke so prevent NPE
-				logger.info("Caught Exception while invoking [" + serviceName + "]  " + use.getMessage() + " - " + use.getErrorType());
+				logInvokeException(serviceName, use, use.getErrorType());
 			}
 		} catch (Exception e) {
-			executionContext.setThrownException(e);
-			executionContext.setPipeline(IDataFactory.create()); // Pipeline not set from invoke so prevent NPE
-			logger.info("Caught Exception while invoking [" + serviceName + "] " + e.getMessage());
+			logInvokeException(serviceName, e, null);
 		}
+	}
+
+	private void logInvokeException(String serviceName, Exception use, String additionalMessage) {
+		executionContext.setThrownException(use);
+		executionContext.setPipeline(IDataFactory.create()); // Pipeline not set from invoke so prevent NPE
+		String msg = additionalMessage ==null?"":" - " + additionalMessage;
+		logger.warn("Caught Exception while invoking [" + serviceName + "] this may not be the expected exception and could cause premature step failure.  Error is: " + use.getMessage() + msg);
 	}
 
 	protected void executeStep(BaseServiceStep step) {
 		try {
 			step.execute(executionContext);
 		} catch (Throwable e) {
-			e.printStackTrace();
-			showPipeline();
+			if (!(e instanceof AssertionError)) {
+				logger.error(e);
+				showPipeline();
+			}
 			throw new RuntimeException(e);
 		}
 	}
@@ -70,14 +76,16 @@ public class BddTestBuilder {
 
 	public void showPipeline() {
 		try {
-			System.out.println("Pipeline contents:");
-			System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+			StringBuilder sb = new StringBuilder();
+			sb.append("Pipeline contents:").append(EOL);
+			sb.append("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-").append(EOL);
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			new IDataXMLCoder().encode(baos, executionContext.getPipeline());
-			System.out.println(baos);
-			System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+			sb.append(baos).append(EOL);
+			sb.append("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-").append(EOL);
+			logger.info(sb);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 	}
 
