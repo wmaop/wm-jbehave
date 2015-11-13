@@ -23,11 +23,10 @@ When invoke org.wmaop.test.services:rootSvc with data/applepear.xml
 Then assertion PreSvcBAssertion was invoked 0 times
 
 Scenario:  Check for invocation on mocked service
-Given SvcAAssertion assertion invoke service org.wmaop.test.services:svcA always
 Given mock org.wmaop.test.services:svcA always returning data/applepear.xml
 When invoke org.wmaop.test.services:rootSvc with data/empty.xml
 Then pipeline has varA == null && apple == "alpha"
-And assertion SvcAAssertion was invoked 1 times
+And mock org.wmaop.test.services:svcA was invoked 1 times
 
 Scenario: assertion with pipeline variable precondition not matching
 Given PreSvcBAssertion assertion before service org.wmaop.test.services:svcB when varA == "B"

@@ -1,6 +1,7 @@
 package org.wmaop.bdd.jbehave;
 
 import org.jbehave.core.annotations.AfterScenario;
+import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.BeforeScenario;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Named;
@@ -38,14 +39,14 @@ public class WmJBehaveSteps  {
 
 		@Given("mock $serviceName always returning $idataFile")
 		public void mock_service_always_returning(String serviceName, String idataFile) {
-			ThreadContext.get().withMockService("adviceId", InterceptPoint.invoke, serviceName, idataFile);
+			ThreadContext.get().withMockService(serviceName, InterceptPoint.invoke, serviceName, idataFile);
 		}
 
 		
 		@Given("mock $serviceName returning $idataFile when $jexlPipelineExpression")
 		public void mock_service_returning_when(String serviceName, String idataFile, String jexlPipelineExpression)
 				throws Throwable {
-			ThreadContext.get().withMockService("adviceId", InterceptPoint.invoke, serviceName, idataFile, jexlPipelineExpression);
+			ThreadContext.get().withMockService(serviceName, InterceptPoint.invoke, serviceName, idataFile, jexlPipelineExpression);
 		}
 		
 		@Given("$assertionId assertion $interceptPoint service $serviceName when $jexlPipelineExpression")
@@ -60,12 +61,12 @@ public class WmJBehaveSteps  {
 
 		@Given("exception $exception thrown calling service $serviceName always")
 		public void exception_thrown_when_calling_service(String exception, String serviceName) {
-			ThreadContext.get().withException("adviceId", InterceptPoint.invoke, serviceName, null, exception);
+			ThreadContext.get().withException(serviceName, InterceptPoint.invoke, serviceName, null, exception);
 		}
 
 		@Given("exception $exception thrown calling service $serviceName when $jexlPipelineExpression")
 		public void exception_thrown_when_calling_service(String exception, String serviceName, String expression) {
-			ThreadContext.get().withException("adviceId", InterceptPoint.invoke, serviceName, expression, exception);
+			ThreadContext.get().withException(serviceName, InterceptPoint.invoke, serviceName, expression, exception);
 		}
 		
 		/*
@@ -88,6 +89,7 @@ public class WmJBehaveSteps  {
 		 */
 		
 		@Then("assertion $assertionId was invoked $invokeCount times")
+		@Alias("mock $assertionId was invoked $invokeCount times")
 		public void assertion_was_invoked_times(String assertionId, int invokeCount) throws Throwable {
 			ThreadContext.get().withAssertionInvokeCount(assertionId, invokeCount);
 		}
