@@ -15,7 +15,7 @@ public class ExceptionVerifyStep extends BaseServiceStep {
 	void execute(ExecutionContext executionContext) throws Exception {
 		Throwable e = executionContext.getThrownException();
 		if (e == null) {
-			throw new RuntimeException("No exception found from service ");
+			fail("No exception found from service ");
 		}
 		if (e instanceof com.wm.app.b2b.client.ServiceException && ((com.wm.app.b2b.client.ServiceException)e).getErrorType() != null) { 
 			assertEquals(exception, ((com.wm.app.b2b.client.ServiceException)e).getErrorType());

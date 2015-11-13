@@ -49,7 +49,13 @@ public class BddTestBuilder {
 				logger.error(e);
 				showPipeline();
 			}
-			throw new RuntimeException(e);
+			if (e instanceof RuntimeException){
+				throw (RuntimeException)e;
+			}
+			if (e instanceof Error) {
+				throw (Error)e;
+			}
+			fail(e.getMessage());
 		}
 	}
 
