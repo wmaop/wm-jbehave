@@ -20,3 +20,8 @@ Scenario: Conditional mock
 Given mock org.wmaop.test.services:svcA returning data/applepear.xml when lorem == "ipsum"
 When invoke org.wmaop.test.services:rootSvc with data/lorem.xml
 Then pipeline has apple == "alpha"
+
+Scenario: Mock a non-existant service
+Given mock org.wmaop:doesNotExist always returning data/lorem.xml
+When invoke org.wmaop.test.services:rootMissingService with data/lorem.xml
+Then pipeline has lorem == "ipsum"

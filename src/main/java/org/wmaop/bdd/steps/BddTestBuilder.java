@@ -46,6 +46,7 @@ public class BddTestBuilder {
 			step.execute(executionContext);
 		} catch (Throwable e) {
 			if (!(e instanceof AssertionError)) {
+				e.printStackTrace();
 				logger.error(e);
 				showPipeline();
 			}
