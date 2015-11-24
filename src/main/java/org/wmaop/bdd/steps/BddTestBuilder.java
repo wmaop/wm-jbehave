@@ -48,8 +48,8 @@ public class BddTestBuilder {
 			if (!(e instanceof AssertionError)) {
 				e.printStackTrace();
 				logger.error(e);
-				showPipeline();
 			}
+			showPipeline();
 			if (e instanceof RuntimeException){
 				throw (RuntimeException)e;
 			}
