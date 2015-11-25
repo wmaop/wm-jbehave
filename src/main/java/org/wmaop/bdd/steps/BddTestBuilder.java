@@ -77,7 +77,7 @@ public class BddTestBuilder {
 
 	public void teardown() throws Exception {
 		new TeardownStep().execute(executionContext);
-		executionContext.setPipeline(null);
+		executionContext.setPipeline(IDataFactory.create());
 		executionContext.setThrownException(null);
 	}
 
