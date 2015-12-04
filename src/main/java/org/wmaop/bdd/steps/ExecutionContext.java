@@ -6,6 +6,7 @@ import org.junit.Assert;
 import com.wm.app.b2b.client.Context;
 import com.wm.app.b2b.client.ServiceException;
 import com.wm.data.IData;
+import com.wm.data.IDataFactory;
 
 public class ExecutionContext {
 
@@ -14,6 +15,7 @@ public class ExecutionContext {
 	private Throwable thrownException;
 	
 	public ExecutionContext() {
+		pipeline = IDataFactory.create();
 	}
 	
 	public Context getConnectionContext() throws ServiceException {

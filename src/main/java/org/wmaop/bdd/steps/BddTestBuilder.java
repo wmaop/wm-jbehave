@@ -48,8 +48,8 @@ public class BddTestBuilder {
 			if (!(e instanceof AssertionError)) {
 				e.printStackTrace();
 				logger.error(e);
-				showPipeline();
 			}
+			showPipeline();
 			if (e instanceof RuntimeException){
 				throw (RuntimeException)e;
 			}
@@ -77,7 +77,7 @@ public class BddTestBuilder {
 
 	public void teardown() throws Exception {
 		new TeardownStep().execute(executionContext);
-		executionContext.setPipeline(null);
+		executionContext.setPipeline(IDataFactory.create());
 		executionContext.setThrownException(null);
 	}
 

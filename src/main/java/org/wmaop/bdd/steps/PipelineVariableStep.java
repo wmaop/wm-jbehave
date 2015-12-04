@@ -23,7 +23,7 @@ public class PipelineVariableStep extends BaseServiceStep {
 
 	@Override
 	void execute(ExecutionContext executionContext) throws Exception {
-		IData idata = IDataFactory.create();
+		IData idata = executionContext.getPipeline();
 		for (Expression expression : expressions) {
 			expression.evaluate(new IDataJexlContext(idata));
 		}

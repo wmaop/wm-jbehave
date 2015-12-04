@@ -11,6 +11,13 @@ When invoke pub.string:concat without idata
 Then show pipeline in console
 Then pipeline has value == "hello world" 
 
+Scenario: Verify setting of pipeline values with multiple given
+Given pipeline values inString1 = "hello "
+Given pipeline values inString2 = "world"
+When invoke pub.string:concat without idata
+Then show pipeline in console
+Then pipeline has value == "hello world" 
+
 Scenario: Verify pipeline contents with string contains
 When invoke org.wmaop.test.services:rootSvc with data/lorem.xml
 Then pipeline has lorem.contains("ps")
