@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<IDataXMLCoder version="1.0">
+	<record javaclass="com.wm.util.Values">
+		<value name="serviceToExecute">catlin.uw.producer.producerCacheManager.V01.priv:addProducerToCache
+		</value>
+		<value name="producerId">2</value>
+		<record name="producer" javaclass="com.wm.data.ISMemDataImpl">
+			<value name="prd:Id">2</value>
+			<record name="prd:GeneralPartyInfo" javaclass="com.wm.data.ISMemDataImpl">
+				<record name="pty:NameInfo" javaclass="com.wm.data.ISMemDataImpl">
+					<record name="pty:LegalNameInfo" javaclass="com.wm.data.ISMemDataImpl">
+						<array name="pty:LegalNameInfo" type="record" depth="1">
+							<record javaclass="com.wm.data.ISMemDataImpl">
+								<value name="pty:LegalName">Name To Print On Declaration</value>
+								<record name="pty:countrySubdivisionCode" javaclass="com.wm.data.ISMemDataImpl">
+									<value name="*body">FL</value>
+								</record>
+								<record name="pty:countryCode" javaclass="com.wm.data.ISMemDataImpl">
+									<value name="*body">US</value>
+								</record>
+							</record>
+						</array>
+					</record>
+				</record>
+				<array name="pty:Addr" type="record" depth="1">
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<value name="adr:Addr1">870 Napa Valley Corporate Way, Ste R</value>
+						<value name="adr:Addr2"></value>
+						<value name="adr:Addr3"></value>
+						<value name="adr:City">Napa</value>
+						<value name="adr:County">Napa</value>
+						<value name="adr:PostalCode">94558</value>
+						<value name="adr:StateProvCd">CA</value>
+						<value name="adr:CountryCd">USA</value>
+					</record>
+				</array>
+				<value name="pty:Name">R.E. Chaix &amp; Assoc. Ins. Brokers, Inc.</value>
+			</record>
+			<record name="prd:Contracts" javaclass="com.wm.data.ISMemDataImpl">
+				<array name="agt:Contract" type="record" depth="1">
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:AgentType" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:Name">Standard</value>
+						</record>
+						<record name="agt:ContractLines" javaclass="com.wm.data.ISMemDataImpl">
+							<array name="agt:ContractLine" type="record" depth="1">
+								<record javaclass="com.wm.data.ISMemDataImpl">
+									<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+										<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+										<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+									</record>
+									<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+										<value name="agt:StateAbbreviation">NY</value>
+										<value name="agt:StateName">New York</value>
+									</record>
+								</record>
+							</array>
+						</record>
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">2015-06-22T10:56:48.8196343-04:00</value>
+							<value name="prm:ExpirationDt">2016-06-22T10:56:48.8196343-04:00</value>
+						</record>
+						<record name="agt:LineOfBusiness" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:Code">CA7Line</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:AgentType" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:Name">Standard</value>
+						</record>
+						<record name="agt:ContractLines" javaclass="com.wm.data.ISMemDataImpl">
+							<array name="agt:ContractLine" type="record" depth="1">
+								<record javaclass="com.wm.data.ISMemDataImpl">
+									<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+										<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+										<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+									</record>
+									<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+										<value name="agt:StateAbbreviation">FL</value>
+										<value name="agt:StateName">Florida</value>
+									</record>
+								</record>
+							</array>
+						</record>
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">2015-06-22T10:56:48.8196343-04:00</value>
+							<value name="prm:ExpirationDt">2016-06-22T10:56:48.8196343-04:00</value>
+						</record>
+						<record name="agt:LineOfBusiness" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:Code">GeneralLiabilityLine_GLE</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:AgentType" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:Name">Standard</value>
+						</record>
+						<record name="agt:ContractLines" javaclass="com.wm.data.ISMemDataImpl">
+							<array name="agt:ContractLine" type="record" depth="1">
+								<record javaclass="com.wm.data.ISMemDataImpl">
+									<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+										<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+										<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+									</record>
+									<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+										<value name="agt:StateAbbreviation">CA</value>
+										<value name="agt:StateName">California</value>
+									</record>
+								</record>
+							</array>
+						</record>
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">2015-06-22T10:56:48.8196343-04:00</value>
+							<value name="prm:ExpirationDt">2016-06-22T10:56:48.8196343-04:00</value>
+						</record>
+						<record name="agt:LineOfBusiness" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:Code">GeneralLiabilityLine_GLE</value>
+						</record>
+					</record>
+				</array>
+			</record>
+			<record name="prd:StateLevelLicenses" javaclass="com.wm.data.ISMemDataImpl">
+				<array name="agt:AgentSLLicense" type="record" depth="1">
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Agency</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">4172766</value>
+						<value name="agt:License_Number"></value>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">AZ</value>
+							<value name="agt:StateName">Arizona</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Agency</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">4173766</value>
+						<value name="agt:License_Number"></value>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">CA</value>
+							<value name="agt:StateName">California</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Surplus Lines</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">3708724</value>
+						<value name="agt:License_Number">0726213</value>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">CA</value>
+							<value name="agt:StateName">California</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Agency</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">4174766</value>
+						<value name="agt:License_Number"></value>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">CO</value>
+							<value name="agt:StateName">Colorado</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Agency</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">4175766</value>
+						<value name="agt:License_Number"></value>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">GA</value>
+							<value name="agt:StateName">Georgia</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Agency</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">4176766</value>
+						<value name="agt:License_Number"></value>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">IL</value>
+							<value name="agt:StateName">Illinois</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Agency</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">4177766</value>
+						<value name="agt:License_Number"></value>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">IN</value>
+							<value name="agt:StateName">Indiana</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Agency</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">4178766</value>
+						<value name="agt:License_Number"></value>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">MA</value>
+							<value name="agt:StateName">Massachusetts</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Agency</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">4179766</value>
+						<value name="agt:License_Number"></value>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">MD</value>
+							<value name="agt:StateName">Maryland</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Agency</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">4180766</value>
+						<value name="agt:License_Number"></value>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">MI</value>
+							<value name="agt:StateName">Michigan</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Agency</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">4181766</value>
+						<value name="agt:License_Number"></value>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">MN</value>
+							<value name="agt:StateName">Minnesota</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Agency</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">4182766</value>
+						<value name="agt:License_Number"></value>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">NC</value>
+							<value name="agt:StateName">North Carolina</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Agency</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">4183766</value>
+						<value name="agt:License_Number"></value>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">NJ</value>
+							<value name="agt:StateName">New Jersey</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Agency</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">4184766</value>
+						<value name="agt:License_Number"></value>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">NV</value>
+							<value name="agt:StateName">Nevada</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Agency</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">4185766</value>
+						<value name="agt:License_Number"></value>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">NY</value>
+							<value name="agt:StateName">New York</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Agency</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">4186766</value>
+						<value name="agt:License_Number"></value>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">OH</value>
+							<value name="agt:StateName">Ohio</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Agency</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">4187766</value>
+						<value name="agt:License_Number"></value>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">OK</value>
+							<value name="agt:StateName">Oklahoma</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Agency</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">4188766</value>
+						<value name="agt:License_Number"></value>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">OR</value>
+							<value name="agt:StateName">Oregon</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Agency</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">4189766</value>
+						<value name="agt:License_Number"></value>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">PA</value>
+							<value name="agt:StateName">Pennsylvania</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Agency</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">3707724</value>
+						<value name="agt:License_Number"></value>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">RI</value>
+							<value name="agt:StateName">Rhode Island</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Agency</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">4190766</value>
+						<value name="agt:License_Number"></value>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">SC</value>
+							<value name="agt:StateName">South Carolina</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Agency</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">4191766</value>
+						<value name="agt:License_Number"></value>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">TN</value>
+							<value name="agt:StateName">Tennessee</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Agency</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">4192766</value>
+						<value name="agt:License_Number"></value>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">TX</value>
+							<value name="agt:StateName">Texas</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Agency</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">4193766</value>
+						<value name="agt:License_Number"></value>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">UT</value>
+							<value name="agt:StateName">Utah</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Agency</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">4194766</value>
+						<value name="agt:License_Number"></value>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">VT</value>
+							<value name="agt:StateName">Vermont</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Agency</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">4195766</value>
+						<value name="agt:License_Number"></value>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">WA</value>
+							<value name="agt:StateName">Washington</value>
+						</record>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Agency</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">30227724</value>
+						<value name="agt:License_Number"></value>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">WI</value>
+							<value name="agt:StateName">Wisconsin</value>
+						</record>
+					</record>
+				</array>
+			</record>
+			<value name="prd:AgentStatus">ACTIVE</value>
+			<value name="prd:PortalStartDate">2015-06-22T10:56:48.8196343-04:00</value>
+			<record name="prd:AliasAgents" javaclass="com.wm.data.ISMemDataImpl">
+				<array name="agt:AliasAgent" type="record" depth="1">
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<value name="agt:Id">1</value>
+						<value name="agt:Name">Borisoff Ins. Svcs., Inc. dba Monarch E&amp;S
+						</value>
+					</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<value name="agt:Id">3</value>
+						<value name="agt:Name">R.E. Chaix &amp; Assoc. Ins. Brokers, Inc.
+						</value>
+					</record>
+				</array>
+			</record>
+		</record>
+	</record>
+</IDataXMLCoder>

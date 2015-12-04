@@ -25,3 +25,13 @@ Scenario: Mock a non-existant service
 Given mock org.wmaop:doesNotExist always returning data/lorem.xml
 When invoke org.wmaop.test.services:rootMissingService with data/lorem.xml
 Then pipeline has lorem == "ipsum"
+
+Scenario: Prove output from unchanged svcD as transformer
+When invoke org.wmaop.test.services:rootSvc without idata
+Then pipeline has transformedD == "C"
+
+Scenario: Prove output from mocked svcD as transformer
+Given mock org.wmaop.test.services:svcD always returning data/transformedD.xml
+When invoke org.wmaop.test.services:rootSvc without idata
+Then pipeline has transformedD == "D"
+

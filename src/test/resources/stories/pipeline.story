@@ -27,7 +27,7 @@ Scenario: Verify pipeline contents contained in selection
 When invoke org.wmaop.test.services:rootSvc with data/lorem.xml
 Then pipeline has lorem =~ ["sit", "delores", "ipsum"]
 
-Scenario: Display pipeline content to assist with debuggin stories
+Scenario: Display pipeline content to assist with debugging stories
 When invoke org.wmaop.test.services:rootSvc with data/lorem.xml
 Then show pipeline in console
 
@@ -35,3 +35,14 @@ Scenario: Verify function calls work
 When invoke org.wmaop.test.services:rootSvc with data/arrayvalues.xml
 Then pipeline has arrays:contains(files, "test.xslt")
 
+Scenario: Verify dotted notation with namespace
+When invoke org.wmaop.test.services:rootSvc with data/complex.xml
+Then pipeline has producer.prd_Id == "2"
+
+Scenario: Verify array access
+When invoke org.wmaop.test.services:rootSvc with data/complex.xml
+Then pipeline has producer.prd_GeneralPartyInfo.pty_Addr[0].adr_City == "Napa"
+
+Scenario: Verify on invalid pipeline value
+When invoke org.wmaop.test.services:rootSvc with data/complex.xml
+Then pipeline has foo.bar[0].x != "not existing"
