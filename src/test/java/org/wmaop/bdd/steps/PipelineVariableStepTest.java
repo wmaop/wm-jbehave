@@ -11,7 +11,6 @@ import com.wm.data.IDataUtil;
 public class PipelineVariableStepTest {
 
 	@Test
-	@Ignore
 	public void shouldSetValue() throws Exception {
 		ExecutionContext exc = new ExecutionContext();
 		new PipelineVariableStep("foo = 'hello'").execute(exc);
