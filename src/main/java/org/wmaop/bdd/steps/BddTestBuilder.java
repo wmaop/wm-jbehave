@@ -35,8 +35,12 @@ public class BddTestBuilder {
 	}
 
 	private void logInvokeException(String serviceName, Exception use, String additionalMessage) {
+		if (use instanceof ServiceException) {
+			executionContext.setPipeline(((ServiceException)use).getErrorInfo().getValues("$pipeline"));
+		} else {
+			executionContext.setPipeline(IDataFactory.create()); // Pipeline not set from invoke so prevent NPE
+		}
 		executionContext.setThrownException(use);
-		executionContext.setPipeline(IDataFactory.create()); // Pipeline not set from invoke so prevent NPE
 		String msg = additionalMessage ==null?"":" - " + additionalMessage;
 		logger.warn("Caught Exception while invoking [" + serviceName + "] this may not be the expected exception and could cause premature step failure.  Error is: " + use.getMessage() + msg);
 	}

@@ -9,6 +9,7 @@ Scenario:  Throw an exception and check for it
 Given exception java.lang.RuntimeException thrown calling service org.wmaop.test.services:svcB always
 When invoke org.wmaop.test.services:rootSvc without idata
 Then exception java.lang.RuntimeException was thrown
+And pipeline has varA == "A"
 
 Scenario: Throw conditional exception
 Given exception java.lang.RuntimeException thrown calling service org.wmaop.test.services:svcB when lorem == "ipsum" 
