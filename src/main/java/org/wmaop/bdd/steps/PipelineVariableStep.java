@@ -17,7 +17,7 @@ public class PipelineVariableStep extends BaseServiceStep {
 	public PipelineVariableStep(String jexlVariableExpression) {
 		expressions = new ArrayList<Expression>();
 		for (String expr : jexlVariableExpression.split(";")) {
-			expressions.add(JexlExpressionFactory.getEngine().createExpression(expr));
+			expressions.add(JexlExpressionFactory.createExpression(expr));
 		}
 	}
 

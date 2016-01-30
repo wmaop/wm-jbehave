@@ -11,7 +11,7 @@ public class PipelineJexlStep extends BaseServiceStep {
 	private Expression expression;
 
 	public PipelineJexlStep(String jexlExpression) {
-		expression = JexlExpressionFactory.getEngine().createExpression(jexlExpression);
+		expression = JexlExpressionFactory.createExpression(jexlExpression);
 	}
 
 	@Override

@@ -44,11 +44,11 @@ Then pipeline has arrays:contains(files, "test.xslt")
 
 Scenario: Verify dotted notation with namespace
 When invoke org.wmaop.test.services:rootSvc with data/complex.xml
-Then pipeline has producer.prd_Id == "2"
+Then pipeline has producer.prd\:Id == "2"
 
 Scenario: Verify array access
 When invoke org.wmaop.test.services:rootSvc with data/complex.xml
-Then pipeline has producer.prd_GeneralPartyInfo.pty_Addr[0].adr_City == "Napa"
+Then pipeline has producer.prd\:GeneralPartyInfo.pty\:Addr[0].adr\:City == "Napa"
 
 Scenario: Verify on invalid pipeline value
 When invoke org.wmaop.test.services:rootSvc with data/complex.xml
