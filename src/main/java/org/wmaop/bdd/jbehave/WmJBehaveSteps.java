@@ -7,6 +7,7 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
+import org.wmaop.bdd.steps.BddTestBuilder;
 import org.wmaop.bdd.steps.ThreadContext;
 
 public class WmJBehaveSteps  {
@@ -46,7 +47,8 @@ public class WmJBehaveSteps  {
 		@Given("mock $serviceName returning $idataFile when $jexlPipelineExpression")
 		public void mock_service_returning_when(String serviceName, String idataFile, String jexlPipelineExpression)
 				throws Throwable {
-			ThreadContext.get().withMockService(serviceName, InterceptPoint.invoke, serviceName, idataFile, jexlPipelineExpression);
+			BddTestBuilder bddt = ThreadContext.get();
+			bddt.withMockService(serviceName + "-" + bddt.getExecutedStep(), InterceptPoint.invoke, serviceName, idataFile, jexlPipelineExpression);
 		}
 		
 		@Given("$assertionId assertion $interceptPoint service $serviceName when $jexlPipelineExpression")
@@ -66,7 +68,8 @@ public class WmJBehaveSteps  {
 
 		@Given("exception $exception thrown calling service $serviceName when $jexlPipelineExpression")
 		public void exception_thrown_when_calling_service(String exception, String serviceName, String expression) {
-			ThreadContext.get().withException(serviceName, InterceptPoint.invoke, serviceName, expression, exception);
+			BddTestBuilder bddt = ThreadContext.get();
+			bddt.withException(serviceName+ "-" + bddt.getExecutedStep(), InterceptPoint.invoke, serviceName, expression, exception);
 		}
 		
 		/*

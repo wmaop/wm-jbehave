@@ -11,6 +11,8 @@ import com.wm.util.coder.IDataXMLCoder;
 
 public class BddTestBuilder {
 
+	int executedStep = 0;
+	
 	final static Logger logger = Logger.getLogger(BddTestBuilder.class);
 	private static final String EOL = System.getProperty("line.separator");
 	private ExecutionContext executionContext;
@@ -48,6 +50,7 @@ public class BddTestBuilder {
 	protected void executeStep(BaseServiceStep step) {
 		try {
 			step.execute(executionContext);
+			executedStep++;
 		} catch (Throwable e) {
 			if (!(e instanceof AssertionError)) {
 				e.printStackTrace();
@@ -78,11 +81,16 @@ public class BddTestBuilder {
 		PipelineJexlStep step = new PipelineJexlStep(jexlExpression);
 		executeStep(step);
 	}
+	
+	public int getExecutedStep() {
+		return executedStep;
+	}
 
 	public void teardown() throws Exception {
 		new TeardownStep().execute(executionContext);
 		executionContext.setPipeline(IDataFactory.create());
 		executionContext.setThrownException(null);
+		executedStep = 0;
 	}
 
 	public void showPipeline() {
