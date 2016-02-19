@@ -21,6 +21,14 @@ Given mock org.wmaop.test.services:svcA returning data/applepear.xml when lorem 
 When invoke org.wmaop.test.services:rootSvc with data/lorem.xml
 Then pipeline has apple == "alpha"
 
+Scenario: Multi conditional mock
+Given mock org.wmaop.test.services:mockedOption returning data/option-a.xml when selection == "a"
+Given mock org.wmaop.test.services:mockedOption returning data/option-b.xml when selection == "b"
+Given mock org.wmaop.test.services:mockedOption returning data/option-c.xml when selection == "c"
+When invoke org.wmaop.test.services:concatOptions without idata
+Then pipeline has result == "abc"
+
+
 Scenario: Mock a non-existant service
 Given mock org.wmaop:doesNotExist always returning data/lorem.xml
 When invoke org.wmaop.test.services:rootMissingService with data/lorem.xml
