@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<IDataXMLCoder version="1.0">
+	<record javaclass="com.wm.util.Values">
+		<record name="prd:StateLevelLicenses" javaclass="com.wm.data.ISMemDataImpl">
+			<array name="agt:AgentSLLicense" type="record" depth="1">
+				<record javaclass="com.wm.data.ISMemDataImpl">
+					<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+						<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+						<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+					</record>
+					<value name="agt:LicenseCode">Agency</value>
+					<value name="agt:LicenseHolderType">Entity</value>
+					<value name="agt:LicenseID">4177766</value>
+					<value name="agt:License_Number"/>
+					<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+						<value name="agt:StateAbbreviation">IN</value>
+						<value name="agt:StateName">Indiana</value>
+					</record>
+				</record>
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<record name="agt:Duration" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="prm:EffectiveDt">0001-01-01T00:00:00</value>
+							<value name="prm:ExpirationDt">0001-01-01T00:00:00</value>
+						</record>
+						<value name="agt:LicenseCode">Agency</value>
+						<value name="agt:LicenseHolderType">Entity</value>
+						<value name="agt:LicenseID">4188766</value>
+						<value name="agt:License_Number"/>
+						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
+							<value name="agt:StateAbbreviation">OR</value>
+							<value name="agt:StateName">Oregon</value>
+						</record>
+					</record>
+				</array>
+		</record>
+	</record>
+</IDataXMLCoder>

@@ -2,8 +2,7 @@
 
 <IDataXMLCoder version="1.0">
 	<record javaclass="com.wm.util.Values">
-		<value name="serviceToExecute">catlin.uw.producer.producerCacheManager.V01.priv:addProducerToCache
-		</value>
+		<value name="serviceToExecute">catlin.uw.producer.producerCacheManager.V01.priv:addProducerToCache</value>
 		<value name="producerId">2</value>
 		<record name="producer" javaclass="com.wm.data.ISMemDataImpl">
 			<value name="prd:Id">2</value>
