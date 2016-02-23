@@ -26,7 +26,6 @@ public class DocumentMatchStep extends BaseServiceStep {
 		IData potential = idataFile == null ? IDataFactory.create() : idataFromClasspathResource(idataFile);
 		IData doc = ((IDataJexlContext) new IDataJexlContext(executionContext.getPipeline()).get(documentReference))
 				.toIData();
-		System.out.println(doc);
 		if (!matches(doc, potential, documentName, true)) {
 			fail("Failed to match " + documentReference + " in pipeline with file " + idataFile);
 		}

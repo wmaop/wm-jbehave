@@ -97,12 +97,6 @@ public class WmJBehaveSteps  {
 			ThreadContext.get().withAssertionInvokeCount(assertionId, invokeCount);
 		}
 		
-		@Then("service $serviceName was invoked $invokeCount times")
-		public void service_was_invoked_times(@Named("serviceName") String serviceName, @Named("invokeCount") int invokeCount) throws Throwable {
-			System.out.println("verifying service" +serviceName+" was invoked "+invokeCount );
-			// Register assertion
-		}
-
 		@Then("pipeline has $jexlPipelineExpression")
 		public void pipeline_has_expression(String jexlExpression) throws Throwable {
 			ThreadContext.get().withPipelineExpression(jexlExpression);

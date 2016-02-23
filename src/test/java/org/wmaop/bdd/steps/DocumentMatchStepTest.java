@@ -58,8 +58,7 @@ public class DocumentMatchStepTest {
 			step.execute(executionContext);
 			fail();
 		} catch (AssertionError e) {
-			System.out.println(e.getMessage());
-			assertEquals("Failed to locate element in pipeline: producer.serviceToExecute",e.getMessage());
+			assertEquals("Failed to locate element in pipeline: producer.serviceToExecute", e.getMessage());
 		}
 	}
 }
