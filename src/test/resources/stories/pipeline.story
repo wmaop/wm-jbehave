@@ -18,6 +18,11 @@ When invoke pub.string:concat without idata
 Then show pipeline in console
 Then pipeline has value == "hello world" 
 
+Scenario: Verify overriding of IData
+Given pipeline values lorem = "amet"
+When invoke org.wmaop.test.services:rootSvc with data/lorem.xml
+Then pipeline has lorem == "amet"
+
 Scenario: Verify pipeline contents with string contains
 When invoke org.wmaop.test.services:rootSvc with data/lorem.xml
 Then pipeline has lorem.contains("ps")
