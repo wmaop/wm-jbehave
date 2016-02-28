@@ -1,6 +1,6 @@
 <IDataXMLCoder version="1.0">
     <record javaclass="com.wm.util.Values">
-        <value name="serviceNotToExecute">catlin.uw.producer.producerCacheManager.V01.priv:addProducerToCache</value>
+        <value name="serviceNotToExecute">org.wmaop.uw.producer.producerCacheManager.V01.priv:addProducerToCache</value>
         <value name="producerId">2</value>
     </record>`
 </IDataXMLCoder>

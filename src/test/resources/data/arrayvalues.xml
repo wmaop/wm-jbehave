@@ -2,8 +2,8 @@
 <IDataXMLCoder version="1.0">
   <record javaclass="com.wm.data.ISMemDataImpl">
     <array name="files" type="value" depth="1">
-      <value>D:\SoftwareAG\IntegrationServer\packages\CatlinWmUtilTest\resources\test.xslt</value>
-      <value>D:\SoftwareAG\IntegrationServer\packages\CatlinWmUtilTest\resources\test2.xslt</value>
+      <value>D:\SoftwareAG\IntegrationServer\packages\OrgWmUtilTest\resources\test.xslt</value>
+      <value>D:\SoftwareAG\IntegrationServer\packages\OrgWmUtilTest\resources\test2.xslt</value>
     </array>
   </record>
 </IDataXMLCoder>
