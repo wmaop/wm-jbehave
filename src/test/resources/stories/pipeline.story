@@ -58,3 +58,11 @@ Then pipeline has producer.prd\:GeneralPartyInfo.pty\:Addr[0].adr\:City == "Napa
 Scenario: Verify on invalid pipeline value
 When invoke org.wmaop.test.services:rootSvc with data/complex.xml
 Then pipeline has foo.bar[0].x != "not existing"
+
+Scenario: Match document in pipeline
+When invoke org.wmaop.test.services:rootSvc with data/complex.xml
+Then pipeline document producer matches data/complexsnippet.xml
+
+Scenario: Match document in pipeline based on snippet containing array
+When invoke org.wmaop.test.services:rootSvc with data/complex.xml
+Then pipeline document producer matches data/complexarraysnippet.xml

@@ -102,6 +102,12 @@ public class WmJBehaveSteps  {
 			ThreadContext.get().withPipelineExpression(jexlExpression);
 		}
 		
+		@Then("pipeline document $document matches $idataFile")
+		public void pipeline_matches(String document, String idataFile) throws Throwable {
+			ThreadContext.get().withMatchesDocument(document, idataFile);
+		}
+		
+		
 		@Then("exception $exception was thrown")
 		public void exception_was_thrown(String exceptionName) {
 			ThreadContext.get().withExceptionVerify(exceptionName);

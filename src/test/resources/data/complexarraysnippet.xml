@@ -11,7 +11,7 @@
 					</record>
 					<value name="agt:LicenseCode">Agency</value>
 					<value name="agt:LicenseHolderType">Entity</value>
-					<value name="agt:LicenseID">4177766</value>
+					<value name="agt:LicenseID">123456</value>
 					<value name="agt:License_Number"/>
 					<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
 						<value name="agt:StateAbbreviation">IN</value>
@@ -25,7 +25,7 @@
 						</record>
 						<value name="agt:LicenseCode">Agency</value>
 						<value name="agt:LicenseHolderType">Entity</value>
-						<value name="agt:LicenseID">4188766</value>
+						<value name="agt:LicenseID">123456</value>
 						<value name="agt:License_Number"/>
 						<record name="agt:State" javaclass="com.wm.data.ISMemDataImpl">
 							<value name="agt:StateAbbreviation">OR</value>

@@ -19,7 +19,7 @@
                 </record>
                 <array name="pty:Addr" type="record" depth="1">
                     <record javaclass="com.wm.data.ISMemDataImpl">
-                        <value name="adr:Addr1">870 Napa Valley Corporate Way, Ste R</value>
+                        <value name="adr:Addr1">Napa Valley</value>
                         <value name="adr:Addr2"></value>
                         <value name="adr:Addr3"></value>
                         <value name="adr:City">Napa</value>
@@ -29,7 +29,7 @@
                         <value name="adr:CountryCd">USA</value>
                     </record>
                 </array>
-                <value name="pty:Name">R.E. Chaix &amp; Assoc. Ins. Brokers, Inc.</value>
+                <value name="pty:Name">A N Other</value>
             </record>
     </record>
 </IDataXMLCoder>

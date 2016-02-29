@@ -146,4 +146,9 @@ public class BddTestBuilder {
 
 	}
 
+	public void withMatchesDocument(String document, String idataFile) {
+		DocumentMatchStep step = new DocumentMatchStep(document, idataFile);
+		executeStep(step);
+	}
+
 }
