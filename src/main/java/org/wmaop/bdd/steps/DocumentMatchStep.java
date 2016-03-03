@@ -23,12 +23,30 @@ public class DocumentMatchStep extends BaseServiceStep {
 
 	@Override
 	void execute(ExecutionContext executionContext) throws Exception {
-		IData potential = idataFile == null ? IDataFactory.create() : idataFromClasspathResource(idataFile);
+		IData potential = idataFile == null ? IDataFactory.create() : getDocumentContents();
 		IData doc = ((IDataJexlContext) new IDataJexlContext(executionContext.getPipeline()).get(documentReference))
 				.toIData();
 		if (!matches(doc, potential, documentName, true)) {
 			fail("Failed to match " + documentReference + " in pipeline with file " + idataFile);
 		}
+	}
+
+	private IData getDocumentContents() throws Exception {
+		IData idreturn;
+		IData idata = idataFromClasspathResource(idataFile);
+		IDataCursor idc = idata.getCursor();
+		if (IDataUtil.size(idc) == 1) {
+			IData id = IDataUtil.getIData(idc, documentName);
+			if (id != null) {
+				idreturn = id;
+			} else {
+				idreturn = idata;
+			}
+		} else {
+			idreturn = idata;
+		}
+		idc.destroy();
+		return idreturn;
 	}
 
 	boolean matches(IData document, IData potential, String prefix, boolean reportFail) {
@@ -46,7 +64,8 @@ public class DocumentMatchStep extends BaseServiceStep {
 					return false;
 				}
 			} else if (docObj instanceof IData[]) {
-				for (IData pot : ((IData[]) potObj)) {
+				IData[] potArr = (potObj instanceof IData[]) ? ((IData[]) potObj) : new IData[]{(IData) potObj}; 
+				for (IData pot : potArr) {
 					boolean potMatch = false;
 					for (IData doc : ((IData[]) docObj)) {
 						if (matches(doc, pot, prefix + '.' + key, false)) {
@@ -66,7 +85,15 @@ public class DocumentMatchStep extends BaseServiceStep {
 					}
 					return false;
 				}
-				if (!docObj.equals(potObj)) {
+				Object docVal;
+				if (docObj instanceof IData) {
+					IDataCursor cursor = ((IData) docObj).getCursor();
+					docVal = IDataUtil.get(cursor , "*body");
+					cursor.destroy();
+				} else {
+					docVal = docObj;
+				}
+				if (!docVal.equals(potObj)) {
 					if (reportFail) {
 						fail("Element " + prefix + '.' + key + " has pipeline value of '" + docObj
 								+ "' but test value of '" + potObj + "'");

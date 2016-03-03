@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<producer
+        xmlns:prd='urn:wmaop-org:example:producer'
+        xmlns:pty='urn:wmaop-org:example:party'
+        xmlns:adr='urn:wmaop-org:example:address'
+    >
+    <prd:Id>2</prd:Id>
+    <prd:GeneralPartyInfo>
+        <pty:NameInfo>
+            <pty:LegalNameInfo>
+                <pty:LegalNameInfo>
+                    <pty:LegalName>Name To Print On Declaration</pty:LegalName>
+                    <pty:countrySubdivisionCode>FL</pty:countrySubdivisionCode>
+                    <pty:countryCode>US</pty:countryCode>
+                </pty:LegalNameInfo>
+            </pty:LegalNameInfo>
+        </pty:NameInfo>
+        <pty:Addr>
+            <adr:Addr1>Napa Valley</adr:Addr1>
+            <adr:Addr2/>
+            <adr:Addr3/>
+            <adr:City>Napa</adr:City>
+            <adr:County>Napa</adr:County>
+            <adr:PostalCode>94558</adr:PostalCode>
+            <adr:StateProvCd>CA</adr:StateProvCd>
+            <adr:CountryCd>USA</adr:CountryCd>
+        </pty:Addr>
+        <pty:Name>A N Other</pty:Name>
+    </prd:GeneralPartyInfo>
+</producer>

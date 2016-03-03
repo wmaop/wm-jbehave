@@ -17,23 +17,34 @@ public class DocumentMatchStepTest {
 	}
 
 	@Test
-	public void shouldMatch() throws Exception {
-		IData complex = getIdataFile("data/complex.xml");
-		DocumentMatchStep step = new DocumentMatchStep("producer", "data/complexsnippet.xml");
-		ExecutionContext executionContext = new ExecutionContext();
-		executionContext.setPipeline(complex);
-		step.execute(executionContext);
+	public void shouldMatchIDataSnippet() throws Exception {
+		match("data/complexsnippet.xml");
+	}
+
+	@Test
+	public void shouldMatchIDataDocument() throws Exception {
+		match("data/complexdocument.xml");
+	}
+	
+	@Test
+	public void shouldMatchXMLdocument() throws Exception {
+		match("data/xmldocument.xml");
 	}
 
 	@Test
 	public void shouldMatchArrayElements() throws Exception {
+		match("data/complexarraysnippet.xml");
+	}
+
+	void match(String dataToMatch) throws Exception {
 		IData complex = getIdataFile("data/complex.xml");
-		DocumentMatchStep step = new DocumentMatchStep("producer", "data/complexarraysnippet.xml");
+		DocumentMatchStep step = new DocumentMatchStep("producer", dataToMatch);
 		ExecutionContext executionContext = new ExecutionContext();
 		executionContext.setPipeline(complex);
 		step.execute(executionContext);
 	}
 
+	
 	@Test
 	public void shouldTrapIncorrectElement() throws Exception {
 		IData complex = getIdataFile("data/complex.xml");
