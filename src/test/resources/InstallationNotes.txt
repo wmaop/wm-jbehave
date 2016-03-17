@@ -13,3 +13,5 @@ Configure scanning
 	* Click 'Include' button
 	* OK
 	* Restart Eclipse (Shouldnt need to do this but I found the scanner didnt pick up the classes first time)
+	
+See wiki for full details https://github.com/wmaop/wm-jbehave/wiki
