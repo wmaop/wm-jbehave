@@ -13,7 +13,7 @@
 	</parent>
 
 	<name>wm-jbehave</name>
-	<url>http://maven.apache.org</url>
+	<url>https://github.com/wmaop/wm-jbehave</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
