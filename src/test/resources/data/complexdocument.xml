@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<IDataXMLCoder version="1.0">
+	<record javaclass="com.wm.util.Values">
+		<record name="producer" javaclass="com.wm.data.ISMemDataImpl">
+			<value name="prd:Id">2</value>
+			<record name="prd:GeneralPartyInfo" javaclass="com.wm.data.ISMemDataImpl">
+				<record name="pty:NameInfo" javaclass="com.wm.data.ISMemDataImpl">
+					<record name="pty:LegalNameInfo" javaclass="com.wm.data.ISMemDataImpl">
+						<array name="pty:LegalNameInfo" type="record" depth="1">
+							<record javaclass="com.wm.data.ISMemDataImpl">
+								<value name="pty:LegalName">Name To Print On Declaration</value>
+								<record name="pty:countrySubdivisionCode" javaclass="com.wm.data.ISMemDataImpl">
+									<value name="*body">FL</value>
+								</record>
+								<record name="pty:countryCode" javaclass="com.wm.data.ISMemDataImpl">
+									<value name="*body">US</value>
+								</record>
+							</record>
+						</array>
+					</record>
+				</record>
+				<array name="pty:Addr" type="record" depth="1">
+					<record javaclass="com.wm.data.ISMemDataImpl">
+						<value name="adr:Addr1">Napa Valley</value>
+						<value name="adr:Addr2"></value>
+						<value name="adr:Addr3"></value>
+						<value name="adr:City">Napa</value>
+						<value name="adr:County">Napa</value>
+						<value name="adr:PostalCode">94558</value>
+						<value name="adr:StateProvCd">CA</value>
+						<value name="adr:CountryCd">USA</value>
+					</record>
+				</array>
+				<value name="pty:Name">A N Other</value>
+			</record>
+		</record>
+	</record>
+</IDataXMLCoder>

@@ -1,12 +1,24 @@
 package org.wmaop.bdd.steps;
 
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PushbackInputStream;
+import java.io.PushbackReader;
 
 import org.apache.commons.io.IOUtils;
 
 import com.wm.app.b2b.client.ServiceException;
+import com.wm.app.b2b.services.DocumentToRecordService;
 import com.wm.data.IData;
+import com.wm.data.IDataCursor;
+import com.wm.data.IDataUtil;
+import com.wm.lang.xml.Document;
+import com.wm.util.Values;
+import com.wm.util.coder.IDataBinCoder;
 import com.wm.util.coder.IDataXMLCoder;
+import com.wm.util.coder.XMLCoder;
+import com.wm.util.coder.XMLCoderWrapper;
 
 public abstract class BaseServiceStep {
 
@@ -60,7 +72,23 @@ public abstract class BaseServiceStep {
 	}
 	
 	protected IData idataFromClasspathResource(String fileName) throws Exception {
-		return new IDataXMLCoder().decode(streamFromClasspathResource(fileName));
+		InputStreamReader isr = new InputStreamReader(streamFromClasspathResource(fileName));
+		char [] buf = new char[100];
+		int len = isr.read(buf);
+		boolean isIData = new String(buf,0,len).contains("IData");
+		if (isIData) {
+			return new IDataXMLCoder().decode(streamFromClasspathResource(fileName));
+		} else {
+			Document node = new com.wm.lang.xml.Document(streamFromClasspathResource(fileName), null, "UTF-8", false, null, true);
+			Values in = new Values();
+			DocumentToRecordService dtrs = new DocumentToRecordService(in, false);
+			dtrs.setIsXTD(true);
+			IData idata = (IData) dtrs.bind(node);
+			IDataCursor cursor = idata.getCursor();
+			IDataUtil.remove(cursor , "@version"); // Inserted during conversion
+			cursor.destroy();
+			return idata;
+		}
 	}
 
 	protected String stringFromClasspathResource(String fileName) {
