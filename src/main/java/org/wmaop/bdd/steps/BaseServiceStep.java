@@ -1,10 +1,7 @@
 package org.wmaop.bdd.steps;
 
-import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PushbackInputStream;
-import java.io.PushbackReader;
 
 import org.apache.commons.io.IOUtils;
 
@@ -15,10 +12,7 @@ import com.wm.data.IDataCursor;
 import com.wm.data.IDataUtil;
 import com.wm.lang.xml.Document;
 import com.wm.util.Values;
-import com.wm.util.coder.IDataBinCoder;
 import com.wm.util.coder.IDataXMLCoder;
-import com.wm.util.coder.XMLCoder;
-import com.wm.util.coder.XMLCoderWrapper;
 
 public abstract class BaseServiceStep {
 

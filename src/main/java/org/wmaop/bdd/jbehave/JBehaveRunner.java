@@ -50,7 +50,7 @@ public class JBehaveRunner extends JUnitStories {
 
 			@Override
 			public Object createInstanceOfType(Class<?> type) {
-				return new WmJBehaveSteps(); //stepsInstance;
+				return new WmJBehaveSteps();
 			}
 
 			@Override

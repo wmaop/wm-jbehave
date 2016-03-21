@@ -13,7 +13,7 @@ public class BddTestBuilder {
 
 	int executedStep = 0;
 	
-	final static Logger logger = Logger.getLogger(BddTestBuilder.class);
+	static final Logger logger = Logger.getLogger(BddTestBuilder.class);
 	private static final String EOL = System.getProperty("line.separator");
 	private ExecutionContext executionContext;
 

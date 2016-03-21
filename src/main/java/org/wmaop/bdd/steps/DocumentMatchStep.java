@@ -67,7 +67,7 @@ public class DocumentMatchStep extends BaseServiceStep {
 				IData[] potArr = (potObj instanceof IData[]) ? ((IData[]) potObj) : new IData[]{(IData) potObj}; 
 				for (IData pot : potArr) {
 					boolean potMatch = false;
-					for (IData doc : ((IData[]) docObj)) {
+					for (IData doc : (IData[]) docObj) {
 						if (matches(doc, pot, prefix + '.' + key, false)) {
 							potMatch = true;
 							break;
