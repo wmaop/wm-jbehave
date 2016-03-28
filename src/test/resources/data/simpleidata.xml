@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<IDataXMLCoder version="1.0">
+    <record javaclass="com.wm.data.ISMemDataImpl">
+        <value name="fileName">G:\tmp\mydocument.xml</value>
+        <record name="document" javaclass="com.wm.data.BasicData">
+            <value name="@version">1.0</value>
+            <value name="@encoding">UTF-8</value>
+            <record name="locality" javaclass="com.wm.data.BasicData">
+                <array name="pcounty" type="record" depth="1">
+                    <record javaclass="com.wm.data.BasicData">
+                        <value name="@id">30</value>
+                        <value name="@name">North Yorkshire</value>
+                        <record name="parea" javaclass="com.wm.data.BasicData">
+                            <value name="@id">HG</value>
+                            <array name="ptown" type="record" depth="1">
+                                <record javaclass="com.wm.data.BasicData">
+                                    <value name="@name">Harrogate</value>
+                                </record>
+                                <record javaclass="com.wm.data.BasicData">
+                                    <value name="@name">Ripon</value>
+                                </record>
+                                <record javaclass="com.wm.data.BasicData">
+                                    <value name="@name">Knaresborough</value>
+                                </record>
+                            </array>
+                        </record>
+                    </record>
+                    <record javaclass="com.wm.data.BasicData">
+                        <value name="@id">46</value>
+                        <value name="@name">West Yorkshire</value>
+                        <record name="parea" javaclass="com.wm.data.BasicData">
+                            <array name="ptown" type="record" depth="1">
+                                <record javaclass="com.wm.data.BasicData">
+                                    <value name="@name">Bradford</value>
+                                </record>
+                                <record javaclass="com.wm.data.BasicData">
+                                    <value name="@name">Shipley</value>
+                                </record>
+                                <record javaclass="com.wm.data.BasicData">
+                                    <value name="@name">Skipton</value>
+                                </record>
+                            </array>
+                        </record>
+                    </record>
+                </array>
+            </record>
+        </record>
+    </record>
+</IDataXMLCoder>

@@ -12,8 +12,11 @@ import com.wm.util.coder.IDataXMLCoder;
 public class DocumentMatchStepTest {
 
 	IData getIdataFile(String fileName) throws Exception {
-		InputStream is = this.getClass().getClassLoader().getResourceAsStream(fileName);
-		return new IDataXMLCoder().decode(is);
+		return new BaseServiceStep() {
+			@Override
+			void execute(ExecutionContext executionContext) throws Exception {
+			}
+		}.idataFromClasspathResource(fileName);
 	}
 
 	@Test
@@ -36,14 +39,23 @@ public class DocumentMatchStepTest {
 		match("data/complexarraysnippet.xml");
 	}
 
+	@Test
+	public void shouldMatchSimple() throws Exception {
+		match("data/simpleidata.xml", "data/simplesnippet.xml");
+	}
+
+	
 	void match(String dataToMatch) throws Exception {
-		IData complex = getIdataFile("data/complex.xml");
+		match(dataToMatch, "data/complex.xml");
+	}
+	
+	void match(String source, String dataToMatch) throws Exception {
+		IData complex = getIdataFile(source);
 		DocumentMatchStep step = new DocumentMatchStep("producer", dataToMatch);
 		ExecutionContext executionContext = new ExecutionContext();
 		executionContext.setPipeline(complex);
 		step.execute(executionContext);
 	}
-
 	
 	@Test
 	public void shouldTrapIncorrectElement() throws Exception {

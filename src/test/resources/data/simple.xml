@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<locality>
+    <pcounty id="30" name="North Yorkshire">
+        <parea id="HG">
+            <ptown name="Harrogate"/>
+            <ptown name="Ripon"/>
+            <ptown name="Knaresborough"/>
+        </parea>
+    </pcounty>
+    <pcounty id="46" name="West Yorkshire">
+        <parea>
+            <ptown name="Bradford"/>
+            <ptown name="Shipley"/>
+            <ptown name="Skipton"/>
+        </parea>
+    </pcounty>
+</locality>

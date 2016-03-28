@@ -66,3 +66,7 @@ Then pipeline document producer matches data/complexsnippet.xml
 Scenario: Match document in pipeline based on snippet containing array
 When invoke org.wmaop.test.services:rootSvc with data/complex.xml
 Then pipeline document producer matches data/complexarraysnippet.xml
+
+Scenario: Match document in pipeline based on XML snippet
+When invoke org.wmaop.test.services:rootSvc with data/simpleidata.xml
+Then pipeline document producer matches data/simplesnippet.xml
