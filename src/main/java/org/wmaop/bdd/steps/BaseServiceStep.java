@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import org.apache.commons.io.IOUtils;
+import org.wmaop.bdd.jbehave.InterceptPoint;
 
 import com.wm.app.b2b.client.ServiceException;
 import com.wm.app.b2b.services.DocumentToRecordService;
@@ -13,6 +14,7 @@ import com.wm.data.IDataUtil;
 import com.wm.lang.xml.Document;
 import com.wm.util.Values;
 import com.wm.util.coder.IDataXMLCoder;
+import static org.junit.Assert.*;
 
 public abstract class BaseServiceStep {
 
@@ -90,6 +92,15 @@ public abstract class BaseServiceStep {
 			return IOUtils.toString(streamFromClasspathResource(fileName));
 		} catch (Exception e) {
 			throw new RuntimeException("Unable to load " + fileName + " from the classpath");
+		}
+	}
+	
+	protected InterceptPoint toInteceptPoint(String interceptPoint) {
+		try {
+			return InterceptPoint.valueOf(interceptPoint.toLowerCase());
+		} catch (IllegalArgumentException ie) {
+			fail("Invalid intercept point '" + interceptPoint + "' valid options are before, invoke or after");
+			return null; // Only present to satisfy compilation.  Never reached
 		}
 	}
 	

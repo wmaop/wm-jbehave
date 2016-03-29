@@ -9,29 +9,28 @@ import com.wm.data.IDataUtil;
 
 public class AssertionSetupStep extends BaseServiceStep {
 
-	private final String execService;
-	private final IData idata;
+	private final String execService = SETUP_ASSERTION;
+	private final IData idata = IDataFactory.create();
 	
 	public AssertionSetupStep(String assertionId, InterceptPoint interceptPoint, String serviceName,
 			String jexlPipelineExpression) {
-		idata = IDataFactory.create();
-		IDataCursor cursor = idata.getCursor();
-		IDataUtil.put(cursor, ADVICE_ID, assertionId);
-		IDataUtil.put(cursor, SERVICE_NAME, serviceName);
-		IDataUtil.put(cursor, INTERCEPT_POINT, interceptPoint.toString());
-		IDataUtil.put(cursor, CONDITION, jexlPipelineExpression);
-		cursor.destroy();
-		execService = SETUP_ASSERTION;
+		setup(assertionId, interceptPoint, serviceName, jexlPipelineExpression);
 	}
 
 	public AssertionSetupStep(String assertionId, String interceptPoint, String serviceName) {
-		idata = IDataFactory.create();
+		setup(assertionId, toInteceptPoint(interceptPoint), serviceName, null);
+	}
+	
+	private void setup(String assertionId, InterceptPoint interceptPoint, String serviceName,
+			String jexlPipelineExpression) {
 		IDataCursor cursor = idata.getCursor();
 		IDataUtil.put(cursor, ADVICE_ID, assertionId);
 		IDataUtil.put(cursor, SERVICE_NAME, serviceName);
 		IDataUtil.put(cursor, INTERCEPT_POINT, interceptPoint.toString());
+		if (jexlPipelineExpression != null) {
+		IDataUtil.put(cursor, CONDITION, jexlPipelineExpression);
+		}
 		cursor.destroy();
-		execService = SETUP_ASSERTION;
 	}
 
 	@Override

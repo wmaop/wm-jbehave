@@ -132,6 +132,16 @@ public class BddTestBuilder {
 		ExceptionStep step = new ExceptionStep(adviceId, interceptPoint, serviceName, null, exception);
 		executeStep(step);
 	}
+	
+	public void withException(String adviceId, String interceptPoint, String serviceName, String jexlPipelineExpression, String exception) {
+		ExceptionStep step = new ExceptionStep(adviceId, interceptPoint, serviceName, null, exception);
+		executeStep(step);
+	}
+
+	public void withException(String adviceId, String interceptPoint, String serviceName, String exception) {
+		ExceptionStep step = new ExceptionStep(adviceId, interceptPoint, serviceName, null, exception);
+		executeStep(step);
+	}
 
 	public void withExceptionVerify(String exceptionName) {
 		ExceptionVerifyStep step = new ExceptionVerifyStep(exceptionName);

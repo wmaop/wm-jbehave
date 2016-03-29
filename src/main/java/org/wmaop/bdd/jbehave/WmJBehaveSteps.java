@@ -71,7 +71,18 @@ public class WmJBehaveSteps  {
 			BddTestBuilder bddt = ThreadContext.get();
 			bddt.withException(serviceName+ "-" + bddt.getExecutedStep(), InterceptPoint.invoke, serviceName, expression, exception);
 		}
-		
+
+		@Given("exception $exception thrown $interceptPoint calling service $serviceName when $jexlPipelineExpression")
+		public void exception_thrown_when_calling_service(String exception, String interceptPoint, String serviceName, String expression) {
+			BddTestBuilder bddt = ThreadContext.get();
+			bddt.withException(serviceName+ "-" + bddt.getExecutedStep(), interceptPoint, serviceName, expression, exception);
+		}
+	
+		@Given("exception $exception thrown $interceptPoint calling service $serviceName always")
+		public void exception_thrown_at_intercept_point_when_calling_service(String exception, String interceptPoint, String serviceName) {
+			BddTestBuilder bddt = ThreadContext.get();
+			bddt.withException(serviceName+ "-" + bddt.getExecutedStep(), interceptPoint, serviceName, exception);
+		}
 		/*
 		 * When
 		 */
@@ -81,7 +92,6 @@ public class WmJBehaveSteps  {
 			ThreadContext.get().withInvokeService(serviceName, idataFile);
 		}
 		
-
 		@When("invoke $serviceName without idata")
 		public void invoke_service(final String serviceName) {
 			ThreadContext.get().withInvokeService(serviceName, null);

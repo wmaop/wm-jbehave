@@ -16,9 +16,15 @@ public class PipelineJexlStep extends BaseServiceStep {
 
 	@Override
 	void execute(ExecutionContext executionContext) throws Exception {
-		boolean result = (Boolean) expression.evaluate(new IDataJexlContext(executionContext.getPipeline()));
-		if (!result) {
-			fail("The expression [" + expression.getExpression() + "] returned false");
+		boolean result;
+		try {
+			result = (Boolean) expression.evaluate(new IDataJexlContext(executionContext.getPipeline()));
+			if (!result) {
+				fail("The expression [" + expression.getExpression() + "] returned false");
+			}
+		} catch (Exception e) {
+			fail("parsing the expression '"+expression+"' failed");
+			e.printStackTrace();
 		}
 	}
 
