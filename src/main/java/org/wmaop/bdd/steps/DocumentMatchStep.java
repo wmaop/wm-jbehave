@@ -24,8 +24,11 @@ public class DocumentMatchStep extends BaseServiceStep {
 	@Override
 	void execute(ExecutionContext executionContext) throws Exception {
 		IData potential = idataFile == null ? IDataFactory.create() : getDocumentContents();
-		IData doc = ((IDataJexlContext) new IDataJexlContext(executionContext.getPipeline()).get(documentReference))
-				.toIData();
+		IDataJexlContext docRef = ((IDataJexlContext) new IDataJexlContext(executionContext.getPipeline()).get(documentReference));
+		if (docRef == null) {
+			fail("Failed when trying to matching document.  Cannot find document '" + documentName + "' in the pipeline");
+		}
+		IData doc = docRef.toIData();
 		if (!matches(doc, potential, documentName, true)) {
 			fail("Failed to match " + documentReference + " in pipeline with file " + idataFile);
 		}
@@ -57,50 +60,71 @@ public class DocumentMatchStep extends BaseServiceStep {
 			Object docObj = IDataUtil.get(dc, key);
 			Object potObj = pc.getValue();
 			if (docObj instanceof IData && potObj instanceof IData) {
-				if (!matches((IData) docObj, (IData) potObj, prefix + '.' + key, reportFail)) {
-					if (reportFail) {
-						fail("Failed to match values for " + prefix + '.' + key);
-					}
+				if (!isIDataMatch(prefix, reportFail, key, docObj, potObj)) {
 					return false;
 				}
 			} else if (docObj instanceof IData[]) {
-				IData[] potArr = (potObj instanceof IData[]) ? ((IData[]) potObj) : new IData[]{(IData) potObj}; 
-				for (IData pot : potArr) {
-					boolean potMatch = false;
-					for (IData doc : (IData[]) docObj) {
-						if (matches(doc, pot, prefix + '.' + key, false)) {
-							potMatch = true;
-							break;
-						}
-					}
-					if (!potMatch) {
-						fail("Failed to match " + prefix + '.' + key);
-						return false;
-					}
-				}
-			} else {
-				if (docObj == null || potObj == null) {
-					if (reportFail) {
-						fail("Failed to locate element in pipeline: " + prefix + '.' + key);
-					}
+				if(!isIDataArrayMatch(prefix, key, docObj, potObj)) {
 					return false;
 				}
-				Object docVal;
-				if (docObj instanceof IData) {
-					IDataCursor cursor = ((IData) docObj).getCursor();
-					docVal = IDataUtil.get(cursor , "*body");
-					cursor.destroy();
-				} else {
-					docVal = docObj;
-				}
-				if (!docVal.equals(potObj)) {
-					if (reportFail) {
-						fail("Element " + prefix + '.' + key + " has pipeline value of '" + docObj
-								+ "' but test value of '" + potObj + "'");
-					}
+			} else {
+				if(!isObjectMatch(prefix, reportFail, key, docObj, potObj)) {
 					return false;
 				}
 			}
+		}
+		return true;
+	}
+
+	private boolean isObjectMatch(String prefix, boolean reportFail, String key, Object docObj, Object potObj) {
+		if (docObj == null || potObj == null) {
+			if (reportFail) {
+				fail("Failed to locate element in pipeline: " + prefix + '.' + key);
+			}
+			return false;
+		}
+		Object docVal;
+		if (docObj instanceof IData) {
+			IDataCursor cursor = ((IData) docObj).getCursor();
+			docVal = IDataUtil.get(cursor , "*body");
+			cursor.destroy();
+		} else {
+			docVal = docObj;
+		}
+		if (!docVal.equals(potObj)) {
+			if (reportFail) {
+				fail("Element " + prefix + '.' + key + " has pipeline value of '" + docObj
+						+ "' but test value of '" + potObj + "'");
+			}
+			return false;
+		}
+		return true;
+	}
+
+	private boolean isIDataArrayMatch(String prefix, String key, Object docObj, Object potObj) {
+		IData[] potArr = (potObj instanceof IData[]) ? ((IData[]) potObj) : new IData[]{(IData) potObj}; 
+		for (IData pot : potArr) {
+			boolean potMatch = false;
+			for (IData doc : (IData[]) docObj) {
+				if (matches(doc, pot, prefix + '.' + key, false)) {
+					potMatch = true;
+					break;
+				}
+			}
+			if (!potMatch) {
+				fail("Failed to match " + prefix + '.' + key);
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private boolean isIDataMatch(String prefix, boolean reportFail, String key, Object docObj, Object potObj) {
+		if (!matches((IData) docObj, (IData) potObj, prefix + '.' + key, reportFail)) {
+			if (reportFail) {
+				fail("Failed to match values for " + prefix + '.' + key);
+			}
+			return false;
 		}
 		return true;
 	}

@@ -41,17 +41,22 @@ public class DocumentMatchStepTest {
 
 	@Test
 	public void shouldMatchSimple() throws Exception {
-		match("data/simpleidata.xml", "data/simplesnippet.xml");
+		match("data/simpleidata.xml", "data/simple.xml", "document");
+	}
+
+	@Test
+	public void shouldMatchSimpleSnippet() throws Exception {
+		match("data/simpleidata.xml", "data/simplesnippet.xml", "document");
 	}
 
 	
 	void match(String dataToMatch) throws Exception {
-		match(dataToMatch, "data/complex.xml");
+		match("data/complex.xml", dataToMatch, "producer");
 	}
 	
-	void match(String source, String dataToMatch) throws Exception {
+	void match(String source, String dataToMatch, String documentName) throws Exception {
 		IData complex = getIdataFile(source);
-		DocumentMatchStep step = new DocumentMatchStep("producer", dataToMatch);
+		DocumentMatchStep step = new DocumentMatchStep(documentName, dataToMatch);
 		ExecutionContext executionContext = new ExecutionContext();
 		executionContext.setPipeline(complex);
 		step.execute(executionContext);
