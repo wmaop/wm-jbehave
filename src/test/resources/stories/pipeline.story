@@ -8,8 +8,13 @@ I want to interact with the pipeline
 Scenario: Verify setting of pipeline values
 Given pipeline values inString1 = "hello "; inString2 = "world"
 When invoke pub.string:concat without idata
-Then show pipeline in console
 Then pipeline has value == "hello world" 
+
+Scenario: Verify nulls					 
+When invoke org.wmaop.test.services:empty with data/nulldata.xml
+Then pipeline has nul1 == null && nul2 == null
+And pipeline has size(nularray) == 2 
+And pipeline has nularray[0] == null
 
 Scenario: Verify setting of pipeline values with multiple given
 Given pipeline values inString1 = "hello "
