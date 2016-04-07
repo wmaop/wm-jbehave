@@ -77,6 +77,9 @@ public class DocumentMatchStep extends BaseServiceStep {
 	}
 
 	private boolean isObjectMatch(String prefix, boolean reportFail, String key, Object docObj, Object potObj) {
+		if (docObj == null && potObj == null) {
+			return true;
+		}
 		if (docObj == null || potObj == null) {
 			if (reportFail) {
 				fail("Failed to locate element in pipeline: " + prefix + '.' + key);
@@ -106,7 +109,7 @@ public class DocumentMatchStep extends BaseServiceStep {
 		for (IData pot : potArr) {
 			boolean potMatch = false;
 			for (IData doc : (IData[]) docObj) {
-				if (matches(doc, pot, prefix + '.' + key, false)) {
+				if ((doc == null && pot == null) || (pot != null && matches(doc, pot, prefix + '.' + key, false))) {
 					potMatch = true;
 					break;
 				}

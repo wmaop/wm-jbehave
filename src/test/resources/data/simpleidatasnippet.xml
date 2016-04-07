@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<IDataXMLCoder version="1.0">
+    <record javaclass="com.wm.data.ISMemDataImpl">
+        <record name="document" javaclass="com.wm.data.BasicData">
+            <record name="locality" javaclass="com.wm.data.BasicData">
+                <array name="pcounty" type="record" depth="1">
+                    <record javaclass="com.wm.data.BasicData">
+                        <value name="@id">46</value>
+                        <value name="@name">West Yorkshire</value>
+                        <null name="class"/>
+                        <record name="parea" javaclass="com.wm.data.BasicData">
+                            <array name="ptown" type="record" depth="1">
+                                <record javaclass="com.wm.data.BasicData">
+                                    <value name="@name">Bradford</value>
+                                </record>
+                                <null />
+                            </array>
+                        </record>
+                    </record>
+                </array>
+            </record>
+        </record>
+    </record>
+</IDataXMLCoder>

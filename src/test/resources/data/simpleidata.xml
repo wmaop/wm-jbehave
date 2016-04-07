@@ -27,6 +27,7 @@
                     <record javaclass="com.wm.data.BasicData">
                         <value name="@id">46</value>
                         <value name="@name">West Yorkshire</value>
+                        <null name="class"/>
                         <record name="parea" javaclass="com.wm.data.BasicData">
                             <array name="ptown" type="record" depth="1">
                                 <record javaclass="com.wm.data.BasicData">
@@ -38,6 +39,7 @@
                                 <record javaclass="com.wm.data.BasicData">
                                     <value name="@name">Skipton</value>
                                 </record>
+                                <null />
                             </array>
                         </record>
                     </record>

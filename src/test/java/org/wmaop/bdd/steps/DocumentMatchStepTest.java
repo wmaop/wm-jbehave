@@ -45,10 +45,14 @@ public class DocumentMatchStepTest {
 	}
 
 	@Test
-	public void shouldMatchSimpleSnippet() throws Exception {
+	public void shouldMatchSimpleXmlSnippet() throws Exception {
 		match("data/simpleidata.xml", "data/simplesnippet.xml", "document");
 	}
 
+	@Test
+	public void shouldMatchSimpleIDataSnippet() throws Exception {
+		match("data/simpleidata.xml", "data/simpleidatasnippet.xml", "document");
+	}
 	
 	void match(String dataToMatch) throws Exception {
 		match("data/complex.xml", dataToMatch, "producer");
