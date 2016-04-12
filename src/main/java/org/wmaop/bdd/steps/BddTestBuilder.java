@@ -3,7 +3,6 @@ package org.wmaop.bdd.steps;
 import static org.junit.Assert.*;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.log4j.Logger;
-import org.wmaop.bdd.jbehave.InterceptPoint;
 
 import com.wm.app.b2b.client.ServiceException;
 import com.wm.data.IDataFactory;

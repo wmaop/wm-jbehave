@@ -1,7 +1,5 @@
 package org.wmaop.bdd.steps;
 
-import org.wmaop.bdd.jbehave.InterceptPoint;
-
 import com.wm.data.IData;
 import com.wm.data.IDataCursor;
 import com.wm.data.IDataFactory;

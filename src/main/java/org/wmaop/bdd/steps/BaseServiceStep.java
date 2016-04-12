@@ -4,7 +4,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import org.apache.commons.io.IOUtils;
-import org.wmaop.bdd.jbehave.InterceptPoint;
 
 import com.wm.app.b2b.client.ServiceException;
 import com.wm.app.b2b.services.DocumentToRecordService;

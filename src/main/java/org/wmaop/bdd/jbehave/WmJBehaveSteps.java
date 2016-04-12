@@ -8,6 +8,7 @@ import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.wmaop.bdd.steps.BddTestBuilder;
+import org.wmaop.bdd.steps.InterceptPoint;
 import org.wmaop.bdd.steps.ThreadContext;
 
 public class WmJBehaveSteps  {
