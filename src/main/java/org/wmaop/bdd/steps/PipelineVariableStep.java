@@ -8,7 +8,6 @@ import org.wmaop.util.jexl.IDataJexlContext;
 import org.wmaop.util.jexl.JexlExpressionFactory;
 
 import com.wm.data.IData;
-import com.wm.data.IDataFactory;
 
 public class PipelineVariableStep extends BaseServiceStep {
 
