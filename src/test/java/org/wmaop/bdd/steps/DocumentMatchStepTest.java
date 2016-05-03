@@ -1,13 +1,11 @@
 package org.wmaop.bdd.steps;
 
-import static org.junit.Assert.*;
-
-import java.io.InputStream;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
 import com.wm.data.IData;
-import com.wm.util.coder.IDataXMLCoder;
 
 public class DocumentMatchStepTest {
 
