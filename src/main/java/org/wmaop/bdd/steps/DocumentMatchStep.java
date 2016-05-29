@@ -24,7 +24,7 @@ public class DocumentMatchStep extends BaseServiceStep {
 	@Override
 	void execute(ExecutionContext executionContext) throws Exception {
 		IData potential = idataFile == null ? IDataFactory.create() : getDocumentContents();
-		IDataJexlContext docRef = ((IDataJexlContext) new IDataJexlContext(executionContext.getPipeline()).get(documentReference));
+		IDataJexlContext docRef = (IDataJexlContext) new IDataJexlContext(executionContext.getPipeline()).get(documentReference);
 		if (docRef == null) {
 			fail("Failed when trying to matching document.  Cannot find document '" + documentName + "' in the pipeline");
 		}

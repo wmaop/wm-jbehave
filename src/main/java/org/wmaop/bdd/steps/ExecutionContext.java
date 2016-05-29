@@ -28,10 +28,10 @@ public class ExecutionContext {
 	private Context createConnectionContext() throws ServiceException {
 		Properties p = System.getProperties();
 		String host = p.getProperty("wm.server.host", "localhost");
-		int port = Integer.valueOf(p.getProperty("wm.server.port", "5555"));
+		int port = Integer.parseInt(p.getProperty("wm.server.port", "5555"));
 		String username = p.getProperty("wm.server.username", "Administrator");
 		String password = p.getProperty("wm.server.password", "manage");
-		boolean secure = Boolean.valueOf(p.getProperty("wm.server.secure", "false"));
+		boolean secure = Boolean.parseBoolean(p.getProperty("wm.server.secure", "false"));
 		return connectToServer(host, port, username, password, secure);
 	}
 

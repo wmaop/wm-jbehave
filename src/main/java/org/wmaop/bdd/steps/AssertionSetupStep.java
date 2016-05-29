@@ -7,7 +7,7 @@ import com.wm.data.IDataUtil;
 
 public class AssertionSetupStep extends BaseServiceStep {
 
-	private final String execService = SETUP_ASSERTION;
+	private static final String EXEC_SERVICE = SETUP_ASSERTION;
 	private final IData idata = IDataFactory.create();
 	
 	public AssertionSetupStep(String assertionId, InterceptPoint interceptPoint, String serviceName,
@@ -33,7 +33,7 @@ public class AssertionSetupStep extends BaseServiceStep {
 
 	@Override
 	void execute(ExecutionContext executionContext) throws Exception {
-		invokeService(executionContext, execService, idata);  // Ignore returned idata as its not part of the flow
+		invokeService(executionContext, EXEC_SERVICE, idata);  // Ignore returned idata as its not part of the flow
 	}
 
 }
