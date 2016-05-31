@@ -10,8 +10,8 @@ import com.wm.data.IDataFactory;
 
 public class ExecutionContext {
 
-	Context context;
-	IData pipeline;
+	private Context context;
+	private IData pipeline;
 	private Throwable thrownException;
 	
 	public ExecutionContext() {

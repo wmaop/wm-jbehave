@@ -10,11 +10,11 @@ import com.wm.util.coder.IDataXMLCoder;
 
 public class BddTestBuilder {
 
-	int executedStep = 0;
-	
-	static final Logger logger = Logger.getLogger(BddTestBuilder.class);
+	private static final Logger logger = Logger.getLogger(BddTestBuilder.class);
 	private static final String EOL = System.getProperty("line.separator");
-	private ExecutionContext executionContext;
+	private final ExecutionContext executionContext;
+
+	private int executedStep = 0;
 
 	public BddTestBuilder(ExecutionContext executionContext) {
 		this.executionContext = executionContext;

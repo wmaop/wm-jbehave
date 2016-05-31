@@ -8,7 +8,6 @@ import com.wm.data.IDataUtil;
 public class MockServiceStep extends BaseServiceStep {
 
 	private final IData idata;
-	private final String execService;
 
 	public MockServiceStep(String adviceId, InterceptPoint interceptPoint, String serviceName, String idataFile) {
 
@@ -19,7 +18,6 @@ public class MockServiceStep extends BaseServiceStep {
 		IDataUtil.put(cursor, INTERCEPT_POINT, interceptPoint.toString());
 		IDataUtil.put(cursor, RESPONSE, stringFromClasspathResource(idataFile));
 		cursor.destroy();
-		execService = FIXED_RESPONSE_MOCK;
 	}
 
 	public MockServiceStep(String adviceId, InterceptPoint interceptPoint, String serviceName, String idataFile,
@@ -34,12 +32,10 @@ public class MockServiceStep extends BaseServiceStep {
 		IDataUtil.put(cursor, RESPONSE, stringFromClasspathResource(idataFile));
 		
 		cursor.destroy();
-		
-		execService = FIXED_RESPONSE_MOCK;
 	}
 
 	@Override
 	void execute(ExecutionContext executionContext) throws Exception {
-		invokeService(executionContext, execService, idata);
+		invokeService(executionContext, FIXED_RESPONSE_MOCK, idata);
 	}
 }

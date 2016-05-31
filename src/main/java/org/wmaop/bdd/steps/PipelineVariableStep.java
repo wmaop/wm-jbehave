@@ -11,7 +11,7 @@ import com.wm.data.IData;
 
 public class PipelineVariableStep extends BaseServiceStep {
 
-	private List<Expression> expressions;
+	private final List<Expression> expressions;
 
 	public PipelineVariableStep(String jexlVariableExpression) {
 		expressions = new ArrayList<>();

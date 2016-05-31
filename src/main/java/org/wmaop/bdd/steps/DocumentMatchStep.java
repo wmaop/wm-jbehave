@@ -11,9 +11,9 @@ import com.wm.data.IDataUtil;
 
 public class DocumentMatchStep extends BaseServiceStep {
 
-	private String documentReference;
-	private String idataFile;
-	private String documentName;
+	private final String documentReference;
+	private final String idataFile;
+	private final String documentName;
 
 	public DocumentMatchStep(String document, String idataFile) {
 		this.documentName = document;

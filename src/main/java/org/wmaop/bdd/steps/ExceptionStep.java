@@ -8,7 +8,6 @@ import com.wm.data.IDataUtil;
 public class ExceptionStep extends BaseServiceStep {
 
 	private final IData idata = IDataFactory.create();
-	private static final String EXEC_SERVICE = REGISTER_EXCEPTION;
 
 	public ExceptionStep(String adviceId, String interceptPoint, String serviceName, String jexlExpression, String exception) {
 		setup(adviceId,  toInteceptPoint(interceptPoint), serviceName, jexlExpression, exception);
@@ -32,7 +31,7 @@ public class ExceptionStep extends BaseServiceStep {
 
 	@Override
 	void execute(ExecutionContext executionContext) throws Exception {
-		invokeService(executionContext, EXEC_SERVICE, idata);
+		invokeService(executionContext, REGISTER_EXCEPTION, idata);
 
 	}
 

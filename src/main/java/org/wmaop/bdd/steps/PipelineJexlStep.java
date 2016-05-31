@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 
 public class PipelineJexlStep extends BaseServiceStep {
 
-	private Expression expression;
+	private final Expression expression;
 
 	public PipelineJexlStep(String jexlExpression) {
 		expression = JexlExpressionFactory.createExpression(jexlExpression);

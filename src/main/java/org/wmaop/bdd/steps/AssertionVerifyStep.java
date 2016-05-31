@@ -10,27 +10,25 @@ import com.wm.data.IDataUtil;
 
 public class AssertionVerifyStep extends BaseServiceStep {
 
-	private IData idata;
-	private String execService;
-	private int invokeCount;
-	private String assertionId;
+	private final IData idata;
+	private final int expectedInvokeCount;
+	private final String assertionId;
 
 	public AssertionVerifyStep(String assertionId, int invokeCount) {
 		idata = IDataFactory.create();
-		this.invokeCount = invokeCount;
+		this.expectedInvokeCount = invokeCount;
 		this.assertionId = assertionId;
 		IDataCursor cursor = idata.getCursor();
 		IDataUtil.put(cursor, ADVICE_ID, assertionId);
 		cursor.destroy();
-		execService = ASSERTION_INVOKE_COUNT;
 	}
 
 	@Override
 	void execute(ExecutionContext executionContext) throws Exception {
-		IData pipeline = invokeService(executionContext, execService, idata); // Dont require IData
+		IData pipeline = invokeService(executionContext, ASSERTION_INVOKE_COUNT, idata); // Dont require IData
 		IDataCursor cursor = pipeline.getCursor();
-		int actual = IDataUtil.getInt(cursor, "invokeCount", 0);
-		assertEquals("Expected " + assertionId + " to be called " + invokeCount + " times but was called " + actual + " times", invokeCount, actual);
+		int actualInvokeCount = IDataUtil.getInt(cursor, "invokeCount", 0);
+		assertEquals("Expected " + assertionId + " to be called " + expectedInvokeCount + " times but was called " + actualInvokeCount + " times", expectedInvokeCount, actualInvokeCount);
 	}
 
 }

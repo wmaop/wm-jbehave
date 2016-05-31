@@ -26,15 +26,15 @@ import de.codecentric.jbehave.junit.monitoring.JUnitReportingRunner;
 @RunWith(JUnitReportingRunner.class)
 public class JBehaveRunner extends JUnitStories {
 
+	public JBehaveRunner() {
+		JUnitReportingRunner.recommendedControls(configuredEmbedder());
+	}
+	
 	@BeforeClass
 	public static void setup() {
 		assumeThat(System.getProperty("skipStories"), IsNull.nullValue());
 	}
 
-	public JBehaveRunner() {
-		JUnitReportingRunner.recommendedControls(configuredEmbedder());
-		}
-	
     @Override 
     public Configuration configuration() { 
         return new MostUsefulConfiguration().usePendingStepStrategy(new FailingUponPendingStep()).useStoryReporterBuilder(

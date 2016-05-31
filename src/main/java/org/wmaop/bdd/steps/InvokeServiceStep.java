@@ -6,8 +6,8 @@ import com.wm.data.IDataUtil;
 
 public class InvokeServiceStep extends BaseServiceStep {
 
-	private String serviceName;
-	private String idataClasspathFile;
+	private final String serviceName;
+	private final String idataClasspathFile;
 
 	public InvokeServiceStep(String serviceName, String idataClasspathFile) {
 		this.serviceName = serviceName;

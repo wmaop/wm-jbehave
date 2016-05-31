@@ -5,10 +5,10 @@ import static org.junit.Assert.*;
 public class ExceptionVerifyStep extends BaseServiceStep {
 
 	
-	private String exception;
+	private final String expectedException;
 
 	public ExceptionVerifyStep(String exception) {
-		this.exception = exception;
+		this.expectedException = exception;
 	}
 	
 	@Override
@@ -18,7 +18,7 @@ public class ExceptionVerifyStep extends BaseServiceStep {
 			fail("No exception found from service ");
 		}
 		if (e instanceof com.wm.app.b2b.client.ServiceException && ((com.wm.app.b2b.client.ServiceException)e).getErrorType() != null) { 
-			assertEquals(exception, ((com.wm.app.b2b.client.ServiceException)e).getErrorType());
+			assertEquals(expectedException, ((com.wm.app.b2b.client.ServiceException)e).getErrorType());
 			executionContext.setThrownException(null);
 		}
 	}
