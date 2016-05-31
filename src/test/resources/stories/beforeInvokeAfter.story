@@ -15,6 +15,15 @@ Given chkBefore assertion after service pub.math:addInts when total == 5 && aVal
 When invoke org.wmaop.test.services:addInts without idata
 Then assertion chkBefore was invoked 1 times
 
+Scenario: test transformer before
+Given chkBefore assertion before service pub.math:addInts when total == null && aValue == null && num1 == 5 && num2 ==4
+When invoke org.wmaop.test.services:addIntsTransformer without idata
+Then assertion chkBefore was invoked 1 times
+
+Scenario: test transformer after
+Given chkBefore assertion after service pub.math:addInts when total == null && aValue == null && num1 == 5 && num2 == 4 && value == 9
+When invoke org.wmaop.test.services:addIntsTransformer without idata
+Then assertion chkBefore was invoked 1 times
 
 
 
