@@ -31,7 +31,8 @@
 	<scm>
 		<url>https://github.com/wmaop/wm-jbehave</url>
 		<connection>scm:git:git://github.com/wmaop/wm-jbehave.git</connection>
-	  <tag>HEAD</tag>
+		<developerConnection>scm:git:sysgen@github.com:wmaop/wm-jbehave.git</developerConnection>
+	  <tag>wm-jbehave-1.0.1</tag>
   </scm>
 
 	<developers>
@@ -44,7 +45,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<wm-aop-util.version>1.0.0</wm-aop-util.version>
+		<wm-aop-util.version>1.0.1</wm-aop-util.version>
 
 		<jbehave-runner.version>1.2.0</jbehave-runner.version>
 		<javaxmail.version>1.4.4</javaxmail.version>
