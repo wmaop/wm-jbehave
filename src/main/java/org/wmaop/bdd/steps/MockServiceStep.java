@@ -17,6 +17,7 @@ public class MockServiceStep extends BaseServiceStep {
 		IDataUtil.put(cursor, SERVICE_NAME, serviceName);
 		IDataUtil.put(cursor, INTERCEPT_POINT, interceptPoint.toString());
 		IDataUtil.put(cursor, RESPONSE, stringFromClasspathResource(idataFile));
+		IDataUtil.put(cursor, SCOPE, "session");
 		cursor.destroy();
 	}
 
@@ -30,6 +31,7 @@ public class MockServiceStep extends BaseServiceStep {
 		IDataUtil.put(cursor, INTERCEPT_POINT, interceptPoint.toString());
 		IDataUtil.put(cursor, CONDITION, jexlExpression);
 		IDataUtil.put(cursor, RESPONSE, stringFromClasspathResource(idataFile));
+		IDataUtil.put(cursor, SCOPE, "session");
 		
 		cursor.destroy();
 	}

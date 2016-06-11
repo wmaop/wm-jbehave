@@ -1,6 +1,6 @@
 package org.wmaop.bdd.steps;
 
-import org.apache.commons.jexl2.Expression;
+import org.apache.commons.jexl3.JexlExpression;
 import org.wmaop.util.jexl.IDataJexlContext;
 import org.wmaop.util.jexl.JexlExpressionFactory;
 
@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 
 public class PipelineJexlStep extends BaseServiceStep {
 
-	private final Expression expression;
+	private final JexlExpression expression;
 
 	public PipelineJexlStep(String jexlExpression) {
 		expression = JexlExpressionFactory.createExpression(jexlExpression);
@@ -20,7 +20,7 @@ public class PipelineJexlStep extends BaseServiceStep {
 		try {
 			result = (Boolean) expression.evaluate(new IDataJexlContext(executionContext.getPipeline()));
 			if (!result) {
-				fail("The expression [" + expression.getExpression() + "] returned false");
+				fail("The expression [" + expression.getSourceText() + "] returned false");
 			}
 		} catch (Exception e) {
 			fail("parsing the expression '"+expression+"' failed");

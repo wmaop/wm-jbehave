@@ -27,6 +27,7 @@ public class AssertionSetupStep extends BaseServiceStep {
 		if (jexlPipelineExpression != null) {
 		IDataUtil.put(cursor, CONDITION, jexlPipelineExpression);
 		}
+		IDataUtil.put(cursor, SCOPE, "session"); 
 		cursor.destroy();
 	}
 

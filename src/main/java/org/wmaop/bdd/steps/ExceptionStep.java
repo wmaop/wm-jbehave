@@ -26,6 +26,7 @@ public class ExceptionStep extends BaseServiceStep {
 			IDataUtil.put(cursor, CONDITION, jexlExpression);
 		}
 		IDataUtil.put(cursor, EXCEPTION, exception);
+		IDataUtil.put(cursor, SCOPE, "session");
 		cursor.destroy();
 	}
 

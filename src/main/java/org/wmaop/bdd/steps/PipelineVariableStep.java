@@ -3,7 +3,7 @@ package org.wmaop.bdd.steps;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.jexl2.Expression;
+import org.apache.commons.jexl3.JexlExpression;
 import org.wmaop.util.jexl.IDataJexlContext;
 import org.wmaop.util.jexl.JexlExpressionFactory;
 
@@ -11,7 +11,7 @@ import com.wm.data.IData;
 
 public class PipelineVariableStep extends BaseServiceStep {
 
-	private final List<Expression> expressions;
+	private final List<JexlExpression> expressions;
 
 	public PipelineVariableStep(String jexlVariableExpression) {
 		expressions = new ArrayList<>();
@@ -23,7 +23,7 @@ public class PipelineVariableStep extends BaseServiceStep {
 	@Override
 	void execute(ExecutionContext executionContext) throws Exception {
 		IData idata = executionContext.getPipeline();
-		for (Expression expression : expressions) {
+		for (JexlExpression expression : expressions) {
 			expression.evaluate(new IDataJexlContext(idata));
 		}
 		executionContext.setPipeline(idata);
