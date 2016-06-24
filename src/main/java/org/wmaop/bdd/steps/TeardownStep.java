@@ -1,12 +1,20 @@
 package org.wmaop.bdd.steps;
 
+import com.wm.data.IData;
+import com.wm.data.IDataCursor;
 import com.wm.data.IDataFactory;
+import com.wm.data.IDataUtil;
 
 public class TeardownStep extends BaseServiceStep {
 
 	@Override
 	void execute(ExecutionContext executionContext) throws Exception {
-		invokeService(executionContext, "org.wmaop.reset:resetAdviceAndDisable", IDataFactory.create());
+		
+		IData idata = IDataFactory.create();
+		IDataCursor idc = idata.getCursor();
+		IDataUtil.put(idc, "scope", "all");
+		idc.destroy();
+		invokeService(executionContext, "org.wmaop.reset:resetAdviceAndDisable", idata );
 	}
 
 }

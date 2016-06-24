@@ -25,6 +25,7 @@ public abstract class BaseServiceStep {
 	static final String EXCEPTION = "exception";
 	static final String SCOPE = "scope";
 	static final String USER = "username";
+	static final String CALLED_BY = "calledBy";
 	
 	static final String FIXED_RESPONSE_MOCK = "org.wmaop.define.fixedResponse:registerFixedResponseMock";
 	static final String SETUP_ASSERTION = "org.wmaop.define.assertion:registerAssertion";

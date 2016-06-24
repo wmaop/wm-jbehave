@@ -12,6 +12,7 @@ public class BddTestBuilder {
 
 	private static final Logger logger = Logger.getLogger(BddTestBuilder.class);
 	private static final String EOL = System.getProperty("line.separator");
+	private static final String SEP = EOL + "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" + EOL;
 	private final ExecutionContext executionContext;
 
 	private int executedStep = 0;
@@ -94,13 +95,10 @@ public class BddTestBuilder {
 
 	public void showPipeline() {
 		try {
-			StringBuilder sb = new StringBuilder();
-			sb.append("Pipeline contents:").append(EOL);
-			sb.append("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-").append(EOL);
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			new IDataXMLCoder().encode(baos, executionContext.getPipeline());
-			sb.append(baos).append(EOL);
-			sb.append("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-").append(EOL);
+			StringBuilder sb = new StringBuilder();
+			sb.append("Pipeline contents:").append(SEP).append(baos).append(SEP);
 			logger.info(sb);
 		} catch (Exception e) {
 			logger.error(e);

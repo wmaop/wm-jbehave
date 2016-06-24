@@ -17,7 +17,7 @@ public class WmJBehaveSteps  {
 			try {
 				ThreadContext.get().teardown();
 			} catch (Exception e) {
-				e.printStackTrace();
+				e.printStackTrace(); // Ensures output in Eclipse console
 				throw e;
 			}
 		}
@@ -28,7 +28,7 @@ public class WmJBehaveSteps  {
 				ThreadContext.get().verify();
 				ThreadContext.get().teardown();
 			} catch (Exception e) {
-				e.printStackTrace();
+				e.printStackTrace(); // Ensures output in Eclipse console
 				throw e;
 			}
 		}
@@ -116,7 +116,6 @@ public class WmJBehaveSteps  {
 		public void pipeline_matches(String document, String idataFile) throws Throwable {
 			ThreadContext.get().withMatchesDocument(document, idataFile);
 		}
-		
 		
 		@Then("exception $exception was thrown")
 		public void exception_was_thrown(String exceptionName) {
