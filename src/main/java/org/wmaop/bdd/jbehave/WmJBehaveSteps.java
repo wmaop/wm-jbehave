@@ -40,16 +40,16 @@ public class WmJBehaveSteps  {
 
 		@Given("mock $serviceName always returning $idataFile")
 		public void mock_service_always_returning(String serviceName, String idataFile) {
-			ThreadContext.get().withMockService(serviceName, InterceptPoint.invoke, serviceName, idataFile);
+			ThreadContext.get().withMockService(serviceName, InterceptPoint.invoke, serviceName, idataFile, null, null);
 		}
-
+		
 		
 		@Given("mock $serviceName returning $idataFile when $jexlPipelineExpression")
-		public void mock_service_returning_when(String serviceName, String idataFile, String jexlPipelineExpression)
-				throws Throwable {
+		public void mock_service_returning_when(String serviceName, String idataFile, String jexlPipelineExpression) throws Throwable {
 			BddTestBuilder bddt = ThreadContext.get();
-			bddt.withMockService(serviceName + "-" + bddt.getExecutedStep(), InterceptPoint.invoke, serviceName, idataFile, jexlPipelineExpression);
+			bddt.withMockService(serviceName + "-" + bddt.getExecutedStep(), InterceptPoint.invoke, serviceName, idataFile, jexlPipelineExpression, null);
 		}
+
 		
 		@Given("$assertionId assertion $interceptPoint service $serviceName when $jexlPipelineExpression")
 		public void assertion_service_when(String assertionId, InterceptPoint interceptPoint, String serviceName, String expression) {
@@ -62,27 +62,28 @@ public class WmJBehaveSteps  {
 		}
 
 		@Given("exception $exception thrown calling service $serviceName always")
-		public void exception_thrown_when_calling_service(String exception, String serviceName) {
-			ThreadContext.get().withException(serviceName, InterceptPoint.invoke, serviceName, null, exception);
+		public void exception_thrown_calling_service(String exception, String serviceName) {
+			ThreadContext.get().withException(serviceName, InterceptPoint.invoke, serviceName, null, exception, null);
 		}
 
 		@Given("exception $exception thrown calling service $serviceName when $jexlPipelineExpression")
-		public void exception_thrown_when_calling_service(String exception, String serviceName, String expression) {
+		public void exception_thrown_calling_service(String exception, String serviceName, String expression) {
 			BddTestBuilder bddt = ThreadContext.get();
-			bddt.withException(serviceName+ "-" + bddt.getExecutedStep(), InterceptPoint.invoke, serviceName, expression, exception);
+			bddt.withException(serviceName+ "-" + bddt.getExecutedStep(), InterceptPoint.invoke, serviceName, expression, exception, null);
 		}
 
 		@Given("exception $exception thrown $interceptPoint calling service $serviceName when $jexlPipelineExpression")
-		public void exception_thrown_when_calling_service(String exception, String interceptPoint, String serviceName, String expression) {
+		public void exception_thrown_calling_service_with_expression(String exception, String interceptPoint, String serviceName, String expression) {
 			BddTestBuilder bddt = ThreadContext.get();
-			bddt.withException(serviceName+ "-" + bddt.getExecutedStep(), interceptPoint, serviceName, expression, exception);
+			bddt.withException(serviceName+ "-" + bddt.getExecutedStep(), interceptPoint, serviceName, expression, exception, null);
 		}
 	
 		@Given("exception $exception thrown $interceptPoint calling service $serviceName always")
-		public void exception_thrown_at_intercept_point_when_calling_service(String exception, String interceptPoint, String serviceName) {
+		public void exception_thrown_at_intercept_point_calling_service(String exception, String interceptPoint, String serviceName) {
 			BddTestBuilder bddt = ThreadContext.get();
-			bddt.withException(serviceName+ "-" + bddt.getExecutedStep(), interceptPoint, serviceName, exception);
+			bddt.withException(serviceName+ "-" + bddt.getExecutedStep(), interceptPoint, serviceName, null, exception, null);
 		}
+
 		/*
 		 * When
 		 */

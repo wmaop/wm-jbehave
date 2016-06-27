@@ -67,13 +67,8 @@ public class BddTestBuilder {
 		}
 	}
 
-	public void withMockService(String adviceId, InterceptPoint invoke, String serviceName, String idataClasspathFile) {
-		MockServiceStep step = new MockServiceStep(adviceId, invoke, serviceName, idataClasspathFile);
-		executeStep(step);
-	}
-
-	public void withMockService(String adviceId, InterceptPoint invoke, String serviceName, String idataFile, String jexlPipelineExpression) {
-		MockServiceStep step = new MockServiceStep(adviceId, invoke, serviceName, idataFile, jexlPipelineExpression);
+	public void withMockService(String adviceId, InterceptPoint invoke, String serviceName, String idataFile, String jexlPipelineExpression, String pkgService) {
+		MockServiceStep step = new MockServiceStep(adviceId, invoke, serviceName, idataFile, jexlPipelineExpression, pkgService);
 		executeStep(step);
 	}
 
@@ -125,18 +120,13 @@ public class BddTestBuilder {
 		executeStep(step);
 	}
 
-	public void withException(String adviceId, InterceptPoint interceptPoint, String serviceName, String jexlPipelineExpression, String exception) {
-		ExceptionStep step = new ExceptionStep(adviceId, interceptPoint, serviceName, jexlPipelineExpression, exception);
+	public void withException(String adviceId, InterceptPoint interceptPoint, String serviceName, String jexlPipelineExpression, String exception, String pkgService) {
+		ExceptionStep step = new ExceptionStep(adviceId, interceptPoint, serviceName, jexlPipelineExpression, exception, pkgService);
 		executeStep(step);
 	}
 	
-	public void withException(String adviceId, String interceptPoint, String serviceName, String jexlPipelineExpression, String exception) {
-		ExceptionStep step = new ExceptionStep(adviceId, interceptPoint, serviceName, jexlPipelineExpression, exception);
-		executeStep(step);
-	}
-
-	public void withException(String adviceId, String interceptPoint, String serviceName, String exception) {
-		ExceptionStep step = new ExceptionStep(adviceId, interceptPoint, serviceName, null, exception);
+	public void withException(String adviceId, String interceptPoint, String serviceName, String jexlPipelineExpression, String exception, String pkgService) {
+		ExceptionStep step = new ExceptionStep(adviceId, interceptPoint, serviceName, jexlPipelineExpression, exception, pkgService);
 		executeStep(step);
 	}
 

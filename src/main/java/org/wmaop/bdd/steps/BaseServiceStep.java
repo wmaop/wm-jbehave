@@ -107,4 +107,12 @@ public abstract class BaseServiceStep {
 	}
 	
 	abstract void execute(ExecutionContext executionContext) throws Exception;
+	
+
+	protected final void putNonNull(IDataCursor cursor, String key, Object value) {
+		if (key != null) {
+			IDataUtil.put(cursor, key, value);
+		}
+	}
+	
 }

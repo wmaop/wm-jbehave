@@ -9,24 +9,23 @@ public class ExceptionStep extends BaseServiceStep {
 
 	private final IData idata = IDataFactory.create();
 
-	public ExceptionStep(String adviceId, String interceptPoint, String serviceName, String jexlExpression, String exception) {
-		setup(adviceId,  toInteceptPoint(interceptPoint), serviceName, jexlExpression, exception);
+	public ExceptionStep(String adviceId, String interceptPoint, String serviceName, String jexlExpression, String exception, String pkgService) {
+		setup(adviceId,  toInteceptPoint(interceptPoint), serviceName, jexlExpression, exception, pkgService);
 	}
 	
-	public ExceptionStep(String adviceId, InterceptPoint interceptPoint, String serviceName, String jexlExpression, String exception) {
-		setup(adviceId,  interceptPoint, serviceName, jexlExpression, exception);
+	public ExceptionStep(String adviceId, InterceptPoint interceptPoint, String serviceName, String jexlExpression, String exception, String pkgService) {
+		setup(adviceId,  interceptPoint, serviceName, jexlExpression, exception, pkgService);
 	}
 	
-	private void setup(String adviceId, InterceptPoint interceptPoint, String serviceName, String jexlExpression, String exception) {
+	private void setup(String adviceId, InterceptPoint interceptPoint, String serviceName, String jexlExpression, String exception, String pkgService) {
 		IDataCursor cursor = idata.getCursor();
-		IDataUtil.put(cursor, ADVICE_ID, adviceId);
-		IDataUtil.put(cursor, SERVICE_NAME, serviceName);
-		IDataUtil.put(cursor, INTERCEPT_POINT, interceptPoint.toString());
-		if (jexlExpression != null) {
-			IDataUtil.put(cursor, CONDITION, jexlExpression);
-		}
-		IDataUtil.put(cursor, EXCEPTION, exception);
-		IDataUtil.put(cursor, SCOPE, "session");
+		putNonNull(cursor, ADVICE_ID, adviceId);
+		putNonNull(cursor, SERVICE_NAME, serviceName);
+		putNonNull(cursor, INTERCEPT_POINT, interceptPoint.toString());
+		putNonNull(cursor, CONDITION, jexlExpression);
+		putNonNull(cursor, EXCEPTION, exception);
+		putNonNull(cursor, SCOPE, "session");
+		putNonNull(cursor, CALLED_BY, pkgService);
 		cursor.destroy();
 	}
 

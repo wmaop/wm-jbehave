@@ -21,13 +21,11 @@ public class AssertionSetupStep extends BaseServiceStep {
 	private void setup(String assertionId, InterceptPoint interceptPoint, String serviceName,
 			String jexlPipelineExpression) {
 		IDataCursor cursor = idata.getCursor();
-		IDataUtil.put(cursor, ADVICE_ID, assertionId);
-		IDataUtil.put(cursor, SERVICE_NAME, serviceName);
-		IDataUtil.put(cursor, INTERCEPT_POINT, interceptPoint.toString());
-		if (jexlPipelineExpression != null) {
-		IDataUtil.put(cursor, CONDITION, jexlPipelineExpression);
-		}
-		IDataUtil.put(cursor, SCOPE, "session"); 
+		putNonNull(cursor, ADVICE_ID, assertionId);
+		putNonNull(cursor, SERVICE_NAME, serviceName);
+		putNonNull(cursor, INTERCEPT_POINT, interceptPoint.toString());
+		putNonNull(cursor, CONDITION, jexlPipelineExpression);
+		putNonNull(cursor, SCOPE, "session"); 
 		cursor.destroy();
 	}
 

@@ -50,7 +50,7 @@
 		<jbehave-runner.version>1.2.0</jbehave-runner.version>
 		<javaxmail.version>1.4.4</javaxmail.version>
 		<entrust-toolkit.version>8.0.33-1242</entrust-toolkit.version>
-		<jbehave.version>4.0.2</jbehave.version>
+		<jbehave.version>4.0.5</jbehave.version>
 		<axiom.version>1.2.13</axiom.version>
 		<jexl.version>3.0</jexl.version>
 
