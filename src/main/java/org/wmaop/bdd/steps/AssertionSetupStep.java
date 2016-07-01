@@ -3,7 +3,6 @@ package org.wmaop.bdd.steps;
 import com.wm.data.IData;
 import com.wm.data.IDataCursor;
 import com.wm.data.IDataFactory;
-import com.wm.data.IDataUtil;
 
 public class AssertionSetupStep extends BaseServiceStep {
 
