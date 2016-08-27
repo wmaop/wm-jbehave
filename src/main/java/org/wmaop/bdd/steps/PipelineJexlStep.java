@@ -24,7 +24,7 @@ public class PipelineJexlStep extends BaseServiceStep {
 			}
 		} catch (Exception e) {
 			fail("parsing the expression '"+expression+"' failed");
-			e.printStackTrace();
+			e.printStackTrace(); // Output in Eclipse console
 		}
 	}
 

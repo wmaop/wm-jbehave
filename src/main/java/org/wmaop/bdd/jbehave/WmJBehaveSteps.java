@@ -23,11 +23,11 @@ public class WmJBehaveSteps  {
 		}
 		
 		@AfterScenario
-		public void teardown() throws Exception {
+		public void teardown() throws Throwable {
 			try {
 				ThreadContext.get().verify();
 				ThreadContext.get().teardown();
-			} catch (Exception e) {
+			} catch (Throwable e) {
 				e.printStackTrace(); // Ensures output in Eclipse console
 				throw e;
 			}

@@ -52,8 +52,9 @@ public class BddTestBuilder {
 			step.execute(executionContext);
 			executedStep++;
 		} catch (Throwable e) {
+			// Handle the errors during the test run, recording, rethrowing or terminating execution
 			if (!(e instanceof AssertionError)) {
-				e.printStackTrace();
+				e.printStackTrace(); // Output in Eclipse console
 				logger.error(e);
 			}
 			showPipeline();
@@ -89,8 +90,7 @@ public class BddTestBuilder {
 	}
 
 	public void showPipeline() {
-		try {
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
 			new IDataXMLCoder().encode(baos, executionContext.getPipeline());
 			StringBuilder sb = new StringBuilder();
 			sb.append("Pipeline contents:").append(SEP).append(baos).append(SEP);
@@ -135,10 +135,10 @@ public class BddTestBuilder {
 		executeStep(step);
 	}
 
-	public void verify() throws Exception {
+	public void verify() throws Throwable {
 		if (executionContext.getThrownException() != null) {
 			showPipeline();
-			throw (Exception) executionContext.getThrownException(); // Bad. Will blow with error
+			throw (Throwable) executionContext.getThrownException();
 		}
 
 	}
