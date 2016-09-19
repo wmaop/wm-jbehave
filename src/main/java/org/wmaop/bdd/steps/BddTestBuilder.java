@@ -1,6 +1,9 @@
 package org.wmaop.bdd.steps;
 
 import static org.junit.Assert.*;
+
+import java.util.List;
+
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.log4j.Logger;
 
@@ -68,7 +71,7 @@ public class BddTestBuilder {
 		}
 	}
 
-	public void withMockService(String adviceId, InterceptPoint invoke, String serviceName, String idataFile, String jexlPipelineExpression, String pkgService) {
+	public void withMockService(String adviceId, InterceptPoint invoke, String serviceName, List<String> idataFile, String jexlPipelineExpression, String pkgService) {
 		MockServiceStep step = new MockServiceStep(adviceId, invoke, serviceName, idataFile, jexlPipelineExpression, pkgService);
 		executeStep(step);
 	}

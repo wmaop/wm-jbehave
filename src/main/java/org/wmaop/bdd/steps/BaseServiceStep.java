@@ -2,6 +2,8 @@ package org.wmaop.bdd.steps;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 
@@ -87,6 +89,23 @@ public abstract class BaseServiceStep {
 			cursor.destroy();
 			return idata;
 		}
+	}
+
+	protected List<String> listFromClasspathResources(List<String> fileNames) {
+		List<String> contents = new ArrayList<>(fileNames.size());
+		String filePathSuffix = "";
+		for (String fileName : fileNames) {
+			int slashPos = fileName.lastIndexOf('/'); // Check for path
+			if (slashPos != -1) { // Keep path for future use
+				filePathSuffix = fileName.substring(0, slashPos);
+				contents.add(stringFromClasspathResource(fileName));
+			} else if (filePathSuffix.length() > 0) { // Prepend path if defined
+				contents.add(stringFromClasspathResource(filePathSuffix + '/' + fileName));
+			} else {
+				contents.add(stringFromClasspathResource(fileName));
+			}
+		}
+		return contents;
 	}
 
 	protected String stringFromClasspathResource(String fileName) {

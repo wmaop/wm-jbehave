@@ -1,5 +1,7 @@
 package org.wmaop.bdd.jbehave;
 
+import java.util.List;
+
 import org.jbehave.core.annotations.AfterScenario;
 import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.BeforeScenario;
@@ -38,16 +40,16 @@ public class WmJBehaveSteps  {
 			ThreadContext.get().withVariableExpression(jexlVariableExpression);
 		}
 
-		@Given("mock $serviceName always returning $idataFile")
-		public void mock_service_always_returning(String serviceName, String idataFile) {
-			ThreadContext.get().withMockService(serviceName, InterceptPoint.invoke, serviceName, idataFile, null, null);
+		@Given("mock $serviceName always returning $idataFiles")
+		public void mock_service_always_returning(String serviceName, List<String> idataFiles) {
+			ThreadContext.get().withMockService(serviceName, InterceptPoint.invoke, serviceName, idataFiles, null, null);
 		}
 		
 		
-		@Given("mock $serviceName returning $idataFile when $jexlPipelineExpression")
-		public void mock_service_returning_when(String serviceName, String idataFile, String jexlPipelineExpression) throws Throwable {
+		@Given("mock $serviceName returning $idataFiles when $jexlPipelineExpression")
+		public void mock_service_returning_when(String serviceName, List<String> idataFiles, String jexlPipelineExpression) throws Throwable {
 			BddTestBuilder bddt = ThreadContext.get();
-			bddt.withMockService(serviceName + "-" + bddt.getExecutedStep(), InterceptPoint.invoke, serviceName, idataFile, jexlPipelineExpression, null);
+			bddt.withMockService(serviceName + "-" + bddt.getExecutedStep(), InterceptPoint.invoke, serviceName, idataFiles, jexlPipelineExpression, null);
 		}
 
 		
