@@ -38,7 +38,6 @@ public class ExecutionContext {
 	protected Context connectToServer(String host, int port, String username,
 			String password, boolean secure) throws ServiceException {
 		Context ctx = new Context();
-		// TODO figure out how https connections would work?!?!?!?!
 		if (secure) {
 			throw new UnsupportedOperationException();
 		} else {
