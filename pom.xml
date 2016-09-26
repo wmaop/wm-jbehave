@@ -31,7 +31,7 @@
 	<scm>
 		<url>https://github.com/wmaop/wm-jbehave</url>
 		<connection>scm:git:git://github.com/wmaop/wm-jbehave.git</connection>
-		<developerConnection>scm:git:sysgen@github.com:wmaop/wm-jbehave.git</developerConnection>
+		<developerConnection>scm:git:git@github.com:wmaop/wm-jbehave.git</developerConnection>
 	  <tag>wm-jbehave-1.1.0</tag>
   </scm>
 
