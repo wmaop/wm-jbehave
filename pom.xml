@@ -22,8 +22,8 @@
 
 	<licenses>
 		<license>
-			<name>GNU General Public License, Version 3</name>
-			<url>http://www.gnu.org/licenses/gpl-3.0.html</url>
+			<name>The MIT License (MIT)</name>
+			<url>https://opensource.org/licenses/MIT</url>
 			<distribution>manual</distribution>
 		</license>
 	</licenses>
@@ -32,7 +32,7 @@
 		<url>https://github.com/wmaop/wm-jbehave</url>
 		<connection>scm:git:git://github.com/wmaop/wm-jbehave.git</connection>
 		<developerConnection>scm:git:git@github.com:wmaop/wm-jbehave.git</developerConnection>
-	  <tag>wm-jbehave-1.1.0</tag>
+	    <tag>HEAD</tag>
   </scm>
 
 	<developers>
