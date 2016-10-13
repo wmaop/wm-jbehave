@@ -24,7 +24,7 @@ public class AssertionVerifyStep extends BaseServiceStep {
 	}
 
 	@Override
-	void execute(ExecutionContext executionContext) throws Exception {
+	protected void execute(ExecutionContext executionContext) throws Exception {
 		IData pipeline = invokeService(executionContext, ASSERTION_INVOKE_COUNT, idata);
 		IDataCursor cursor = pipeline.getCursor();
 		int actualInvokeCount = IDataUtil.getInt(cursor, "invokeCount", 0);

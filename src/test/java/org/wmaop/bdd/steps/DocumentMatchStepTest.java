@@ -12,7 +12,7 @@ public class DocumentMatchStepTest {
 	IData getIdataFile(String fileName) throws Exception {
 		return new BaseServiceStep() {
 			@Override
-			void execute(ExecutionContext executionContext) throws Exception {
+			protected void execute(ExecutionContext executionContext) throws Exception {
 			}
 		}.idataFromClasspathResource(fileName);
 	}
@@ -52,7 +52,7 @@ public class DocumentMatchStepTest {
 		match("data/simpleidata.xml", "data/simpleidatasnippet.xml", "document");
 	}
 	
-	void match(String dataToMatch) throws Exception {
+	private void match(String dataToMatch) throws Exception {
 		match("data/complex.xml", dataToMatch, "producer");
 	}
 	

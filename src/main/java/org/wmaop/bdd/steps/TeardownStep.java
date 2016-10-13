@@ -8,7 +8,7 @@ import com.wm.data.IDataUtil;
 public class TeardownStep extends BaseServiceStep {
 
 	@Override
-	void execute(ExecutionContext executionContext) throws Exception {
+	protected void execute(ExecutionContext executionContext) throws Exception {
 		
 		IData idata = IDataFactory.create();
 		IDataCursor idc = idata.getCursor();

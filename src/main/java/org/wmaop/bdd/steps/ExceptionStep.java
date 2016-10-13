@@ -29,7 +29,7 @@ public class ExceptionStep extends BaseServiceStep {
 	}
 
 	@Override
-	void execute(ExecutionContext executionContext) throws Exception {
+	protected void execute(ExecutionContext executionContext) throws Exception {
 		invokeService(executionContext, REGISTER_EXCEPTION, idata);
 
 	}

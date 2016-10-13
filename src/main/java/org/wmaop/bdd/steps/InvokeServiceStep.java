@@ -15,7 +15,7 @@ public class InvokeServiceStep extends BaseServiceStep {
 	}
 
 	@Override
-	void execute(ExecutionContext executionContext) throws Exception {
+	protected void execute(ExecutionContext executionContext) throws Exception {
 		IData idata = idataClasspathFile == null ? IDataFactory.create() : idataFromClasspathResource(idataClasspathFile);
 		if (executionContext.getPipeline() != null) {
 			IDataUtil.merge(executionContext.getPipeline(), idata);

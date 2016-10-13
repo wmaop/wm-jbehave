@@ -14,7 +14,7 @@ public class BaseServiceStepTest {
 
 	private BaseServiceStep bst = new BaseServiceStep() {
 		@Override
-		void execute(ExecutionContext executionContext) throws Exception {
+		protected void execute(ExecutionContext executionContext) throws Exception {
 		}
 	};
 

@@ -29,7 +29,7 @@ public class AssertionSetupStep extends BaseServiceStep {
 	}
 
 	@Override
-	void execute(ExecutionContext executionContext) throws Exception {
+	protected void execute(ExecutionContext executionContext) throws Exception {
 		invokeService(executionContext, SETUP_ASSERTION, idata);  // Ignore returned idata as its not part of the flow
 	}
 

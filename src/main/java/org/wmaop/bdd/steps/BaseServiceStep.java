@@ -19,25 +19,25 @@ import static org.junit.Assert.*;
 
 public abstract class BaseServiceStep {
 
-	static final String ADVICE_ID = "adviceId";
-	static final String RESPONSE = "response";
-	static final String INTERCEPT_POINT = "interceptPoint";
-	static final String SERVICE_NAME = "serviceName";
-	static final String CONDITION = "condition";
-	static final String EXCEPTION = "exception";
-	static final String SCOPE = "scope";
-	static final String USER = "username";
-	static final String CALLED_BY = "calledBy";
+	protected static final String ADVICE_ID = "adviceId";
+	protected static final String RESPONSE = "response";
+	protected static final String INTERCEPT_POINT = "interceptPoint";
+	protected static final String SERVICE_NAME = "serviceName";
+	protected static final String CONDITION = "condition";
+	protected static final String EXCEPTION = "exception";
+	protected static final String SCOPE = "scope";
+	protected static final String USER = "username";
+	protected static final String CALLED_BY = "calledBy";
 	
-	static final String FIXED_RESPONSE_MOCK = "org.wmaop.define.fixedResponse:registerFixedResponseMock";
-	static final String SETUP_ASSERTION = "org.wmaop.define.assertion:registerAssertion";
-	static final String ASSERTION_INVOKE_COUNT = "org.wmaop.define.assertion:getInvokeCount";
-	static final String REGISTER_EXCEPTION = "org.wmaop.define.exception:registerExceptionMock";
+	protected static final String FIXED_RESPONSE_MOCK = "org.wmaop.define.fixedResponse:registerFixedResponseMock";
+	protected static final String SETUP_ASSERTION = "org.wmaop.define.assertion:registerAssertion";
+	protected static final String ASSERTION_INVOKE_COUNT = "org.wmaop.define.assertion:getInvokeCount";
+	protected static final String REGISTER_EXCEPTION = "org.wmaop.define.exception:registerExceptionMock";
 	
 	protected class ServiceSplit {
-		String packageName;
-		String serviceName;
-		ServiceSplit(String p, String s) {
+		protected String packageName;
+		protected String serviceName;
+		protected ServiceSplit(String p, String s) {
 			packageName = p;
 			serviceName = s;
 		}
@@ -67,7 +67,7 @@ public abstract class BaseServiceStep {
 			}
 			return is;
 		} catch (Exception e) {
-			throw new RuntimeException("Unable to load file '" + fileName + "' from the classpath.  Cause is: " + e.getMessage());
+			throw new StepException("Unable to load file '" + fileName + "' from the classpath.  Cause is: " + e.getMessage());
 		}
 	}
 	
@@ -112,7 +112,7 @@ public abstract class BaseServiceStep {
 		try {
 			return IOUtils.toString(streamFromClasspathResource(fileName));
 		} catch (Exception e) {
-			throw new RuntimeException("Unable to load " + fileName + " from the classpath");
+			throw new StepException("Unable to load " + fileName + " from the classpath");
 		}
 	}
 	
@@ -125,7 +125,7 @@ public abstract class BaseServiceStep {
 		}
 	}
 	
-	abstract void execute(ExecutionContext executionContext) throws Exception;
+	abstract protected void execute(ExecutionContext executionContext) throws Exception;
 	
 
 	protected final void putNonNull(IDataCursor cursor, String key, Object value) {

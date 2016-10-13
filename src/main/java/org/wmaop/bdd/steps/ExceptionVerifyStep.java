@@ -14,7 +14,7 @@ public class ExceptionVerifyStep extends BaseServiceStep {
 	}
 	
 	@Override
-	void execute(ExecutionContext executionContext) throws Exception {
+	protected void execute(ExecutionContext executionContext) throws Exception {
 		Throwable e = executionContext.getThrownException();
 		if (e == null) {
 			fail("No exception found from service ");

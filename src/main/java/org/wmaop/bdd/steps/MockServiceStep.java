@@ -27,7 +27,7 @@ public class MockServiceStep extends BaseServiceStep {
 	}
 	
 	@Override
-	void execute(ExecutionContext executionContext) throws Exception {
+	protected void execute(ExecutionContext executionContext) throws Exception {
 		invokeService(executionContext, FIXED_RESPONSE_MOCK, idata);
 	}
 }

@@ -15,7 +15,7 @@ public class PipelineJexlStep extends BaseServiceStep {
 	}
 
 	@Override
-	void execute(ExecutionContext executionContext) throws Exception {
+	protected void execute(ExecutionContext executionContext) throws Exception {
 		boolean result;
 		try {
 			result = (Boolean) expression.evaluate(new IDataJexlContext(executionContext.getPipeline()));
