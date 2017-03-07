@@ -3,6 +3,7 @@ package org.wmaop.bdd.jbehave;
 import java.util.List;
 
 import org.jbehave.core.annotations.AfterScenario;
+import org.jbehave.core.annotations.AfterStory;
 import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.BeforeScenario;
 import org.jbehave.core.annotations.Given;
@@ -33,6 +34,11 @@ public class WmJBehaveSteps  {
 				e.printStackTrace(); // Ensures output in Eclipse console
 				throw e;
 			}
+		}
+		
+		@AfterStory
+		public void terminateSession() {
+			ThreadContext.get().terminate();
 		}
 		
 		@Given("pipeline values $jexlVariableExpression")

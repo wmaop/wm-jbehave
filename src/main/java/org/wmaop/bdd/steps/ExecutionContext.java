@@ -3,6 +3,7 @@ package org.wmaop.bdd.steps;
 import java.util.Properties;
 
 import org.junit.Assert;
+
 import com.wm.app.b2b.client.Context;
 import com.wm.app.b2b.client.ServiceException;
 import com.wm.data.IData;
@@ -64,5 +65,10 @@ public class ExecutionContext {
 
 	public Throwable getThrownException() {
 		return thrownException;
+	}
+	
+	public void terminate() {
+		context.disconnect();
+		context = null;
 	}
 }
