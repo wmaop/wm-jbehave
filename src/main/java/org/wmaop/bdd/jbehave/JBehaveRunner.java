@@ -23,8 +23,12 @@ import org.junit.runner.RunWith;
 
 import de.codecentric.jbehave.junit.monitoring.JUnitReportingRunner;
 
+/**
+ * This 'test' resides here because its included in the jar to be extended from
+ * when 
+ */
 @RunWith(JUnitReportingRunner.class)
-public class JBehaveRunner extends JUnitStories {
+public abstract class JBehaveRunner extends JUnitStories {
 
 	public JBehaveRunner() {
 		JUnitReportingRunner.recommendedControls(configuredEmbedder());
@@ -39,9 +43,11 @@ public class JBehaveRunner extends JUnitStories {
     public Configuration configuration() { 
         return new MostUsefulConfiguration().usePendingStepStrategy(new FailingUponPendingStep()).useStoryReporterBuilder(
                 new StoryReporterBuilder()
-                .withDefaultFormats().withPathResolver(new ResolveToPackagedName())
+                .withDefaultFormats()
+                .withPathResolver(new ResolveToPackagedName())
                 .withFormats(Format.HTML)
-                .withFailureTrace(true).withFailureTraceCompression(true));
+                .withFailureTrace(true)
+                .withFailureTraceCompression(true));
     }
     
 	@Override

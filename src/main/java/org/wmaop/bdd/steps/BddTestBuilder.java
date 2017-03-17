@@ -51,22 +51,24 @@ public class BddTestBuilder {
 	}
 
 	protected void executeStep(BaseServiceStep step) {
+		// Subtle difference in types of error handling to ensure reported correctly
 		try {
 			step.execute(executionContext);
 			executedStep++;
-		} catch (Throwable e) {
-			// Handle the errors during the test run, recording, rethrowing or terminating execution
-			if (!(e instanceof AssertionError)) {
-				e.printStackTrace(); // Output in Eclipse console
-				logger.error(e);
-			}
+		} catch (AssertionError e) {
 			showPipeline();
-			if (e instanceof RuntimeException){
-				throw (RuntimeException)e;
-			}
-			if (e instanceof Error) {
-				throw (Error)e;
-			}
+			throw e;
+		} catch (Error e) {
+			logger.error(e);
+			showPipeline();
+			throw e;
+		} catch (RuntimeException e) {
+			logger.error(e);
+			showPipeline();
+			throw e;
+		} catch (Throwable e) {
+			logger.error(e);
+			showPipeline();
 			fail(e.getMessage());
 		}
 	}
@@ -85,6 +87,10 @@ public class BddTestBuilder {
 		return executedStep;
 	}
 
+	public void terminate() {
+		executionContext.terminate();
+	}
+	
 	public void teardown() throws Exception {
 		new TeardownStep().execute(executionContext);
 		executionContext.setPipeline(IDataFactory.create());
@@ -95,8 +101,7 @@ public class BddTestBuilder {
 	public void showPipeline() {
 		try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
 			new IDataXMLCoder().encode(baos, executionContext.getPipeline());
-			StringBuilder sb = new StringBuilder();
-			sb.append("Pipeline contents:").append(SEP).append(baos).append(SEP);
+			StringBuilder sb = new StringBuilder("Pipeline contents:").append(SEP).append(baos).append(SEP);
 			logger.info(sb);
 		} catch (Exception e) {
 			logger.error(e);

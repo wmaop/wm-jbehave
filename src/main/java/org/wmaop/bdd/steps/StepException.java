@@ -1,5 +1,6 @@
 package org.wmaop.bdd.steps;
 
+@SuppressWarnings("serial")
 public class StepException extends RuntimeException {
 
 	public StepException(String message) {
