@@ -34,7 +34,7 @@ public class JBehaveRunner extends JUnitStories {
 	public static void setup() {
 		assumeThat(System.getProperty("skipStories"), IsNull.nullValue());
 	}
-
+	
     @Override 
     public Configuration configuration() { 
         return new MostUsefulConfiguration().usePendingStepStrategy(new FailingUponPendingStep()).useStoryReporterBuilder(
@@ -55,14 +55,14 @@ public class JBehaveRunner extends JUnitStories {
 
 			@Override
 			protected List<Class<?>> stepsTypes() {
-				return new ArrayList<Class<?>>(Arrays.asList(WmJBehaveSteps.class));
+				return new ArrayList<>(Arrays.asList(WmJBehaveSteps.class));
 			}
 		};
 	}
 	
     @Override
     public List<String> storyPaths() {
-		return new StoryFinder().findPaths(new File("src/test/resources").getAbsolutePath(), "**/*.story", "");
+    	return new StoryFinder().findPaths(new File(System.getProperty("storyPath", "src/test/resources")).getAbsolutePath(), "**/*.story", "");
     }
     
 
