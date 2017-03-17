@@ -15,18 +15,20 @@ public class DocumentMatchStep extends BaseServiceStep {
 	private final String idataFile;
 	private final String documentName;
 
-	public DocumentMatchStep(String document, String idataFile) {
-		this.documentName = document;
-		this.documentReference = ExpressionProcessor.escapedToEncoded(document);
+	public DocumentMatchStep(String documentName, String idataFile) {
+		this.documentName = documentName;
+		this.documentReference = ExpressionProcessor.escapedToEncoded(documentName);
 		this.idataFile = idataFile;
 	}
 
 	@Override
 	protected void execute(ExecutionContext executionContext) throws Exception {
 		IData potential = idataFile == null ? IDataFactory.create() : getDocumentContents();
-		IDataJexlContext docRef = (IDataJexlContext) new IDataJexlContext(executionContext.getPipeline()).get(documentReference);
+		IDataJexlContext docRef = (IDataJexlContext) new IDataJexlContext(executionContext.getPipeline())
+				.get(documentReference);
 		if (docRef == null) {
-			fail("Failed when trying to matching document.  Cannot find document '" + documentName + "' in the pipeline");
+			fail("Failed when trying to matching document.  Cannot find document '" + documentName
+					+ "' in the pipeline");
 		}
 		IData doc = docRef.toIData();
 		if (!matches(doc, potential, documentName, true)) {
@@ -64,11 +66,11 @@ public class DocumentMatchStep extends BaseServiceStep {
 					return false;
 				}
 			} else if (docObj instanceof IData[]) {
-				if(!isIDataArrayMatch(prefix, key, docObj, potObj)) {
+				if (!isIDataArrayMatch(prefix, key, docObj, potObj)) {
 					return false;
 				}
 			} else {
-				if(!isObjectMatch(prefix, reportFail, key, docObj, potObj)) {
+				if (!isObjectMatch(prefix, reportFail, key, docObj, potObj)) {
 					return false;
 				}
 			}
@@ -89,15 +91,15 @@ public class DocumentMatchStep extends BaseServiceStep {
 		Object docVal;
 		if (docObj instanceof IData) {
 			IDataCursor cursor = ((IData) docObj).getCursor();
-			docVal = IDataUtil.get(cursor , "*body");
+			docVal = IDataUtil.get(cursor, "*body");
 			cursor.destroy();
 		} else {
 			docVal = docObj;
 		}
 		if (!docVal.equals(potObj)) {
 			if (reportFail) {
-				fail("Element " + prefix + '.' + key + " has pipeline value of '" + docObj
-						+ "' but test value of '" + potObj + "'");
+				fail("Element " + prefix + '.' + key + " has pipeline value of '" + docObj + "' but test value of '"
+						+ potObj + "'");
 			}
 			return false;
 		}
@@ -105,7 +107,7 @@ public class DocumentMatchStep extends BaseServiceStep {
 	}
 
 	private boolean isIDataArrayMatch(String prefix, String key, Object docObj, Object potObj) {
-		IData[] potArr = (potObj instanceof IData[]) ? ((IData[]) potObj) : new IData[]{(IData) potObj}; 
+		IData[] potArr = (potObj instanceof IData[]) ? ((IData[]) potObj) : new IData[] { (IData) potObj };
 		for (IData pot : potArr) {
 			boolean potMatch = false;
 			for (IData doc : (IData[]) docObj) {
