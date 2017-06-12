@@ -11,6 +11,7 @@ import com.wm.data.IDataFactory;
 
 public class ExecutionContext {
 
+	private static final Logger logger = Logger.getLogger(ExecutionContext.class);
 	private Context context;
 	private IData pipeline;
 	private Throwable thrownException;
@@ -31,7 +32,19 @@ public class ExecutionContext {
 		String host = p.getProperty("wm.server.host", "localhost");
 		int port = Integer.parseInt(p.getProperty("wm.server.port", "5555"));
 		String username = p.getProperty("wm.server.username", "Administrator");
-		String password = p.getProperty("wm.server.password", "manage");
+		String password = p.getProperty("wm.server.password", null); // set to null if not defined
+		if(password == null){
+			// if we don't have a defined password, prompt for one from user
+			Console console = System.console();
+			try{
+				password = new String(console.readPassword("WebMethods Server Password: "));
+			} catch(IOException e){
+				// if we had an error reading in user's password, use wm default pw
+				logger.warn("Could not read password: " + e.toString() );
+				logger.warn("Attempting to proceed with webMethods default password.");
+				password = "manage";
+			}
+		}
 		boolean secure = Boolean.parseBoolean(p.getProperty("wm.server.secure", "false"));
 		return connectToServer(host, port, username, password, secure);
 	}
