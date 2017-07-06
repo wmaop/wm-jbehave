@@ -16,7 +16,7 @@ import com.wm.data.IData;
 import com.wm.data.IDataFactory;
 
 public class ExecutionContext {
-
+	
 	private static final Logger logger = Logger.getLogger(ExecutionContext.class);
 	private Context context;
 	private IData pipeline;
@@ -35,10 +35,11 @@ public class ExecutionContext {
 	
 	private Context createConnectionContext() throws ServiceException {
 		Properties system = System.getProperties();
+		String symmetricPassword = system.getProperty("symmetricPassword", "wm-jbehave-jasypt");
 		
 		// Create Jasypt wrapped properties object
 		StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
-		encryptor.setPassword("wm-jbehave-jasypt");
+		encryptor.setPassword(symmetricPassword);
 		Properties p = new EncryptableProperties(system, encryptor);
 		
 		// Attempt to load config.properties file
