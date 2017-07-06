@@ -45,7 +45,7 @@ public class ExecutionContext {
 			try {
 				ctx.connect(host, port, username, password);
 			} catch (Exception e) {
-				Assert.fail("Unable to connect to " + host+':'+port+ " with "+username+'/'+password + " - " + e.getMessage());
+				Assert.fail("Unable to connect to " + host+':'+port+ " with user " + username + " - " + e.getMessage());
 			}
 		}
 		return ctx;
