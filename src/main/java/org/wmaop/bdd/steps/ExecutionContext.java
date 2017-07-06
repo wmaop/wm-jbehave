@@ -1,7 +1,13 @@
 package org.wmaop.bdd.steps;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+import org.jasypt.properties.EncryptableProperties;
 import org.junit.Assert;
 
 import com.wm.app.b2b.client.Context;
@@ -11,6 +17,7 @@ import com.wm.data.IDataFactory;
 
 public class ExecutionContext {
 
+	private static final Logger logger = Logger.getLogger(ExecutionContext.class);
 	private Context context;
 	private IData pipeline;
 	private Throwable thrownException;
@@ -27,7 +34,24 @@ public class ExecutionContext {
 	}
 	
 	private Context createConnectionContext() throws ServiceException {
-		Properties p = System.getProperties();
+		Properties system = System.getProperties();
+		
+		// Create Jasypt wrapped properties object
+		StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
+		encryptor.setPassword("wm-jbehave-jasypt");
+		Properties p = new EncryptableProperties(system, encryptor);
+		
+		// Attempt to load config.properties file
+		String configName = "config.properties";
+		ClassLoader loader = Thread.currentThread().getContextClassLoader();
+		try(InputStream resourceStream = loader.getResourceAsStream(configName)){
+			p.load(resourceStream);
+		} catch (FileNotFoundException e){
+			logger.warn("Could not find config.properties file. Using system properties and default values.");
+		} catch (IOException e){
+			logger.error("Failed to read config.properties file: " + e.toString() );
+		}
+		
 		String host = p.getProperty("wm.server.host", "localhost");
 		int port = Integer.parseInt(p.getProperty("wm.server.port", "5555"));
 		String username = p.getProperty("wm.server.username", "Administrator");
