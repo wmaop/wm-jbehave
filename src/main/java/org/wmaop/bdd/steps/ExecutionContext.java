@@ -83,6 +83,8 @@ public class ExecutionContext {
 				ctx.connect(host, port, username, password);
 			} catch (Exception e) {
 				Assert.fail("Unable to connect to " + host + ':' + port + " with user " + username + " - " + e.getMessage());
+				// Abort to prevent repeated failures which can lead to account lockout 
+				System.exit(1);
 			}
 		}
 		return ctx;
