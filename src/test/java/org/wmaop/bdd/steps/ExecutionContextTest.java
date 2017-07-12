@@ -11,6 +11,7 @@ public class ExecutionContextTest {
 	@Test
 	public void shouldLoadWithNoPropertyFile() {
 		System.clearProperty("wm.config.filename");
+		System.clearProperty("wm.server.hostname");
 		
 		ExecutionContext ec = new ExecutionContext();
 		Properties props = ec.loadProperties();
@@ -48,4 +49,14 @@ public class ExecutionContextTest {
 		assertEquals("EncodedPropertyPassword", props.get("wm.server.password"));
 	}
 	
+	@Test
+	public void shouldOverridePropertyFileValues() {
+		System.setProperty("wm.config.filename", "junittest.properties");
+		System.setProperty("wm.server.hostname", "foobar");
+		System.clearProperty("wmaopkey");
+
+		ExecutionContext ec = new ExecutionContext();
+		Properties props = ec.loadProperties();
+		assertEquals("foobar", props.get("wm.server.hostname"));
+	}
 }

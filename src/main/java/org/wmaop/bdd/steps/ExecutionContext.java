@@ -45,31 +45,30 @@ public class ExecutionContext {
 	}
 
 	protected Properties loadProperties() {
-		Properties system = System.getProperties();
-		String jasyptPassword = system.getProperty("wmaopkey");
-
+		String jasyptPassword = System.getProperty("wmaopkey");
 		Properties props;
 		if (jasyptPassword == null) {
 			logger.info("Property password environment variable 'wmaopkey' not found.  Properties will not be decrypted.");
-			props = new Properties(system);
+			props = new Properties();
 		} else {
-			// Create Jasypt wrapped properties object
 			StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
 			encryptor.setPassword(jasyptPassword);
-			props = new EncryptableProperties(system, encryptor);
+			props = new EncryptableProperties(encryptor);
 		}
 
 		// Attempt to load config.properties file
-		String propertiesFilename = props.getProperty("wm.config.filename", "config.properties");
+		String propertiesFilename = System.getProperty("wm.config.filename", "config.properties");
 		ClassLoader loader = Thread.currentThread().getContextClassLoader();
 		try (InputStream resourceStream = loader.getResourceAsStream(propertiesFilename)) {
 			props.load(resourceStream);
 		} catch (IOException e) {
-			logger.error("Failed to read config.properties file: " + e.toString());
+			logger.error("Failed to read " + propertiesFilename + " file: " + e.toString());
 		} catch (Exception e) {
 			logger.warn("Could not find " + propertiesFilename + " file. Using system properties and default values.");
 		}
 
+		// System properties override config file properties
+		props.putAll(System.getProperties());
 		return props;
 	}
 
@@ -84,7 +83,6 @@ public class ExecutionContext {
 			} catch (Exception e) {
 				Assert.fail("Unable to connect to " + host + ':' + port + " with user " + username + " - " + e.getMessage());
 				// Abort to prevent repeated failures which can lead to account lockout 
-				System.exit(1);
 			}
 		}
 		return ctx;
