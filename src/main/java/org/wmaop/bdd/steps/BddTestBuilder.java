@@ -86,6 +86,13 @@ public class BddTestBuilder {
 	public int getExecutedStep() {
 		return executedStep;
 	}
+	
+	public boolean testConnection() throws ServiceException{
+		if(executionContext == null){
+			fail("Execution Context is null");
+		}
+		return executionContext.testConnection();
+	}
 
 	public void terminate() {
 		executionContext.terminate();
