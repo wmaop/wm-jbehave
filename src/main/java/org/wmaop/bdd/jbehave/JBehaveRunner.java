@@ -20,6 +20,9 @@ import org.jbehave.core.steps.AbstractStepsFactory;
 import org.jbehave.core.steps.InjectableStepsFactory;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
+import org.wmaop.bdd.steps.ThreadContext;
+
+import com.wm.app.b2b.client.ServiceException;
 
 import de.codecentric.jbehave.junit.monitoring.JUnitReportingRunner;
 
@@ -35,8 +38,12 @@ public abstract class JBehaveRunner extends JUnitStories {
 	}
 	
 	@BeforeClass
-	public static void setup() {
+	public static void setup() throws ServiceException {
 		assumeThat(System.getProperty("skipStories"), IsNull.nullValue());
+		boolean connected = ThreadContext.get().testConnection(); // throws AssertionError if unable to connect
+		if (!connected){	// Should never happen without an exception being thrown but for sake of completeness
+			throw new IllegalStateException("In testing connection to the server, isConnected came back false");
+		}
 	}
 	
     @Override 

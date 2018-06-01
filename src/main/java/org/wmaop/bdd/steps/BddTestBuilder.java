@@ -86,6 +86,10 @@ public class BddTestBuilder {
 	public int getExecutedStep() {
 		return executedStep;
 	}
+	
+	public boolean testConnection() throws ServiceException{
+		return executionContext.testConnection();
+	}
 
 	public void terminate() {
 		executionContext.terminate();

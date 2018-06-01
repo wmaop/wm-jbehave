@@ -87,6 +87,10 @@ public class ExecutionContext {
 		}
 		return ctx;
 	}
+	
+	public boolean testConnection() throws ServiceException{
+		return this.getConnectionContext().isConnected();
+	}
 
 	public IData getPipeline() {
 		return pipeline;
@@ -105,7 +109,9 @@ public class ExecutionContext {
 	}
 
 	public void terminate() {
-		context.disconnect();
+		if(context != null){
+			context.disconnect();
+		}
 		context = null;
 	}
 }
