@@ -47,7 +47,7 @@
 	</developers>
 
 	<properties>
-		<wm-aop-util.version>1.1.4</wm-aop-util.version>
+		<wm-aop-util.version>1.1.5-SNAPSHOT</wm-aop-util.version>
 		<jbehave-runner.version>1.2.0</jbehave-runner.version>
 		<jbehave.version>4.1.1</jbehave.version>
 	</properties>
