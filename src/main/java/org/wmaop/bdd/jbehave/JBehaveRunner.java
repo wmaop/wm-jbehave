@@ -24,7 +24,7 @@ import org.wmaop.bdd.steps.ThreadContext;
 
 import com.wm.app.b2b.client.ServiceException;
 
-import de.codecentric.jbehave.junit.monitoring.JUnitReportingRunner;
+import com.github.valfirst.jbehave.junit.monitoring.JUnitReportingRunner;
 
 /**
  * This 'test' resides here because its included in the jar to be extended from
