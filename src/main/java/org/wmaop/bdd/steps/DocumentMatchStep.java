@@ -96,6 +96,32 @@ public class DocumentMatchStep extends BaseServiceStep {
 		} else {
 			docVal = docObj;
 		}
+		// Bug fix: Accomodate if strings have different line breaks (\n\r and \n)
+		if(docVal instanceof String[][] && potObj instanceof String[][]){
+			for(String[] a: (String[][]) potObj){
+				for(String b: a){
+					b = b.replaceAll("\r", "");
+				}
+			}
+			for(String[] a: (String[][]) docVal){
+				for(String b: a){
+					b = b.replaceAll("\r", "");
+				}
+			}
+		}
+		else if(docVal instanceof String[] && potObj instanceof String[]){
+			for(String a: (String[]) potObj){
+				a = a.replaceAll("\r", "");
+			}
+			for(String a: (String[]) docVal){
+				a = a.replaceAll("\r","");
+			}
+		}
+		else if(docVal instanceof String && potObj instanceof String){
+			potObj = (Object) ((String) potObj).replaceAll("\r", "");
+			docVal = (Object) ((String) docVal).replaceAll("\r", "");
+		}
+		//End bug fix
 		if (!docVal.equals(potObj)) {
 			if (reportFail) {
 				fail("Element " + prefix + '.' + key + " has pipeline value of '" + docObj + "' but test value of '"
