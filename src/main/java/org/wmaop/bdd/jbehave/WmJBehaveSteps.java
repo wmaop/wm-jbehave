@@ -135,6 +135,18 @@ public class WmJBehaveSteps  {
 		 * Utility 
 		 */
 
+		@Given("capture pipeline $interceptPoint service $serviceName into $fileName always")
+		public void capture_pipeline(String interceptPoint, String serviceName, String pipelineFileName){
+			BddTestBuilder bddt = ThreadContext.get();
+			bddt.capturePipeline(serviceName+ "-" + bddt.getExecutedStep(), interceptPoint, serviceName, pipelineFileName, null);
+		}
+		
+		@Given("capture pipeline $interceptPoint service $serviceName into $fileName when $condition")
+		public void capture_pipeline_with_condition(String interceptPoint, String serviceName, String pipelineFileName, String condition){
+			BddTestBuilder bddt = ThreadContext.get();
+			bddt.capturePipeline(serviceName+ "-" + bddt.getExecutedStep(), interceptPoint, serviceName, pipelineFileName, condition);
+		}
+		
 		@Then("show pipeline in console")
 		public void showPipeline() {
 			ThreadContext.get().showPipeline();
