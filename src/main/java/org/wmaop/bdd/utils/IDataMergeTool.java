@@ -38,6 +38,8 @@ public class IDataMergeTool {
 				IDataUtil.put(ipCursor, currentKey, orCursor.getValue());
 			}				
 		}
+		orCursor.destroy();
+		ipCursor.destroy();
 	}
 	
 	public static IData[] mergeNestedTypes(IData[] overrideArray, IData[] inputPipelineArray){
