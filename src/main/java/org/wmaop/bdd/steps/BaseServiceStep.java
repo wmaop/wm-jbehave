@@ -34,6 +34,7 @@ public abstract class BaseServiceStep {
 	protected static final String SETUP_ASSERTION = "org.wmaop.define.assertion:registerAssertion";
 	protected static final String ASSERTION_INVOKE_COUNT = "org.wmaop.define.assertion:getInvokeCount";
 	protected static final String REGISTER_EXCEPTION = "org.wmaop.define.exception:registerExceptionMock";
+	protected static final String REGISTER_SCENARIO = "org.wmaop.define.scenario:registerScenario";
 	
 	protected class ServiceSplit {
 		protected String packageName;

@@ -12,6 +12,7 @@ import org.jbehave.core.annotations.When;
 import org.wmaop.bdd.steps.BddTestBuilder;
 import org.wmaop.bdd.steps.InterceptPoint;
 import org.wmaop.bdd.steps.ThreadContext;
+import org.wmaop.bdd.utils.BraceExpansionTool;
 
 public class WmJBehaveSteps  {
 
@@ -46,16 +47,18 @@ public class WmJBehaveSteps  {
 			ThreadContext.get().withVariableExpression(jexlVariableExpression);
 		}
 
-		@Given("mock $serviceName always returning $idataFiles")
-		public void mock_service_always_returning(String serviceName, List<String> idataFiles) {
-			ThreadContext.get().withMockService(serviceName, InterceptPoint.invoke, serviceName, idataFiles, null, null);
+		@Given("mock $serviceName always returning $idataFilesString")
+		public void mock_service_always_returning(String serviceName, String idataFilesString) {
+			List<String> idataFilesList = BraceExpansionTool.expand(idataFilesString);
+			ThreadContext.get().withMockService(serviceName, InterceptPoint.invoke, serviceName, idataFilesList, null, null);
 		}
 		
 		
-		@Given("mock $serviceName returning $idataFiles when $jexlPipelineExpression")
-		public void mock_service_returning_when(String serviceName, List<String> idataFiles, String jexlPipelineExpression) throws Throwable {
+		@Given("mock $serviceName returning $idataFilesString when $jexlPipelineExpression")
+		public void mock_service_returning_when(String serviceName, String idataFilesString, String jexlPipelineExpression) throws Throwable {
+			List<String> idataFilesList = BraceExpansionTool.expand(idataFilesString);
 			BddTestBuilder bddt = ThreadContext.get();
-			bddt.withMockService(serviceName + "-" + bddt.getExecutedStep(), InterceptPoint.invoke, serviceName, idataFiles, jexlPipelineExpression, null);
+			bddt.withMockService(serviceName + "-" + bddt.getExecutedStep(), InterceptPoint.invoke, serviceName, idataFilesList, jexlPipelineExpression, null);
 		}
 
 		
@@ -135,6 +138,18 @@ public class WmJBehaveSteps  {
 		 * Utility 
 		 */
 
+		@Given("capture pipeline $interceptPoint service $serviceName into $fileName always")
+		public void capture_pipeline(String interceptPoint, String serviceName, String pipelineFileName){
+			BddTestBuilder bddt = ThreadContext.get();
+			bddt.capturePipeline(serviceName+ "-" + bddt.getExecutedStep(), interceptPoint, serviceName, pipelineFileName, null);
+		}
+		
+		@Given("capture pipeline $interceptPoint service $serviceName into $fileName when $condition")
+		public void capture_pipeline_with_condition(String interceptPoint, String serviceName, String pipelineFileName, String condition){
+			BddTestBuilder bddt = ThreadContext.get();
+			bddt.capturePipeline(serviceName+ "-" + bddt.getExecutedStep(), interceptPoint, serviceName, pipelineFileName, condition);
+		}
+		
 		@Then("show pipeline in console")
 		public void showPipeline() {
 			ThreadContext.get().showPipeline();

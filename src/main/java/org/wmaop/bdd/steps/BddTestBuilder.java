@@ -77,6 +77,11 @@ public class BddTestBuilder {
 		MockServiceStep step = new MockServiceStep(adviceId, invoke, serviceName, idataFile, jexlPipelineExpression, pkgService);
 		executeStep(step);
 	}
+	
+	public void capturePipeline(String adviceId, String interceptPoint, String serviceName, String pipelineFileName, String condition){
+		CapturePipelineStep step = new CapturePipelineStep(adviceId, interceptPoint, serviceName, pipelineFileName, condition);
+		executeStep(step);
+	}
 
 	public void withPipelineExpression(String jexlExpression) {
 		PipelineJexlStep step = new PipelineJexlStep(jexlExpression);

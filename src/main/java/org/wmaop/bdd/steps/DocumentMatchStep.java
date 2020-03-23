@@ -4,6 +4,8 @@ import org.wmaop.util.jexl.ExpressionProcessor;
 import org.wmaop.util.jexl.IDataJexlContext;
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+
 import com.wm.data.IData;
 import com.wm.data.IDataCursor;
 import com.wm.data.IDataFactory;
@@ -122,12 +124,32 @@ public class DocumentMatchStep extends BaseServiceStep {
 			docVal = (Object) ((String) docVal).replaceAll("\r", "");
 		}
 		//End bug fix
-		if (!docVal.equals(potObj)) {
-			if (reportFail) {
-				fail("Element " + prefix + '.' + key + " has pipeline value of '" + docObj + "' but test value of '"
-						+ potObj + "'");
+		//Another bug fix: arrays will only be .equals() if they are the same object
+		//Instead, use Arrays.equals to evaluate equality of contents of two arrays 
+		if ((docVal instanceof String[][] && potObj instanceof String[][])){
+			if (!Arrays.equals((String[][])docVal,(String[][])potObj)) {
+				if (reportFail) {
+					fail("Element " + prefix + '.' + key + " has pipeline value with different array values than test value");
+				}
+				return false;
 			}
-			return false;
+		}
+		else if ((docVal instanceof String[] && potObj instanceof String[])){
+			if (!Arrays.equals((String[])docVal,(String[])potObj)) {
+				if (reportFail) {
+					fail("Element " + prefix + '.' + key + " has pipeline value with different array values than test value");
+				}
+				return false;
+			}
+		}
+		else{
+			if (!docVal.equals(potObj)) {
+				if (reportFail) {
+					fail("Element " + prefix + '.' + key + " has pipeline value of '" + docObj + "' but test value of '"
+							+ potObj + "'");
+				}
+				return false;
+			}
 		}
 		return true;
 	}
